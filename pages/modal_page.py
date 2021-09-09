@@ -18,7 +18,6 @@ class ModalPage:
     FORM_REGISTER_PASSWORD_REPEAT_INPUT_XPATH = f"{MODAL_DIALOG_XPATH}//input[@name='RepeatPassword']"
     FORM_REGISTER_SIGN_UP_BUTTON_XPATH = f"{MODAL_DIALOG_XPATH}//span[text() = 'Sign Up']"
 
-    """Methods"""
     def __init__(self):
         self.driver = webdriver.Chrome()
 

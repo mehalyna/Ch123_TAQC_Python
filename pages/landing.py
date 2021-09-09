@@ -13,7 +13,6 @@ class LandingPage:
     JOIN_EVENTEXPRESS_BUTTON_XPATH = "//button[contains(text(),'Join EventsExpress')]"
     LOG_OUT_BUTTON_XPATH = "//div[@class='btn']"
 
-    """Methods"""
     def __init__(self):
         self.driver = webdriver.Chrome()
 

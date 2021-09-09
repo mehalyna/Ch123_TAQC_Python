@@ -1,5 +1,4 @@
 from telnetlib import EC
-
 from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
@@ -17,7 +16,6 @@ class NavigationPage:
     NAV_EDIT_PROFILE_CSS = ".svg-inline--fa.fa-cog.fa-w-16"
     NAV_LOGOUT_XPATH = "//a[@href='/home/events?page=1&radius=8']"
 
-    """Methods"""
     def __init__(self):
         self.driver = webdriver.Chrome()
 
@@ -41,8 +39,8 @@ class NavigationPage:
         element = self.driver.find_element(By.CSS_SELECTOR, self.NAV_EDIT_PROFILE_CSS)
         element.click()
 
-    def click_log_out(self):
-        wait = WebDriverWait(self.driver)
+    def click_log_out(self, wait_time=10):
+        wait = WebDriverWait(self.driver, wait_time)
         element = wait.until(
             EC.element_to_be_clickable(By.XPATH, self.NAV_LOGOUT_XPATH)
         )
