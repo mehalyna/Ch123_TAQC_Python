@@ -2,4 +2,4 @@
 
 Test Framework to Events Express project  
 
-Designed by CH-123 group
+Designed by CH-123 group of TAQC
