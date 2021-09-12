@@ -1,3 +1,4 @@
+from enum import Enum
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
@@ -17,11 +18,11 @@ class IssuesPage:
     def __init__(self):
         self.driver = webdriver.Chrome()
 
-    def click_view(self, number):
+    def click_view(self, view_number):
         """
             Method for click on a needed view button.
         """
-        element = self.driver.find_element(By.CSS_SELECTOR, self.VIEW_BTN_CSS.format(number + 1), number)
+        element = self.driver.find_element(By.CSS_SELECTOR, self.VIEW_BTN_CSS.format(view_number + 1), view_number)
         element.click()
 
     """
@@ -29,24 +30,29 @@ class IssuesPage:
         Please, help me...
     """
 
-    def click_checkbox(self, key):
-        if key.lower() == "open":
-            element = self.driver.find_element(By.CSS_SELECTOR, self.CHECK_CSS.format('0'))
-            element.click()
-        elif key.lower() == "in progress":
-            element = self.driver.find_element(By.CSS_SELECTOR, self.CHECK_CSS.format('1'))
-            element.click()
-        elif key.lower() == "resolve":
-            element = self.driver.find_element(By.CSS_SELECTOR, self.CHECK_CSS.format('2'))
-            element.click()
-        else:
-            return "checkbox not find"
+    def click_issue_status_filter(self, issue_status):
+        """
+            Method for click on a needed issue status checkbox.
+        """
+        element = self.driver.find_element(By.CSS_SELECTOR, self.CHECK_CSS.format(issue_status.value))
+        element.click()
 
     def click_reset_button(self):
+        """
+            Method for click on a 'Reset' button.
+        """
         element = self.driver.find_element(By.XPATH, self.RESET_BTN_XPATH)
         element.click()
 
     def click_search_button(self):
+        """
+            Method for click on a 'Search' button.
+        """
         element = self.driver.find_element(By.XPATH, self.SEARCH_BTN_XPATH)
         element.click()
 
+
+class Issue_Statuses(Enum):
+    OPEN = '0'
+    IN_PROGRESS = '1'
+    RESOLVE = '2'
