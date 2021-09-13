@@ -3,8 +3,10 @@ from selenium.webdriver.common.by import By
 
 class AdminAddCategoryPage():
 
+    '''Locators and methjods for Admin Edit category page'''
+
     ADD_CATEGORY_BUTTON_XPATH = "//button[contains(text(),'Add element')]"
-    EDIT_CATEGORY_BUTTON_XPATH = "//table[@class='table w-100 m-auto']/tr[3]/td[4/div/button]"
+    EDIT_CATEGORY_BUTTON_XPATH = "//table[@class='table w-100 m-auto']/tr[3]/td[4]/div/button"
     NAME_CATEGORY_INPUT_XPATH = "//table[@class='table w-100 m-auto']/tr[3]/td[1]/input"
     SUBMIT_EDIT_CATEGORY_XPATH = "//table[@class='table w-100 m-auto']/tr[3]/td[4]/button[@type='submit']"
     CANCEL_EDIT_CATEGORY_XPATH = "//table[@class='table w-100 m-auto']/tr[3]/td[4]/button[2]"
