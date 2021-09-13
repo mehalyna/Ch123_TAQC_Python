@@ -16,11 +16,11 @@ class NavigationPage:
     def __init__(self):
         self.driver = webdriver.Chrome()
 
-    def click_navigation_page(self, page_title):
+    def go_to_page(self, page_title):
         """
             Method for click on page depending on page_title value.
         """
-        elements = self.driver.find_element(By.CSS_SELECTOR, self.NAV_PAGE_TITLE_CSS)
+        elements = self.driver.find_elements(By.CSS_SELECTOR, self.NAV_PAGE_TITLE_CSS)
         for element in elements:
             if page_title == element.text:
                 element.click()

@@ -8,7 +8,9 @@ class ModalPage:
     """
     MODAL_DIALOG_XPATH = "//div[@class='MuiDialog-root'][2]"
     FORM_PAGE_XPATH = f"{MODAL_DIALOG_XPATH}//span[text() = '{{}}']"
-    FORM_INP_XPATH = f"{MODAL_DIALOG_XPATH}//input[@name='{{}}']"
+    FORM_EMAIL_INP_XPATH = f"{MODAL_DIALOG_XPATH}]//input[@name='email']"
+    FORM_PASSWORD_INP_XPATH = f"{MODAL_DIALOG_XPATH}//input[@name='password']"
+    FORM_REGISTER_PASSWORD_REPEAT_INP_XPATH = f"{MODAL_DIALOG_XPATH}//input[@name='RepeatPassword']"
     FORM_BTN_XPATH = f"{MODAL_DIALOG_XPATH}//span[text() = '{{}}']"
 
     def __init__(self):
@@ -16,21 +18,26 @@ class ModalPage:
 
     def click_page(self, page_title):
         """
-            Method for click on page depending on text value.
+            Method for click on page depending on page_title value.
         """
         element = self.driver.find_element(By.XPATH, self.FORM_PAGE_XPATH.format(page_title))
         element.click()
 
-    def send_data_input(self, name_input, string):
-        """
-            Method for send data to input depending on text value.
-        """
-        element = self.driver.find_element(By.XPATH, self.FORM_INP_XPATH.format(name_input))
+    def send_email_input(self, string):
+        element = self.driver.find_element(By.XPATH, self.FORM_EMAIL_INP_XPATH)
+        element.send_keys(string)
+
+    def send_password_input(self, string):
+        element = self.driver.find_element(By.XPATH, self.FORM_PASSWORD_INP_XPATH)
+        element.send_keys(string)
+
+    def send_password_repeat_input(self, string):
+        element = self.driver.find_element(By.XPATH, self.FORM_REGISTER_PASSWORD_REPEAT_INP_XPATH)
         element.send_keys(string)
 
     def click_button(self, name_button):
         """
-            Method for click on button depending on text value.
+            Method for click on page depending on name_button value.
         """
         element = self.driver.find_element(By.XPATH, self.FORM_BTN_XPATH.format(name_button))
         element.click()
