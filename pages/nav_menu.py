@@ -18,7 +18,7 @@ class NavigationPage:
 
     def click_navigation_page(self, page_title):
         """
-            Method for click on navigation menu depending on text value.
+            Method for click on page depending on page_title value.
         """
         elements = self.driver.find_element(By.CSS_SELECTOR, self.NAV_PAGE_TITLE_CSS)
         for element in elements:
@@ -33,7 +33,7 @@ class NavigationPage:
     def click_log_out(self, wait_time=10):
         wait = WebDriverWait(self.driver, wait_time)
         element = wait.until(
-            EC.element_to_be_clickable(By.XPATH, self.NAV_LOGOUT_CSS)
+            EC.element_to_be_clickable(By.CSS_SELECTOR, self.NAV_LOGOUT_CSS)
         )
         actions = ActionChains(self.driver)
         actions.move_to_element(element).perform()

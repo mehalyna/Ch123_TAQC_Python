@@ -18,19 +18,19 @@ class ModalPage:
         """
             Method for click on page depending on text value.
         """
-        element = self.driver.find_element(By.XPATH, self.FORM_PAGE_XPATH.format(page_title), page_title)
+        element = self.driver.find_element(By.XPATH, self.FORM_PAGE_XPATH.format(page_title))
         element.click()
 
-    def send_data_input(self, name_input):
+    def send_data_input(self, name_input, string):
         """
             Method for send data to input depending on text value.
         """
-        element = self.driver.find_element(By.XPATH, self.FORM_INP_XPATH.format(name_input), name_input)
-        element.click()
+        element = self.driver.find_element(By.XPATH, self.FORM_INP_XPATH.format(name_input))
+        element.send_keys(string)
 
     def click_button(self, name_button):
         """
             Method for click on button depending on text value.
         """
-        element = self.driver.find_element(By.XPATH, self.FORM_BTN_XPATH.format(name_button), name_button)
+        element = self.driver.find_element(By.XPATH, self.FORM_BTN_XPATH.format(name_button))
         element.click()
