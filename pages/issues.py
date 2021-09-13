@@ -3,10 +3,15 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 
+class IssueStatuses(Enum):
+    """ Enum of types for Issue Statuses. """
+    OPEN = '0'
+    IN_PROGRESS = '1'
+    RESOLVE = '2'
+
+
 class IssuesPage:
-    """
-    Locators and methods for Issues page.
-    """
+    """ Locators and methods for Issues page. """
 
     VIEW_BTN_CSS = "tr:nth-child({})  a > button"
     FROM_DATA_INP_CSS = "div:nth-child(1) > div > div > input"
@@ -20,7 +25,11 @@ class IssuesPage:
 
     def click_view(self, view_number):
         """
-            Method for click on a needed view button.
+         Method for click on a needed view button.
+
+                Paremeters:
+                    view_number (int): A decimal integer
+
         """
         element = self.driver.find_element(By.CSS_SELECTOR, self.VIEW_BTN_CSS.format(view_number + 1), view_number)
         element.click()
@@ -50,9 +59,3 @@ class IssuesPage:
         """
         element = self.driver.find_element(By.XPATH, self.SEARCH_BTN_XPATH)
         element.click()
-
-
-class Issue_Statuses(Enum):
-    OPEN = '0'
-    IN_PROGRESS = '1'
-    RESOLVE = '2'
