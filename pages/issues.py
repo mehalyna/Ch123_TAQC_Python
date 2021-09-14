@@ -21,7 +21,7 @@ class IssuesPage:
         """
             Method for click on a needed view button.
         """
-        element = self.driver.find_element(By.CSS_SELECTOR, self.VIEW_BTN_CSS.format(view_number + 1), view_number)
+        element = self.driver.find_elements(By.CSS_SELECTOR, self.VIEW_BTN_CSS.format(view_number + 1))
         element.click()
 
     def click_issue_status_filter(self, issue_status):
@@ -34,12 +34,12 @@ class IssuesPage:
                 element.click()
                 return
 
-    def click_status_button(self, name_button):
+    def click_status_button(self, btn_name):
         """
             Method for click on button depending on text value.
         """
-        elements = self.driver.find_element(By.CSS_SELECTOR, self.BTN_CSS)
+        elements = self.driver.find_elements(By.CSS_SELECTOR, self.BTN_CSS)
         for element in elements:
-            if name_button == element.text:
+            if btn_name == element.text:
                 element.click()
                 return
