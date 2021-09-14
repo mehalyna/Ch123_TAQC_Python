@@ -14,7 +14,7 @@ class ComunaPage:
 
     def click_chat_comuna(self):
         """
-            Method for click in navigation menu on Comuna.
+            Method for click in navigation menu on Comuna item.
         """
         element = self.driver.find_element(By.CSS_SELECTOR, self.COMUNA_NAV_MENU_ITEM_CSS)
         element.click()
