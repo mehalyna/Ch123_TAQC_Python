@@ -1,6 +1,7 @@
 from enum import Enum
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 
 
 class IssuesPage:
@@ -9,6 +10,8 @@ class IssuesPage:
     VIEW_BTN_CSS = "tr:nth-child({})  a > button"
     CHECK_CSS = ".checkbox > label"
     BTN_CSS = "form > div.d-flex > button"
+    DATAPICKER_FROM_CSS = ".form-group:nth-child(1) .MuiInputBase-input.MuiInput-input"
+    DATAPICKER_TO_CSS = ".form-group:nth-child(2) .MuiInputBase-input.MuiInput-input"
 
     def __init__(self):
         self.driver = webdriver.Chrome()
@@ -39,3 +42,25 @@ class IssuesPage:
             if name_button == element.text:
                 element.click()
                 return
+
+    def send_date_datepicker_to(self, day, month, year):
+        element = self.driver.find_element(By.CSS_SELECTOR, self.DATAPICKER_TO_CSS)
+        element.send_keys(year)
+        element.send_keys(year)
+        element.send_keys(year)
+        element.send_keys(Keys.ARROW_LEFT)
+        element.send_keys(month)
+        element.send_keys(Keys.ARROW_LEFT)
+        element.send_keys(Keys.ARROW_LEFT)
+        element.send_keys(day)
+
+    def send_date_datepicker_from(self, day, month, year):
+        element = self.driver.find_element(By.CSS_SELECTOR, self.DATAPICKER_FROM_CSS)
+        element.send_keys(year)
+        element.send_keys(year)
+        element.send_keys(year)
+        element.send_keys(Keys.ARROW_LEFT)
+        element.send_keys(month)
+        element.send_keys(Keys.ARROW_LEFT)
+        element.send_keys(Keys.ARROW_LEFT)
+        element.send_keys(day)
