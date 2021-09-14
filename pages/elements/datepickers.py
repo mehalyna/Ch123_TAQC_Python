@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
 
-class DatePickers:
+class DatePicker:
     """
         Class for send DatePickers by css selector.
     """
@@ -11,10 +11,11 @@ class DatePickers:
         self.driver = webdriver.Chrome()
         self.css_selector = selector
 
-    def write_date_to_datepicker(self, element, day, month, year):
+    def write_date_to_datepicker(self, day, month, year):
         """
             Method for write date on a datepicker by css selector.
         """
+        element = self.driver.find_element(By.CSS_SELECTOR, self.css_selector)
         element.send_keys(year)
         element.send_keys(year)
         element.send_keys(year)
