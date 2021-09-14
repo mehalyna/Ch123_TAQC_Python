@@ -14,6 +14,7 @@ class DatePicker:
     def write_date_to_datepicker(self, day, month, year):
         """
             Method for write date on a datepicker by css selector.
+            Day, month, year - are integer values.
         """
         element = self.driver.find_element(By.CSS_SELECTOR, self.css_selector)
         element.send_keys(year)
