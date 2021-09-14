@@ -46,7 +46,7 @@ class IssuesPage:
     def send_date_datepicker_to(self, day, month, year):
         """
             Method for send data in datepicker 'to'.
-            Day, month, year - is int value.
+            Day, month, year - are integer values.
         """
         element = self.driver.find_element(By.CSS_SELECTOR, self.DATAPICKER_TO_CSS)
         element.send_keys(year)
@@ -61,7 +61,7 @@ class IssuesPage:
     def send_date_datepicker_from(self, day, month, year):
         """
             Method for send data in datepicker 'from'.
-            Day, month, year - is int value.
+            Day, month, year - are integer values.
         """
         element = self.driver.find_element(By.CSS_SELECTOR, self.DATAPICKER_FROM_CSS)
         element.send_keys(year)
