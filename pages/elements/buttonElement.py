@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 
-class ButtonElements:
+class ButtonElement:
     """
         Class for click on Button by css selector.
     """
