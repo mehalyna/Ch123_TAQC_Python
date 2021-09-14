@@ -13,9 +13,15 @@ class ComunaPage:
         self.driver = webdriver.Chrome()
 
     def click_chat_comuna(self):
+        """
+            Method for click in navigation menu on Comuna.
+        """
         element = self.driver.find_element(By.CSS_SELECTOR, self.COMUNA_NAV_MENU_ITEM_CSS)
         element.click()
 
     def click_comuna_user_chat(self, number):
+        """
+            Method for click in menu Comuna to open Chat with user.
+        """
         element = self.driver.find_element(By.CSS_SELECTOR, self.COMUNA_USER_ITEM_CSS.format(number))
         element.click()
