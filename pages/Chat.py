@@ -6,25 +6,29 @@ class ChatPage:
     """
         Locators and methods for Chat Page.
     """
-    CHAT_SMALL_AVATAR_CLASS_NAME = "SmallAvatar"
-    MESSAGE_TEXTAREA_XPATH = "//div/textarea"
-    SEND_BUTTON_XPATH = "//button[@type='submit']"
+    CHAT_SMALL_AVATAR_BTN_CLASS_NAME = "SmallAvatar"
+    MESSAGE_TEXTAREA_CSS = "textarea"
+    SEND_BTN_CSS = "button[type='submit']"
 
     def __init__(self):
         self.driver = webdriver.Chrome()
 
     def click_chat_small_avatar(self):
-        element = self.driver.find_element(By.CLASS_NAME, self.CHAT_SMALL_AVATAR)
+        """ Method for click small avatar on chat page."""
+        element = self.driver.find_element(By.CLASS_NAME, self.CHAT_SMALL_AVATAR_BTN_CLASS_NAME)
         element.click()
 
     def click_textarea(self):
-        element = self.driver.find_element(By.XPATH, self.MESSAGE_TEXTAREA_XPATH)
+        """ Method for click on textarea 'Type your message...' """
+        element = self.driver.find_element(By.CSS_SELECTOR, self.MESSAGE_TEXTAREA_CSS)
         element.click()
 
     def send_textarea(self, message):
-        element = self.driver.find_element(By.XPATH, self.MESSAGE_TEXTAREA_XPATH)
+        """ Method for type message in text area 'Type your message...' """
+        element = self.driver.find_element(By.CSS_SELECTOR, self.MESSAGE_TEXTAREA_CSS)
         element.send_keys(message)
 
     def click_send_button(self):
-        element = self.driver.find_element(By.XPATH, self.SEND_BUTTON_XPATH)
+        """ Method for click "Send" button """
+        element = self.driver.find_element(By.CSS_SELECTOR, self.SEND_BTN_CSS)
         element.click()
