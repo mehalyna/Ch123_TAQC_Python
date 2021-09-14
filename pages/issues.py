@@ -1,7 +1,6 @@
-from enum import Enum
+from pages.elements.datepickers import DatePicker
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 
 
 class IssuesPage:
@@ -15,6 +14,8 @@ class IssuesPage:
 
     def __init__(self):
         self.driver = webdriver.Chrome()
+        self.date_from = DatePicker(self.DATAPICKER_FROM_CSS)
+        self.date_to = DatePicker(self.DATAPICKER_TO_CSS)
 
     def click_view(self, view_number):
         """
@@ -42,33 +43,3 @@ class IssuesPage:
             if name_button == element.text:
                 element.click()
                 return
-
-    def send_date_datepicker_to(self, day, month, year):
-        """
-            Method for send data in datepicker 'to'.
-            Day, month, year - are integer values.
-        """
-        element = self.driver.find_element(By.CSS_SELECTOR, self.DATAPICKER_TO_CSS)
-        element.send_keys(year)
-        element.send_keys(year)
-        element.send_keys(year)
-        element.send_keys(Keys.ARROW_LEFT)
-        element.send_keys(month)
-        element.send_keys(Keys.ARROW_LEFT)
-        element.send_keys(Keys.ARROW_LEFT)
-        element.send_keys(day)
-
-    def send_date_datepicker_from(self, day, month, year):
-        """
-            Method for send data in datepicker 'from'.
-            Day, month, year - are integer values.
-        """
-        element = self.driver.find_element(By.CSS_SELECTOR, self.DATAPICKER_FROM_CSS)
-        element.send_keys(year)
-        element.send_keys(year)
-        element.send_keys(year)
-        element.send_keys(Keys.ARROW_LEFT)
-        element.send_keys(month)
-        element.send_keys(Keys.ARROW_LEFT)
-        element.send_keys(Keys.ARROW_LEFT)
-        element.send_keys(day)
