@@ -12,13 +12,13 @@ ALL_BTN_CSS = 'div:nth-child(6) > div > label:nth-child(3)'
 SEARCH_BTN_CSS = 'button > span.MuiButton-label'
 USER_EDIT_CSS = 'tr:nth-child({user_index}) > td:nth-child(6) > button'
 USER_BLOCK_CSS = 'tbody > tr:nth-child({user_index}) > td:nth-child(7) > div'
-ADMIN = "Admin"
-USER = "User"
+
 
 class UsersPage:
     """
         Admin Users editing blocking and filtering.
     """
+
     def __init__(self):
         """
             Init method used for set up.
@@ -44,21 +44,16 @@ class UsersPage:
         """
         self.driver.find_element(By.CSS_SELECTOR, SEARCH_FIELD_CSS).send_keys(need_user)
 
-    def user_role_admin(self):
+    def user_role(self, status):
         """
-            Method for declaring that we search user with role 'admin'.
-        """
-        select = Select(self.driver.find_element(By.CSS_SELECTOR, ROLE_FIELD_CSS))
-        self.driver.implicitly_wait(5)
-        select.select_by_value(ADMIN)
-
-    def user_role_user(self):
-        """
-            Method for declaring that we search user with role 'user'.
+            Method for declaring that we search user with role
+                'Admin'
+                'User'.
         """
         select = Select(self.driver.find_element(By.CSS_SELECTOR, ROLE_FIELD_CSS))
-        self.driver.implicitly_wait(5)
-        select.select_by_value(USER)
+        if status in element.text:
+            select.select_by_value(status)
+            return
 
     def user_page_size(self, page_size):
         """
@@ -66,10 +61,9 @@ class UsersPage:
         """
         select = Select(self.driver.find_element(By.CSS_SELECTOR, PAGESIZE_FIELD_CSS))
         self.driver.implicitly_wait(15)
-        if int(page_size) == 5 or int(page_size) == 10 or int(page_size) == 15:
+        if status in element.text:
             select.select_by_value(page_size)
-        else:
-            print('error')
+            return
 
     def user_is_blocked(self):
         """

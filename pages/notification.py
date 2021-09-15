@@ -6,10 +6,8 @@ TITLE_NOTIFICATION_FIELD_CSS = 'form > div:nth-child(1)'
 SUBJECT_NOTIFICATION_FIELD_CSS = 'form > div:nth-child(2) > div > div > input'
 MESSAGE_NOTIFICATION_FIELD_CSS = 'form > div:nth-child(3) > div > div > textarea'
 USER_EMAIL_FIELD_NOTIFICATION_CSS = 'div > div > ul > li'
-SAVE_BTN_NOTIFICATION_CSS = 'button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary'
-RESET_BTN_NOTIFICATION_CSS = 'button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textSecondary.Mui-disabled.Mui'
 NOTIFICATION_BTN_CSS_SELECTOR = 'tr:nth-child({notification_num}) > td:nth-child(5) > a > button.text-info'
-
+SAVE_RESET_BTNS_NOTIFICATION_CSS = 'div.align-self-end'
 
 class NotificationPage:
     """
@@ -54,17 +52,12 @@ class NotificationPage:
         """
         self.driver.find_element(By.CSS_SELECTOR, MESSAGE_NOTIFICATION_FIELD_CSS).send_keys(message_text)
 
-    def save_notification_btn(self):
-        """
-            Method for clicking save button.
-        """
-        self.driver.find_element(By.CSS_SELECTOR, SAVE_BTN_NOTIFICATION_CSS).click()
+    def save_reset_btns_track(self, btn_name):
+        self.driver.find_element(By.CSS_SELECTOR, SAVE_RESET_BTNS_NOTIFICATION_CSS)
+        if btn_name in element.text:
+            element.click()
+            return
 
-    def reset_notification_btn(self):
-        """
-            Method for clicking reset notification button.
-        """
-        self.driver.find_element(By.CSS_SELECTOR, RESET_BTN_NOTIFICATION_CSS).click()
 
     def email_copy_notification_btn(self):
         """

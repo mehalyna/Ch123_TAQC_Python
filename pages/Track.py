@@ -11,7 +11,8 @@ TO_DATE_FIELD_TRACK_CSS = 'div:nth-child(1) > div:nth-child(4) > div > div > inp
 RESET_BTN_TRACK_CSS = 'div.form-group.d-flex > button:nth-child(1)'
 SEARCH_BTN_TRACK_CSS = 'div.form-group.d-flex > button:nth-child(2)'
 INFO_BTN_TRACK_CSS = 'tr:nth-child({track_index}) > td:nth-child(5) > div > button'
-
+CHECK_BOX_TRACK_CSS = 'div.checkbox > label'
+SEARCH_RESET_BTNS_CSS = "button > span.MuiButton-label"
 
 class TrackPage:
     """
@@ -36,29 +37,26 @@ class TrackPage:
         """
         self.driver.find_element(By.CSS_SELECTOR, ENTYTY_NAME_FIELD_TRACK_CSS).send_keys(search_text)
 
-    def undefined_status_track(self):
+    def checkbox_status_track(self, status_name):
         """
-            Enable 'undefined' status checkbox.
+            Method for click checkbox status
+                Available commands:
+                    'Undefined'
+                    'Modified'
+                    'Created'
+                    'Deleted'
         """
-        self.driver.find_element(By.CSS_SELECTOR, UNDEFINED_BOX_TRACK_CSS).click()
+        self.driver.find_element(By.CSS_SELECTOR, CHECK_BOX_TRACK_CSS)
+        for element in elements:
+            if status_name in element.text:
+                element.click()
+                return
 
-    def modified_status_track(self):
-        """
-            Enable 'modified' status checkbox.
-        """
-        self.driver.find_element(By.CSS_SELECTOR, MODIFIED_BOX_TRACK_CSS).click()
-
-    def created_status_track(self):
-        """
-            Enable 'created' status checkbox.
-        """
-        self.driver.find_element(By.CSS_SELECTOR, CREATED_BOX_TRACK_CSS).click()
-
-    def deleted_status_track(self):
-        """
-            Enable 'deleted' status checkbox.
-        """
-        self.driver.find_element(By.CSS_SELECTOR, DELETED_BOX_TRACK_CSS).click()
+    def search_reset_btns_track(self, btn_name):
+        self.driver.find_element(By.CSS_SELECTOR, SEARCH_RESET_BTNS_CSS)
+        if btn_name in element.text:
+            element.click()
+            return
 
     def from_date_track(self, date):
         """
@@ -72,14 +70,3 @@ class TrackPage:
         """
         self.driver.find_element(By.CSS_SELECTOR, TO_DATE_FIELD_TRACK_CSS).send_keys(date)
 
-    def search_track(self):
-        """
-            Method for clicking search search button.
-        """
-        self.driver.find_element(By.CSS_SELECTOR, SEARCH_BTN_TRACK_CSS).click()
-
-    def reset_track(self):
-        """
-            Method for clicking reset button.
-        """
-        self.driver.find_element(By.CSS_SELECTOR, RESET_BTN_TRACK_CSS).click()
