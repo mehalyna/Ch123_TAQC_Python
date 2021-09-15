@@ -3,7 +3,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 
-
 class NavigationPage:
     """
         Locators and methods for navigation menu.
