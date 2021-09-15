@@ -1,3 +1,5 @@
+from pages.elements.buttons import ButtonElements
+from pages.elements.datepickers import DatePicker
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
@@ -8,9 +10,14 @@ class IssuesPage:
     VIEW_BTN_CSS = "tr:nth-child({})  a > button"
     CHECK_CSS = ".checkbox > label"
     BTN_CSS = "form > div.d-flex > button"
+    DATAPICKER_FROM_CSS = ".form-group:nth-child(1) .MuiInputBase-input.MuiInput-input"
+    DATAPICKER_TO_CSS = ".form-group:nth-child(2) .MuiInputBase-input.MuiInput-input"
 
     def __init__(self):
         self.driver = webdriver.Chrome()
+        self.status_btns = ButtonElements(self.BTN_CSS)
+        self.date_from_dtp = DatePicker(self.DATAPICKER_FROM_CSS)
+        self.date_to_dtp = DatePicker(self.DATAPICKER_TO_CSS)
 
     def click_view(self, view_number):
         """
@@ -26,15 +33,5 @@ class IssuesPage:
         elements = self.driver.find_elements(By.CSS_SELECTOR, self.CHECK_CSS)
         for element in elements:
             if issue_status in element.text:
-                element.click()
-                return
-
-    def click_status_button(self, btn_name):
-        """
-            Method for click on button depending on text value.
-        """
-        elements = self.driver.find_elements(By.CSS_SELECTOR, self.BTN_CSS)
-        for element in elements:
-            if btn_name in element.text:
                 element.click()
                 return
