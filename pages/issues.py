@@ -16,8 +16,8 @@ class IssuesPage:
     def __init__(self):
         self.driver = webdriver.Chrome()
         self.status_btns = ButtonElements(self.BTN_CSS)
-        self.date_from = DatePicker(self.DATAPICKER_FROM_CSS)
-        self.date_to = DatePicker(self.DATAPICKER_TO_CSS)
+        self.date_from_dtp = DatePicker(self.DATAPICKER_FROM_CSS)
+        self.date_to_dtp = DatePicker(self.DATAPICKER_TO_CSS)
 
     def click_view(self, view_number):
         """

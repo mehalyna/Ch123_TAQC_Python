@@ -17,8 +17,8 @@ class NavigationPage:
 
     def __init__(self):
         self.driver = webdriver.Chrome()
-        self.navigation_edit_profile = ButtonElement(self.NAV_EDIT_PROFILE_CSS)
-        self.log_out = ButtonElement(self.NAV_LOGOUT_CSS)
+        self.navigation_edit_profile_btn = ButtonElement(self.NAV_EDIT_PROFILE_CSS)
+        self.log_out_btn = ButtonElement(self.NAV_LOGOUT_CSS)
 
     def go_to_page(self, page_title):
         """
