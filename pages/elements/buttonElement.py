@@ -1,5 +1,4 @@
 from pages.basePage import BasePage
-from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -11,7 +10,6 @@ class ButtonElement(BasePage):
     """
     def __init__(self, selector):
         super().__init__()
-        #self.driver = webdriver.Chrome()
         self.selector = selector
 
     def click_btn_by_css(self):

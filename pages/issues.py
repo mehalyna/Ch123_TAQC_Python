@@ -13,7 +13,6 @@ class IssuesPage(BasePage):
     DATAPICKER_TO_CSS = ".form-group:nth-child(2) .MuiInputBase-input.MuiInput-input"
 
     def __init__(self):
-        #self.driver = webdriver.Chrome()
         super().__init__()
         self.status_btns = ButtonElements(self.BTN_CSS)
         self.date_from_dtp = DatePicker(self.DATAPICKER_FROM_CSS)

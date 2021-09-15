@@ -14,7 +14,6 @@ class ModalPage(BasePage):
 
     def __init__(self):
         super().__init__()
-        #self.driver = webdriver.Chrome()
 
     def click_page(self, page_title):
         """

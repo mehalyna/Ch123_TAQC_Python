@@ -1,6 +1,3 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-
 from pages.basePage import BasePage
 
 
@@ -10,7 +7,6 @@ class ButtonElements(BasePage):
     """
     def __init__(self, selector):
         super().__init__()
-        #self.driver = webdriver.Chrome()
         self.selector = selector
 
     def click_btn_by_name(self, btn_name):
