@@ -1,3 +1,5 @@
+from pages.elements.buttonElement import ButtonElement
+from pages.elements.buttons import ButtonElements
 from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
@@ -15,6 +17,7 @@ class NavigationPage:
 
     def __init__(self):
         self.driver = webdriver.Chrome()
+        self.navigation_edit_profile = ButtonElement(self.NAV_EDIT_PROFILE_CSS)
 
     def go_to_page(self, page_title):
         """
@@ -38,10 +41,6 @@ class NavigationPage:
             if page_title in element.text:
                 element.click()
                 return
-
-    def click_navigation_edit_profile(self):
-        element = self.driver.find_element(By.CSS_SELECTOR, self.NAV_EDIT_PROFILE_CSS)
-        element.click()
 
     def click_log_out(self, wait_time=10):
         wait = WebDriverWait(self.driver, wait_time)
