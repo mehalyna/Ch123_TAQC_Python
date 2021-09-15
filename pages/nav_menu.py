@@ -38,4 +38,3 @@ class NavigationPage(BasePage):
             if page_title in element.text:
                 element.click()
                 return
-

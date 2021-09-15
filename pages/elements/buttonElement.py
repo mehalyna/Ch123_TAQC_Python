@@ -4,10 +4,12 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from telnetlib import EC
 
+
 class ButtonElement(BasePage):
     """
         Class for click on Button by css selector.
     """
+
     def __init__(self, selector):
         super().__init__()
         self.selector = selector
