@@ -4,15 +4,13 @@ from selenium.webdriver.common.by import By
 
 class HomePage:
     """
-        Locators for Hope page.
+        Locators for Home page.
     """
     HOME_PAGE_CARD_TO_EVENTS_LINK_CSS = "div:nth-child({}) > div > div.MuiCardMedia-root"
     HOME_PAGE_NUMBER_OF_PAGE_BTN_CSS = "ul > div > div > button:nth-child({})"
     HOME_PAGE_KEYWORD_INP_CSS = "form > div:nth-child(1) > div > div > input"
     HOME_PAGE_MORE_FILTERS_BTN_CSS = "div:nth-child(2) > button > span.MuiButton-label"
-    HOME_PAGE_RESET_BTN_CSS = "div.d-flex > button:nth-child(1) > span.MuiButton-label"
-    HOME_PAGE_FAVORITE_BTN_CSS = "div.d-flex > button:nth-child(2) > span.MuiButton-label"
-    HOME_PAGE_SEARCH_BTN_CSS = "div.d-flex > button:nth-child(3) > span.MuiButton-label"
+    HOME_PAGE_RESET_FAVORITE_SEARCH_BTN_CSS = "div.d-flex > button > span.MuiButton-label"
     """
         Locators for More filters menu.
     """
@@ -77,6 +75,10 @@ class HomePage:
     def click_active_blocked_canceled_checkbox(self, active_blocked_canceled):
         """
             Method for click checkboxes in 'More filters' menu depending on text value.
+                Available checkboxes:
+                    'Active'
+                    'Blocked'
+                    'Canceled'
         """
         elements = self.driver.find_elements(By.CSS_SELECTOR, self.MORE_FILTERS_MENU_CHECK_CSS)
         for element in elements:
@@ -96,20 +98,16 @@ class HomePage:
         """
         self.driver.find_element(By.CSS_SELECTOR, self.MORE_FILTERS_MENU_LESS_BTN_CSS).click()
 
-    def click_reset_btn(self):
+    def click_reset_favourite_search_btn(self, reset_favorite_search):
         """
-            Method for click 'reset' button.
+            Method for click buttons depending on text value.
+                Available buttons:
+                    'RESET'
+                    'FAVOURITE'
+                    'SEARCH'
         """
-        self.driver.find_element(By.CSS_SELECTOR, self.HOME_PAGE_RESET_BTN_CSS).click()
-
-    def click_favorite_btn(self):
-        """
-            Method for click 'favorite' button.
-        """
-        self.driver.find_element(By.CSS_SELECTOR, self.HOME_PAGE_FAVORITE_BTN_CSS).click()
-
-    def click_search_btn(self):
-        """
-            Method for click 'search' button.
-        """
-        self.driver.find_element(By.CSS_SELECTOR, self.HOME_PAGE_SEARCH_BTN_CSS).click()
+        elements = self.driver.find_elements(By.CSS_SELECTOR, self.HOME_PAGE_RESET_FAVORITE_SEARCH_BTN_CSS)
+        for element in elements:
+            if reset_favorite_search in element.text:
+                element.click()
+                return
