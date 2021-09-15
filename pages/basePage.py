@@ -14,7 +14,7 @@ class BasePage:
 
     def find_element_by_css(self, locator, time=10):
         """
-            Method for search element for css selector with wait
+            Method for search element by css selector with wait
         """
         WebDriverWait(self.driver, time).until(EC.presence_of_element_located(locator),
                                                message=f"Can't find element by locator {locator}")
@@ -22,7 +22,7 @@ class BasePage:
 
     def find_element_by_xpath(self, locator, time=10):
         """
-            Method for search element for xpath selector with wait
+            Method for search element by xpath selector with wait
         """
         WebDriverWait(self.driver, time).until(EC.presence_of_element_located(locator),
                                                message=f"Can't find element by locator {locator}")
@@ -30,7 +30,7 @@ class BasePage:
 
     def find_elements(self, locator, time=10):
         """
-            Method for search elements for css selector with wait
+            Method for search elements by css selector with wait
         """
         WebDriverWait(self.driver, time).until(EC.presence_of_all_elements_located(locator),
                                                message=f"Can't find elements by locator {locator}")
