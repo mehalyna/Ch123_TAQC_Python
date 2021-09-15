@@ -12,7 +12,8 @@ ALL_BTN_CSS = 'div:nth-child(6) > div > label:nth-child(3)'
 SEARCH_BTN_CSS = 'button > span.MuiButton-label'
 USER_EDIT_CSS = 'tr:nth-child({user_index}) > td:nth-child(6) > button'
 USER_BLOCK_CSS = 'tbody > tr:nth-child({user_index}) > td:nth-child(7) > div'
-
+ADMIN = "Admin"
+USER = "User"
 
 class UsersPage:
     """
@@ -49,7 +50,7 @@ class UsersPage:
         """
         select = Select(self.driver.find_element(By.CSS_SELECTOR, ROLE_FIELD_CSS))
         self.driver.implicitly_wait(5)
-        select.select_by_value("Admin")
+        select.select_by_value(ADMIN)
 
     def user_role_user(self):
         """
@@ -57,7 +58,7 @@ class UsersPage:
         """
         select = Select(self.driver.find_element(By.CSS_SELECTOR, ROLE_FIELD_CSS))
         self.driver.implicitly_wait(5)
-        select.select_by_value("User")
+        select.select_by_value(USER)
 
     def user_page_size(self, page_size):
         """
