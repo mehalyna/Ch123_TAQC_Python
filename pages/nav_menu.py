@@ -18,6 +18,7 @@ class NavigationPage:
     def __init__(self):
         self.driver = webdriver.Chrome()
         self.navigation_edit_profile = ButtonElement(self.NAV_EDIT_PROFILE_CSS)
+        self.log_out = ButtonElement(self.NAV_LOGOUT_CSS)
 
     def go_to_page(self, page_title):
         """
@@ -42,11 +43,3 @@ class NavigationPage:
                 element.click()
                 return
 
-    def click_log_out(self, wait_time=10):
-        wait = WebDriverWait(self.driver, wait_time)
-        element = wait.until(
-            EC.element_to_be_clickable(By.CSS_SELECTOR, self.NAV_LOGOUT_CSS)
-        )
-        actions = ActionChains(self.driver)
-        actions.move_to_element(element).perform()
-        element.click()
