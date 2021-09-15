@@ -1,8 +1,8 @@
-from telnetlib import EC
 from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
+from telnetlib import EC
 
 
 class ButtonElement:
