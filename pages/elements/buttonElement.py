@@ -1,30 +1,31 @@
-from telnetlib import EC
+from pages.basePage import BasePage
 from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
+from telnetlib import EC
 
-
-class ButtonElement:
+class ButtonElement(BasePage):
     """
         Class for click on Button by css selector.
     """
     def __init__(self, selector):
-        self.driver = webdriver.Chrome()
+        super().__init__()
+        #self.driver = webdriver.Chrome()
         self.selector = selector
 
     def click_btn_by_css(self):
         """
             Method for click on a needed button by css selector.
         """
-        button = self.driver.find_element(By.CSS_SELECTOR, self.selector)
+        button = self.find_element_by_css(self.selector)
         button.click()
 
     def click_btn_by_xpath(self):
         """
             Method for click on a needed button by xpath selector.
         """
-        button = self.driver.find_element(By.XPATH, self.selector)
+        button = self.find_element_by_xpath(self.selector)
         button.click()
 
     def click_by_css_with_wait(self, wait_time=10):

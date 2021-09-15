@@ -1,9 +1,8 @@
+from pages.basePage import BasePage
 from pages.elements.buttonElement import ButtonElement
-from selenium import webdriver
-from selenium.webdriver.common.by import By
 
 
-class NavigationPage:
+class NavigationPage(BasePage):
     """
         Locators and methods for navigation menu.
     """
@@ -12,7 +11,8 @@ class NavigationPage:
     NAV_LOGOUT_CSS = "a:nth-child(2) > button"
 
     def __init__(self):
-        self.driver = webdriver.Chrome()
+        super().__init__()
+        #self.driver = webdriver.Chrome()
         self.navigation_edit_profile_btn = ButtonElement(self.NAV_EDIT_PROFILE_CSS)
         self.log_out_btn = ButtonElement(self.NAV_LOGOUT_CSS)
 
@@ -33,7 +33,8 @@ class NavigationPage:
                 'Contact us' - contactAdmin page
                 'Comuna' Comuna page
         """
-        elements = self.driver.find_elements(By.CSS_SELECTOR, self.NAV_PAGE_TITLE_CSS)
+
+        elements = self.find_elements(self.NAV_PAGE_TITLE_CSS)
         for element in elements:
             if page_title in element.text:
                 element.click()

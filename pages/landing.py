@@ -1,8 +1,8 @@
+from pages.basePage import BasePage
 from pages.elements.buttonElement import ButtonElement
-from selenium import webdriver
 
 
-class LandingPage:
+class LandingPage(BasePage):
     """
         Locators and methods for landing page.
     """
@@ -14,7 +14,8 @@ class LandingPage:
     LOG_OUT_BTN_CSS = "div.text-right > div"
 
     def __init__(self):
-        self.driver = webdriver.Chrome()
+        super().__init__()
+        #self.driver = webdriver.Chrome()
         self.sign_up_btn = ButtonElement(self.SIGN_IN_UP_BTN_CSS)
         self.find_event_btn = ButtonElement(self.FIND_EVENT_BTN_CSS)
         self.create_event_btn = ButtonElement(self.CREATE_EVENT_BTN_CSS)
