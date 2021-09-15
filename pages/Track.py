@@ -14,47 +14,72 @@ INFO_BTN_TRACK_CSS = 'tr:nth-child({track_index}) > td:nth-child(5) > div > butt
 
 
 class TrackPage:
-    """Admin track page filtering."""
+    """
+        Admin track page filtering.
+    """
     def __init__(self):
+        """
+            Init method used for set up.
+        """
         self.driver = webdriver.Chrome()
 
     def info_track_btn(self, track_index):
-        """Click track information button."""
+        """
+            Click track information button.
+        """
         self.driver.implicitly_wait(5)
         self.driver.find_element(By.CSS_SELECTOR, INFO_BTN_TRACK_CSS.format(track_index)).click()
 
     def entity_name_field_track(self, search_text):
-        """Entity name input method."""
+        """
+            Entity name input method.
+        """
         self.driver.find_element(By.CSS_SELECTOR, ENTYTY_NAME_FIELD_TRACK_CSS).send_keys(search_text)
 
     def undefined_status_track(self):
-        """Enable 'undefined' status checkbox."""
+        """
+            Enable 'undefined' status checkbox.
+        """
         self.driver.find_element(By.CSS_SELECTOR, UNDEFINED_BOX_TRACK_CSS).click()
 
     def modified_status_track(self):
-        """Enable 'modified' status checkbox."""
+        """
+            Enable 'modified' status checkbox.
+        """
         self.driver.find_element(By.CSS_SELECTOR, MODIFIED_BOX_TRACK_CSS).click()
 
     def created_status_track(self):
-        """Enable 'created' status checkbox."""
+        """
+            Enable 'created' status checkbox.
+        """
         self.driver.find_element(By.CSS_SELECTOR, CREATED_BOX_TRACK_CSS).click()
 
     def deleted_status_track(self):
-        """Enable 'deleted' status checkbox."""
+        """
+            Enable 'deleted' status checkbox.
+        """
         self.driver.find_element(By.CSS_SELECTOR, DELETED_BOX_TRACK_CSS).click()
 
     def from_date_track(self, date):
-        """Method for input date 'from' creating."""
+        """
+            Method for input date 'from' creating.
+        """
         self.driver.find_element(By.CSS_SELECTOR, FROM_DATE_FIELD_TRACK_CSS).send_keys(date)
 
     def to_date_track(self, date):
-        """Method for input date 'to' creating."""
+        """
+            Method for input date 'to' creating.
+        """
         self.driver.find_element(By.CSS_SELECTOR, TO_DATE_FIELD_TRACK_CSS).send_keys(date)
 
     def search_track(self):
-        """Method for clicking search search button."""
+        """
+            Method for clicking search search button.
+        """
         self.driver.find_element(By.CSS_SELECTOR, SEARCH_BTN_TRACK_CSS).click()
 
     def reset_track(self):
-        """Method for clicking reset button."""
+        """
+            Method for clicking reset button.
+        """
         self.driver.find_element(By.CSS_SELECTOR, RESET_BTN_TRACK_CSS).click()
