@@ -19,7 +19,7 @@ class ButtonElement:
 
     def click_btn_by_xpath(self):
         """
-            Method for click on a needed button by css selector.
+            Method for click on a needed button by xpath selector.
         """
         button = self.driver.find_element(By.XPATH, self.selector)
         button.click()
