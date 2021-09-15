@@ -1,3 +1,4 @@
+from pages.elements.buttons import ButtonElements
 from pages.elements.datepickers import DatePicker
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -14,6 +15,7 @@ class IssuesPage:
 
     def __init__(self):
         self.driver = webdriver.Chrome()
+        self.status_btns = ButtonElements(self.BTN_CSS)
         self.date_from = DatePicker(self.DATAPICKER_FROM_CSS)
         self.date_to = DatePicker(self.DATAPICKER_TO_CSS)
 
@@ -31,15 +33,5 @@ class IssuesPage:
         elements = self.driver.find_elements(By.CSS_SELECTOR, self.CHECK_CSS)
         for element in elements:
             if issue_status in element.text:
-                element.click()
-                return
-
-    def click_status_button(self, btn_name):
-        """
-            Method for click on button depending on text value.
-        """
-        elements = self.driver.find_elements(By.CSS_SELECTOR, self.BTN_CSS)
-        for element in elements:
-            if btn_name in element.text:
                 element.click()
                 return
