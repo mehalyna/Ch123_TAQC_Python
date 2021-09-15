@@ -15,6 +15,7 @@ USER_BLOCK_CSS = 'tbody > tr:nth-child({user_index}) > td:nth-child(7) > div'
 
 
 class UsersPage:
+    """Admin Users editing blocking and filtering."""
     def __init__(self):
         """Init method used for set up."""
         self.driver = webdriver.Chrome()

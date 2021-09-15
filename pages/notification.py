@@ -12,7 +12,7 @@ NOTIFICATION_BTN_CSS_SELECTOR = 'tr:nth-child({notification_num}) > td:nth-child
 
 
 class NotificationPage:
-
+    """Admin notification edit page."""
     def __init__(self):
         self.driver = webdriver.Chrome()
 

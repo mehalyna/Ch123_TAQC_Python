@@ -14,6 +14,7 @@ INFO_BTN_TRACK_CSS = 'tr:nth-child({track_index}) > td:nth-child(5) > div > butt
 
 
 class TrackPage:
+    """Admin track page filtering."""
     def __init__(self):
         self.driver = webdriver.Chrome()
 
