@@ -25,7 +25,7 @@ class IssuesPage:
         """
         elements = self.driver.find_elements(By.CSS_SELECTOR, self.CHECK_CSS)
         for element in elements:
-            if issue_status == element.text:
+            if issue_status in element.text:
                 element.click()
                 return
 
@@ -35,6 +35,6 @@ class IssuesPage:
         """
         elements = self.driver.find_elements(By.CSS_SELECTOR, self.BTN_CSS)
         for element in elements:
-            if btn_name == element.text:
+            if btn_name in element.text:
                 element.click()
                 return
