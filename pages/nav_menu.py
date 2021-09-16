@@ -1,48 +1,41 @@
+from pages.elements.buttonElement import ButtonElement
 from selenium import webdriver
-from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from telnetlib import EC
+
 
 class NavigationPage:
     """
         Locators and methods for navigation menu.
     """
-    NAV_HOME_XPATH = "//span[text() = 'Home']"
-    NAV_COMUNA_XPATH = "//span[text() = 'Comuna']"
-    NAV_ADMIN_XPATH = "//span[text() = 'Admin']"
-    NAV_ISSUES_XPATH = "//span[text() = 'Issues']"
-    NAV_EDIT_PROFILE_CSS = ".svg-inline--fa.fa-cog.fa-w-16"
-    NAV_LOGOUT_XPATH = "//a[@href='/home/events?page=1&radius=8']"
+    NAV_PAGE_TITLE_CSS = "span.nav-item-text"
+    NAV_EDIT_PROFILE_CSS = "a:nth-child(1) > button"
+    NAV_LOGOUT_CSS = "a:nth-child(2) > button"
 
     def __init__(self):
         self.driver = webdriver.Chrome()
+        self.navigation_edit_profile_btn = ButtonElement(self.NAV_EDIT_PROFILE_CSS)
+        self.log_out_btn = ButtonElement(self.NAV_LOGOUT_CSS)
 
-    def click_navigation_home(self):
-        element = self.driver.find_element(By.XPATH, self.NAV_HOME_XPATH)
-        element.click()
+    def go_to_page(self, page_title):
+        """
+            Method for click on page depending on page_title value.
+            page_title values for admin:
+                'Home' - Home page
+                'Comuna' - Comuna page
+                'Admin' - Admin page
+                'Issues' - Issues page
+            page_title for user:
+                'Home' - Home page
+                'Profile' - Profile page
+                'Draft' - Drafts page
+                'Search Users' - Search/users page
+                'Recurrent Events' - eventSchedules page
+                'Contact us' - contactAdmin page
+                'Comuna' Comuna page
+        """
+        elements = self.driver.find_elements(By.CSS_SELECTOR, self.NAV_PAGE_TITLE_CSS)
+        for element in elements:
+            if page_title in element.text:
+                element.click()
+                return
 
-    def click_navigation_comuna(self):
-        element = self.driver.find_element(By.XPATH, self.NAV_COMUNA_XPATH)
-        element.click()
-
-    def click_navigation_admin(self):
-        element = self.driver.find_element(By.XPATH, self.NAV_ADMIN_XPATH)
-        element.click()
-
-    def click_navigation_issues(self):
-        element = self.driver.find_element(By.XPATH, self.NAV_ISSUES_XPATH)
-        element.click()
-
-    def click_navigation_edit_profile(self):
-        element = self.driver.find_element(By.CSS_SELECTOR, self.NAV_EDIT_PROFILE_CSS)
-        element.click()
-
-    def click_log_out(self, wait_time=10):
-        wait = WebDriverWait(self.driver, wait_time)
-        element = wait.until(
-            EC.element_to_be_clickable(By.XPATH, self.NAV_LOGOUT_XPATH)
-        )
-        actions = ActionChains(self.driver)
-        actions.move_to_element(element).perform()
-        element.click()
