@@ -55,20 +55,6 @@ class HomePage:
         """
         self.driver.find_element(By.CSS_SELECTOR, self.HOME_PAGE_MORE_FILTERS_BTN_CSS).click()
 
-    def send_date_from_input(self, date):
-        """
-            Method for input date in 'date from' field.
-            Date must contains format like this 'dd-mm-yyyy'.
-        """
-        self.driver.find_element(By.CSS_SELECTOR, self.MORE_FILTERS_MENU_DATE_FROM_INP_CSS).send_keys(date)
-
-    def send_date_to_input(self, date):
-        """
-            Method for input date in 'date to' field.
-            Date must contains format like this 'dd-mm-yyyy'.
-        """
-        self.driver.find_element(By.CSS_SELECTOR, self.MORE_FILTERS_MENU_DATE_TO_INP_CSS).send_keys(date)
-
     def send_hashtags_input(self, string):
         """
             Method for input text in 'hashtags' field.
