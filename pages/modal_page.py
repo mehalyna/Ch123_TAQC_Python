@@ -7,13 +7,13 @@ class ModalPage(BasePage):
     """
     MODAL_DIALOG_XPATH = "//div[@class='MuiDialog-root'][2]"
     FORM_PAGE_XPATH = f"{MODAL_DIALOG_XPATH}//span[text() = '{{}}']"
-    FORM_EMAIL_INP_XPATH = f"{MODAL_DIALOG_XPATH}]//input[@name='email']"
+    FORM_EMAIL_INP_XPATH = f"{MODAL_DIALOG_XPATH}//input[@name='email']"
     FORM_PASSWORD_INP_XPATH = f"{MODAL_DIALOG_XPATH}//input[@name='password']"
     FORM_REGISTER_PASSWORD_REPEAT_INP_XPATH = f"{MODAL_DIALOG_XPATH}//input[@name='RepeatPassword']"
     FORM_BTN_XPATH = f"{MODAL_DIALOG_XPATH}//span[text() = '{{}}']"
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, driver):
+        super().__init__(driver)
 
     def click_page(self, page_title):
         """

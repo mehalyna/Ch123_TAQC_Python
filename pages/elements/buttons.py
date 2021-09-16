@@ -1,12 +1,13 @@
+from pages.baseContext import BaseContext
 from pages.basePage import BasePage
 
 
-class ButtonElements(BasePage):
+class ButtonElements(BaseContext):
     """
         Class for click on Button by text button.
     """
-    def __init__(self, selector):
-        super().__init__()
+    def __init__(self, selector, driver):
+        super().__init__(driver)
         self.selector = selector
 
     def click_btn_by_name(self, btn_name):

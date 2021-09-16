@@ -12,11 +12,11 @@ class IssuesPage(BasePage):
     DATAPICKER_FROM_CSS = ".form-group:nth-child(1) .MuiInputBase-input.MuiInput-input"
     DATAPICKER_TO_CSS = ".form-group:nth-child(2) .MuiInputBase-input.MuiInput-input"
 
-    def __init__(self):
-        super().__init__()
-        self.status_btns = ButtonElements(self.BTN_CSS)
-        self.date_from_dtp = DatePicker(self.DATAPICKER_FROM_CSS)
-        self.date_to_dtp = DatePicker(self.DATAPICKER_TO_CSS)
+    def __init__(self, driver):
+        super().__init__(driver)
+        self.status_btns = ButtonElements(self.BTN_CSS, driver)
+        self.date_from_dtp = DatePicker(self.DATAPICKER_FROM_CSS, driver)
+        self.date_to_dtp = DatePicker(self.DATAPICKER_TO_CSS, driver)
 
     def click_view(self, view_number):
         """

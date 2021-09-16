@@ -1,13 +1,14 @@
+from pages.baseContext import BaseContext
 from pages.basePage import BasePage
 from selenium.webdriver.common.keys import Keys
 
 
-class DatePicker(BasePage):
+class DatePicker(BaseContext):
     """
         Class for send DatePickers by css selector.
     """
-    def __init__(self, selector):
-        super().__init__()
+    def __init__(self, selector, driver):
+        super().__init__(driver)
         self.css_selector = selector
 
     def write_date_to_datepicker(self, day, month, year):

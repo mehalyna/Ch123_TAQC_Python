@@ -1,3 +1,4 @@
+from pages.baseContext import BaseContext
 from pages.basePage import BasePage
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
@@ -5,13 +6,12 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-class ButtonElement(BasePage):
+class ButtonElement(BaseContext):
     """
         Class for click on Button by css selector.
     """
-
-    def __init__(self, selector):
-        super().__init__()
+    def __init__(self, selector, driver):
+        super().__init__(driver)
         self.selector = selector
 
     def click_btn_by_css(self):
