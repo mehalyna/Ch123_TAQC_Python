@@ -1,5 +1,4 @@
-from pages.baseContext import BaseContext
-from pages.basePage import BasePage
+from pages.common.baseContext import BaseContext
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait

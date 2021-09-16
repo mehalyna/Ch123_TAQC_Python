@@ -1,5 +1,5 @@
-from pages.basePage import BasePage
-from pages.elements.buttonElement import ButtonElement
+from pages.common.basePage import BasePage
+from pages.elements.ButtonElement import ButtonElement
 
 
 class LandingPage(BasePage):

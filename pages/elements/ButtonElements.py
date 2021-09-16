@@ -1,5 +1,4 @@
-from pages.baseContext import BaseContext
-from pages.basePage import BasePage
+from pages.common.baseContext import BaseContext
 
 
 class ButtonElements(BaseContext):

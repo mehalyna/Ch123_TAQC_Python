@@ -1,4 +1,4 @@
-from pages.basePage import BasePage
+from pages.common.basePage import BasePage
 
 
 class ModalPage(BasePage):

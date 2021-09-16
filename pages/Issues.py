@@ -1,6 +1,6 @@
-from pages.basePage import BasePage
-from pages.elements.buttons import ButtonElements
-from pages.elements.datepickers import DatePicker
+from pages.common.basePage import BasePage
+from pages.elements.ButtonElements import ButtonElements
+from pages.elements.DatePicker import DatePicker
 
 
 class IssuesPage(BasePage):
@@ -11,6 +11,7 @@ class IssuesPage(BasePage):
     BTN_CSS = "form > div.d-flex > button"
     DATAPICKER_FROM_CSS = ".form-group:nth-child(1) .MuiInputBase-input.MuiInput-input"
     DATAPICKER_TO_CSS = ".form-group:nth-child(2) .MuiInputBase-input.MuiInput-input"
+    ISSUE_RESULTS_CSS = ".table.w-100.m-auto tr:not(.bg-light)"
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -34,3 +35,5 @@ class IssuesPage(BasePage):
             if issue_status in element.text:
                 element.click()
                 return
+    def get_amount_of_issue_results(self):
+        return self.find_elements(self.ISSUE_RESULTS_CSS)
