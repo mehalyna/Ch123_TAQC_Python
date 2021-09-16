@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from pages.elements.datepickers import DatePicker
 
 
 class HomePage:
@@ -25,6 +26,8 @@ class HomePage:
     """
     def __init__(self):
         self.driver = webdriver.Chrome()
+        self.send_date_from_input = DatePicker(self.MORE_FILTERS_MENU_DATE_FROM_INP_CSS)
+        self.send_date_to_input = DatePicker(self.MORE_FILTERS_MENU_DATE_TO_INP_CSS)
 
     def click_to_event_link(self, index):
         """
@@ -38,7 +41,7 @@ class HomePage:
             Method for click number of page.
             Index must contains integer value.
         """
-        self.driver.find_elements(By.CSS_SELECTOR, self.HOME_PAGE_NUMBER_OF_PAGE_BTN_CSS.format(index)).click()
+        self.driver.find_element(By.CSS_SELECTOR, self.HOME_PAGE_NUMBER_OF_PAGE_BTN_CSS.format(index)).click()
 
     def send_keyword_input(self, string):
         """
@@ -72,7 +75,7 @@ class HomePage:
         """
         self.driver.find_element(By.CSS_SELECTOR, self.MORE_FILTERS_MENU_HASHTAGS_INP_CSS).send_keys(string)
 
-    def click_active_blocked_canceled_checkbox(self, active_blocked_canceled):
+    def click_filter_checkbox(self, filter):
         """
             Method for click checkboxes in 'More filters' menu depending on text value.
                 Available checkboxes:
@@ -82,7 +85,7 @@ class HomePage:
         """
         elements = self.driver.find_elements(By.CSS_SELECTOR, self.MORE_FILTERS_MENU_CHECK_CSS)
         for element in elements:
-            if active_blocked_canceled in element.text:
+            if filter in element.text:
                 element.click()
                 return
 
