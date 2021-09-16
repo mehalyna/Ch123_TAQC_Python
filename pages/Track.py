@@ -2,14 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 ENTYTY_NAME_FIELD_TRACK_CSS = 'div:nth-child(1) > div:nth-child(1)'
-UNDEFINED_BOX_TRACK_CSS = 'div:nth-child(1) > div:nth-child(2) > div > div:nth-child(1)'
-MODIFIED_BOX_TRACK_CSS = 'div:nth-child(1) > div:nth-child(2) > div > div:nth-child(2) '
-CREATED_BOX_TRACK_CSS = 'div:nth-child(1) > div:nth-child(2) > div > div:nth-child(3)'
-DELETED_BOX_TRACK_CSS = 'div:nth-child(1) > div:nth-child(2) > div > div:nth-child(4)'
 FROM_DATE_FIELD_TRACK_CSS = 'div:nth-child(1) > div:nth-child(3) > div > div > input'
 TO_DATE_FIELD_TRACK_CSS = 'div:nth-child(1) > div:nth-child(4) > div > div > input'
-RESET_BTN_TRACK_CSS = 'div.form-group.d-flex > button:nth-child(1)'
-SEARCH_BTN_TRACK_CSS = 'div.form-group.d-flex > button:nth-child(2)'
 INFO_BTN_TRACK_CSS = 'tr:nth-child({track_index}) > td:nth-child(5) > div > button'
 CHECK_BOX_TRACK_CSS = 'div.checkbox > label'
 SEARCH_RESET_BTNS_CSS = "button > span.MuiButton-label"
@@ -19,9 +13,6 @@ class TrackPage:
         Admin track page filtering.
     """
     def __init__(self):
-        """
-            Init method used for set up.
-        """
         self.driver = webdriver.Chrome()
 
     def info_track_btn(self, track_index):

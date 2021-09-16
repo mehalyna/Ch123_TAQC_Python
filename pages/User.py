@@ -20,9 +20,6 @@ class UsersPage:
     """
 
     def __init__(self):
-        """
-            Init method used for set up.
-        """
         self.driver = webdriver.Chrome()
 
     def user_edit(self, user_index):
@@ -61,7 +58,7 @@ class UsersPage:
         """
         select = Select(self.driver.find_element(By.CSS_SELECTOR, PAGESIZE_FIELD_CSS))
         self.driver.implicitly_wait(15)
-        if status in element.text:
+        if page_size in element.text:
             select.select_by_value(page_size)
             return
 

@@ -14,9 +14,6 @@ class NotificationPage:
         Admin notification edit page.
     """
     def __init__(self):
-        """
-            Init method used for set up.
-        """
         self.driver = webdriver.Chrome()
 
     def edit_notification_btn(self, notification_num):
