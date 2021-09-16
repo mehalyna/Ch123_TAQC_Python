@@ -35,5 +35,6 @@ class IssuesPage(BasePage):
             if issue_status in element.text:
                 element.click()
                 return
+
     def get_amount_of_issue_results(self):
         return self.find_elements(self.ISSUE_RESULTS_CSS)

@@ -4,7 +4,7 @@ from pages.ModalPage import ModalPage
 from pages.NavigationPage import NavigationPage
 
 
-class IssueTests:
+class TestsRefactor:
     """
         Test class
     """
