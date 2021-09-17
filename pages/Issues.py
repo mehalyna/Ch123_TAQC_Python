@@ -21,14 +21,16 @@ class IssuesPage(BasePage):
 
     def click_view(self, view_number):
         """
-            Method for click on a needed view button.
+            Method for click on a needed view button as a view_number.
+            The view number must be specified in the view_number variable.
         """
         element = self.find_element_by_css(self.VIEW_BTN_CSS.format(view_number + 1))
         element.click()
 
     def click_issue_status_filter(self, issue_status):
         """
-            Method for click on issue status checkbox depending on text value.
+            Method for click on issue status checkbox depending on text value
+             in the variable issue_status.
         """
         elements = self.find_elements(self.CHECK_CSS)
         for element in elements:
@@ -37,4 +39,7 @@ class IssuesPage(BasePage):
                 return
 
     def get_amount_of_issue_results(self):
-        return self.find_elements(self.ISSUE_RESULTS_CSS)
+        """
+            Method for get amount of issue.
+        """
+        return len(self.find_elements(self.ISSUE_RESULTS_CSS))

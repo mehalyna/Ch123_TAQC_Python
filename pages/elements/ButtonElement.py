@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class ButtonElement(BaseContext):
     """
-        Class for click on Button by css selector.
+        Class for click on Button by xpath and css selector.
     """
     def __init__(self, selector, driver):
         super().__init__(driver)
@@ -29,7 +29,7 @@ class ButtonElement(BaseContext):
 
     def click_by_css_with_wait(self, wait_time=10):
         """
-            Method for click on a needed button by css selector with wait.
+            Method for click on a needed button by css selector with hover over the item and wait.
         """
         wait = WebDriverWait(self.driver, wait_time)
         element = wait.until(
