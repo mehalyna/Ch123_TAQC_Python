@@ -1,5 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class AdminAddCategoryPage:
@@ -19,21 +21,22 @@ class AdminAddCategoryPage:
     CTG_DELETE_BTN_CSS = "tr:nth-child({index_of_row}) > td:nth-child(5)  button"
     NUMBER_OF_USERS_VALUE_CSS = "tr:nth-child({index_of_row}) > td:nth-child(2)"
     NUMBER_OF_EVENTS_VALUE_CSS = "tr:nth-child({index_of_row}) > td:nth-child(3)"
-    COLUMN_OF_TABLE_CSS = "tbody > tr > td(1)"
+    COLUMN_OF_TABLE_CSS = "tr > td:nth-child(1):not(td.align-middle)"
 
     def __init__(self):
         self.driver = webdriver.Chrome()
 
 
-    def find_category_by_name(self, category_name):
+    def find_category_by_name(self, category_name, wait_time=10):
         """
             Search for a category row by name
         :param category_name: name of category which we want to find
         """
-        elements=self.driver.find_elements(By.CSS_SELECTOR, self.COLUMN_OF_TABLE_CSS)
-        for idx, row in enumerate(elements):
-            if row.text == category_name:
-                self.index_of_row = idx
+        elements = WebDriverWait(self.driver, wait_time).until(
+            EC.visibility_of_all_elements_located((By.CSS_SELECTOR, self.COLUMN_OF_TABLE_CSS)))
+        for idx, element in enumerate(elements):
+            if element.text == category_name:
+                return idx + 1
 
     def click_add_ctg_btn(self):
         """
