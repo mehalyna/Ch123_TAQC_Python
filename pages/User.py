@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
-PAGE_NUM_CSS = 'ul > div > div > button:nth-child({page_number})'
+PAGE_NUM_CSS = 'ul > div > div > button:nth-child({})'
 SEARCH_FIELD_CSS = 'div.MuiFormControl-root.MuiTextField-root.MuiFormControl-fullWidth > div > input'
 ROLE_FIELD_CSS = "div.MuiFormControl-root.jss550 > div > select"
 PAGESIZE_FIELD_CSS = 'div.MuiFormControl-root.jss567 > div > select'
@@ -10,8 +10,8 @@ BLOCKED_BTN_CSS = 'div:nth-child(6) > div > label:nth-child(1)'
 ACTIVE_BTN_CSS = 'div:nth-child(6) > div > label:nth-child(2)'
 ALL_BTN_CSS = 'div:nth-child(6) > div > label:nth-child(3)'
 SEARCH_BTN_CSS = 'button > span.MuiButton-label'
-USER_EDIT_CSS = 'tr:nth-child({user_index}) > td:nth-child(6) > button'
-USER_BLOCK_CSS = 'tbody > tr:nth-child({user_index}) > td:nth-child(7) > div'
+USER_EDIT_CSS = 'tr:nth-child({}) > td:nth-child(6) > button'
+USER_BLOCK_CSS = 'tbody > tr:nth-child({}) > td:nth-child(7) > div'
 
 
 class UsersPage:
@@ -22,26 +22,26 @@ class UsersPage:
     def __init__(self):
         self.driver = webdriver.Chrome()
 
-    def user_edit(self, user_index):
+    def user_edit_click(self, user_index):
         """
             Method for clicking user edit button.
         """
         self.driver.find_element(By.CSS_SELECTOR, USER_EDIT_CSS.format(user_index)).click()
 
-    def user_block(self, user_index):
+    def user_block_click(self, user_index):
         """
-            Method for clicking user delete button.
+            Method for clicking user delete button for user with user_index number.
         """
         self.driver.implicitly_wait(5)
         self.driver.find_element(By.CSS_SELECTOR, USER_BLOCK_CSS.format(user_index)).click()
 
-    def user_search_field(self, need_user):
+    def user_search_field(self, user_name):
         """
             Method for searching user with search field.
         """
-        self.driver.find_element(By.CSS_SELECTOR, SEARCH_FIELD_CSS).send_keys(need_user)
+        self.driver.find_element(By.CSS_SELECTOR, SEARCH_FIELD_CSS).send_keys(user_name)
 
-    def user_role(self, status):
+    def get_user_role(self, status):
         """
             Method for declaring that we search user with role
                 'Admin'
@@ -54,7 +54,9 @@ class UsersPage:
 
     def user_page_size(self, page_size):
         """
-            Method for displaying 5 or 10 or 15 numbers of user in one page.
+            Method for displaying numbers of user in one page.
+                Available input:
+                "5" , "10" , "15"
         """
         select = Select(self.driver.find_element(By.CSS_SELECTOR, PAGESIZE_FIELD_CSS))
         self.driver.implicitly_wait(15)
@@ -84,10 +86,11 @@ class UsersPage:
         """
             Method for clicking search button.
         """
-        return self.driver.find_element(By.CSS_SELECTOR, SEARCH_BTN_CSS).click()
+        self.driver.find_element(By.CSS_SELECTOR, SEARCH_BTN_CSS).click()
 
     def user_page(self, page_number):
         """
             Method for clicking on specific page number.
+            Input page_number for click specific number of page
         """
         self.driver.find_element(By.CSS_SELECTOR, PAGE_NUM_CSS.format(page_number)).click()
