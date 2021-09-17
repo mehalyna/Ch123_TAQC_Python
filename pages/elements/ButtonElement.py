@@ -27,7 +27,7 @@ class ButtonElement(BaseContext):
         button = self.find_element_by_xpath(self.selector)
         button.click()
 
-    def click_by_css_with_wait(self, wait_time=10):
+    def hover_and_click_by_css(self, wait_time=10):
         """
             Method for click on a needed button by css selector with hover over the item and wait.
         """
