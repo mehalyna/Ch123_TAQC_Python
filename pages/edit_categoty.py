@@ -26,20 +26,21 @@ class AdminAddCategoryPage:
 
     def find_category_by_name(self, category_name):
         """
-                Search for a category row by name
+            Search for a category row by name
+        :param category_name: name of category which we want to find
         """
         for idx, row in enumerate(self.TABLE_OF_CTG_CSS):
             if row.text == category_name:
                 self.index_of_row = idx
 
-    def add_ctg_click_btn(self):
+    def click_add_ctg_btn(self):
         """
                Method for creating new category with pressing button
         """
         element = self.driver.find_element(By.CSS_SELECTOR, self.CTG_ADD_BTN_CSS)
         element.click()
 
-    def new_ctg_name_inp_into_field(self, data_for_input):
+    def enter_ctg_name(self, data_for_input):
         """
               Method for entering new category name.
         :param data_for_input: Variable data_for_input should contain text which
@@ -48,28 +49,28 @@ class AdminAddCategoryPage:
         element = self.driver.find_element(By.CSS_SELECTOR, self.CTG_ADD_INP_FIELD_CSS)
         element.send_keys(data_for_input)
 
-    def ctg_cancel_creating(self):
+    def click_cancel_ctg_creating_btn(self):
         """
              Method for canceling of creating new category by pressing CANCEL button
         """
         element = self.driver.find_element(By.CSS_SELECTOR, self.CTG_ADD_CANCEL_BTN_CSS)
         element.click()
 
-    def ctg_submit_creating(self):
+    def click_submit_ctg_creating_btn(self):
         """
             Method for pressing submit button to save new category
         """
         element = self.driver.find_element(By.CSS_SELECTOR, self.CTG_ADD_SUBMIT_BTN_CSS)
         element.click()
 
-    def ctg_edit_click_btn(self):
+    def edit_ctg_name(self):
         """
             Method for pressing edit category button
         """
         element = self.driver.find_element(By.CSS_SELECTOR, self.CTG_EDIT_BTN_CSS.format(index_of_row = self.index_of_row))
         element.click()
 
-    def ctg_edit_name_inp(self, input_data):
+    def inp_new_ctg_name(self, input_data):
         """
             Method for clearing input field and entering new name of category
         :param input_data: new name of category
@@ -78,21 +79,21 @@ class AdminAddCategoryPage:
         element.clear()
         element.send_keys(input_data)
 
-    def ctg_edit_submit_btn(self):
+    def click_submit_ctg_edit_btn(self):
         """
-           Method for saving changes in existing category
+           Method for saving change of category name
         """
         element = self.driver.find_element(By.CSS_SELECTOR, self.CTG_SUBMIT_EDIT_BTN_CSS.format(index_of_row = self.index_of_row))
         element.click()
 
-    def ctg_edit_cancel_btn(self):
+    def click_cancel_ctg_edit_btn(self):
         """
-            Method for canceling changes
+            Method for canceling change of category name
         """
         element = self.driver.find_element(By.CSS_SELECTOR, self.CTG_CANCEL_EDIT_BTN_CSS.format(index_of_row=self.index_of_row))
         element.click()
 
-    def ctg_delete_btn(self):
+    def click_delete_ctg_btn(self):
         """
             Method for deleting existing category
         """
