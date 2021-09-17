@@ -8,28 +8,30 @@ class AdminAddCategoryPage:
     """
     index_of_row = 0
     CTG_ADD_BTN_CSS = "button.ml-0"
-    CTG_ADD_INP_FIELD_CSS = "#save-form > div > div > div > input"
-    CTG_ADD_SUBMIT_BTN_CSS = "tr:nth-child(1) > td > div > button.text-success"
-    CTG_ADD_CANCEL_BTN_CSS = "tr:nth-child(1) > td > div > button.text-danger"
-    TABLE_OF_CTG_CSS = "table.table.w-100.m-auto"
-    CTG_EDIT_BTN_CSS = "tr:nth-child({index_of_row}) > td:nth-child(4) > div > button.text-info"
-    CTG_EDIT_NAME_INP_CSS = "tr:nth-child({index_of_row}) > td:nth-child(1) > form#save-form > input"
-    CTG_SUBMIT_EDIT_BTN_CSS = "tr:nth-child({index_of_row}) > td:nth-child(4) > div > button.text-success"
-    CTG_CANCEL_EDIT_BTN_CSS = "tr:nth-child({index_of_row}) > td:nth-child(4) > div > button.text-danger"
-    CTG_DELETE_BTN_CSS = "tr:nth-child({index_of_row}) > td:nth-child(5) > button"
+    CTG_ADD_INP_FIELD_CSS = "input.MuiInputBase-input"
+    CTG_ADD_SUBMIT_BTN_CSS = "tr:nth-child(1) button.text-success"
+    CTG_ADD_CANCEL_BTN_CSS = "tr:nth-child(1) button.text-danger"
+    TABLE_OF_CTG_CSS = "table"
+    CTG_EDIT_BTN_CSS = "tr:nth-child({index_of_row})  button.text-info"
+    CTG_EDIT_NAME_INP_CSS = "tr:nth-child({index_of_row}) > td:nth-child(1)  input"
+    CTG_SUBMIT_EDIT_BTN_CSS = "tr:nth-child({index_of_row}) > td:nth-child(4)  button.text-success"
+    CTG_CANCEL_EDIT_BTN_CSS = "tr:nth-child({index_of_row}) > td:nth-child(4)  button.text-danger"
+    CTG_DELETE_BTN_CSS = "tr:nth-child({index_of_row}) > td:nth-child(5)  button"
     NUMBER_OF_USERS_VALUE_CSS = "tr:nth-child({index_of_row}) > td:nth-child(2)"
     NUMBER_OF_EVENTS_VALUE_CSS = "tr:nth-child({index_of_row}) > td:nth-child(3)"
-    COLUMN_OF_TABLE_CSS = "tbody > tr"
+    COLUMN_OF_TABLE_CSS = "tbody > tr > td(1)"
 
     def __init__(self):
         self.driver = webdriver.Chrome()
+
 
     def find_category_by_name(self, category_name):
         """
             Search for a category row by name
         :param category_name: name of category which we want to find
         """
-        for idx, row in enumerate(self.TABLE_OF_CTG_CSS):
+        elements=self.driver.find_elements(By.CSS_SELECTOR, self.COLUMN_OF_TABLE_CSS)
+        for idx, row in enumerate(elements):
             if row.text == category_name:
                 self.index_of_row = idx
 
@@ -99,5 +101,6 @@ class AdminAddCategoryPage:
         """
         element = self.driver.find_element(By.CSS_SELECTOR, self.CTG_DELETE_BTN_CSS.format(index_of_row=self.index_of_row))
         element.click()
+
 
 
