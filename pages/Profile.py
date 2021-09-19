@@ -3,6 +3,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from pages.elements.datepickers import DatePicker
 from pages.elements.buttonElement import ButtonElement
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 class ProfilePage:
@@ -10,7 +12,7 @@ class ProfilePage:
        Locators and methods for Profile Page.
     """
     EDIT_PROFILE_BTN_CSS = "a:nth-child(1) > button"
-    #Expansion panel Locators
+    # Expansion panel Locators
     EXPANSION_PANEL_CSS = '.MuiExpansionPanel-root:nth-child({})'
     EXPANSION_PANEL_AVATAR_CHANGE_BTN_CSS = ".MuiExpansionPanel-root:nth-child(1)"
     EXPANSION_PANEL_USERNAME_BTN_CSS = ".MuiExpansionPanel-root:nth-child(2)"
@@ -20,34 +22,34 @@ class ProfilePage:
     EXPANSION_PANEL_MANAGE_NOTIFICATION_BTN_CSS = ".MuiExpansionPanel-root:nth-child(6)"
     EXPANSION_PANEL_LINKED_ACCOUNTS_BTN_CSS = ".MuiExpansionPanel-root:nth-child(7)"
     EXPANSION_PANEL_CHANGE_PASSWORD_BTN_CSS = ".MuiExpansionPanel-root:nth-child(8)"
-    #Locators for action inside expansion panels manage notification
+    # Locators for action inside expansion panels manage notification
     MANAGE_NOTIFICATION_SAVE_BTN_CSS = ".MuiExpansionPanel-root:nth-child(6)  button[type = 'submit']"
-    #Locators for action inside expansion panels Username
+    # Locators for action inside expansion panels Username
     USERNAME_INP_CSS = "input[name^='userName']"
     USERNAME_CLEAR_BTN_CSS = ".MuiExpansionPanel-root:nth-child(2)  button[type= 'button'] "
     USERNAME_SUBMIT_BTN_CSS = ".MuiExpansionPanel-root:nth-child(2)  button[type= 'submit'] "
-    #Locators for action inside expansion panels Change Avatar
+    # Locators for action inside expansion panels Change Avatar
     CHANGE_AVATAR_CLEAR_BTN_CSS = ".MuiExpansionPanel-root:nth-child(1)  button[type= 'button']"
     CHANGE_AVATAR_SUBMIT_BTN_CSS = ".MuiExpansionPanel-root:nth-child(1)  button[type= 'submit']"
     CHANGE_AVATAR_CROP_BTN_CSS = ".ImageResizer  button[type= 'button'] "
     CHANGE_AVATAR_UPLOAD_NEW_PICTURE = "#panel1bh-content > div > p > form > div:nth-child(1) > div > div > div"
-    #Locators for action inside expansion panels Gender
+    # Locators for action inside expansion panels Gender
     GENDER_DROPDOWN_CSS = ".MuiExpansionPanel-root:nth-child(3)  form > div:nth-child(1) > div"
     GENDER_OPT_CSS = "div > select"
     GENDER_SUBMIT_BTN_CSS = ".MuiExpansionPanel-root:nth-child(3)  button[type= 'submit']"
-    #Locators for action inside expansion panels Date of Birth
+    # Locators for action inside expansion panels Date of Birth
     DATE_OF_BIRTH_DATAPICKER_CSS = "input[type ='date']"
     DATE_OF_BIRTH_CLEAR_BTN_CSS = ".MuiExpansionPanel-root:nth-child(4)  button[type= 'button']"
     DATE_OF_BIRTH_SUBMIT_BTN_CSS = ".MuiExpansionPanel-root:nth-child(4)  button[type= 'submit']"
-    #Locators for action inside expansion panels Favorite Categories
-    FAVORITE_CATEGORIES_SELECT_CATEGORIES_FORM_CSS = ".MuiExpansionPanel-root:nth-child(5)  form"
+    # Locators for action inside expansion panels Favorite Categories
+    FAVORITE_CATEGORIES_SELECT_CATEGORIES_FORM_CSS = ".MuiExpansionPanel-root:nth-child(5) input "
     FAVORITE_CATEGORIES_CATEGORIES_LIST = "#rw_1_listbox li"
     FAVORITE_CATEGORIES_SAVE_BTN_CSS = ".MuiExpansionPanel-root:nth-child(5)  button[type= 'submit']"
-    #Locators for action inside expansion panels Linked Accounts
+    # Locators for action inside expansion panels Linked Accounts
     LINKED_ACCOUNTS_GOOGLE_BTN_CSS = ".btnGoogle > i"
     LINKED_ACCOUNTS_MAIL_BTN_CSS = ".btnGoogle > svg"
     LINKED_ACCOUNTS_FACEBOOK_BTN_CSS = ".btnFacebook"
-    #Locators for action inside expansion panels Change Password
+    # Locators for action inside expansion panels Change Password
     CHANGE_PASSWORD_CURRENT_PASSWORD_INP_CSS = "input[name^='oldPassword']"
     CHANGE_PASSWORD_NEW_PASSWORD_INP_CSS = "input[name^='newPassword']"
     CHANGE_PASSWORD_REPEAT_NEW_PASSWORD_INP_CSS = "input[name^='repeatPassword']"
@@ -94,25 +96,22 @@ class ProfilePage:
         """
         element = self.driver.find_element(By.CSS_SELECTOR, self.EXPANSION_PANEL_AVATAR_CHANGE_BTN_CSS)
         element.click()
-        self.driver.implicitly_wait(10)
-        element = self.driver.find_element(By.CSS_SELECTOR, self.CHANGE_AVATAR_CROP_BTN_CSS)
+        wait = WebDriverWait(self.driver, 10)
+        element = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, self.CHANGE_AVATAR_CROP_BTN_CSS)))
         element.click()
-        self.driver.implicitly_wait(10)
-        element = self.driver.find_element(By.CSS_SELECTOR, self.CHANGE_AVATAR_SUBMIT_BTN_CSS)
+        wait = WebDriverWait(self.driver, 10)
+        element = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, self.CHANGE_AVATAR_SUBMIT_BTN_CSS)))
         element.click()
-
 
     def input_new_username(self, new_name):
         """
             Method to input new username
             string new name of a user
         """
-        element = self.driver.find_element(By.CSS_SELECTOR, self.EXPANSION_PANEL_USERNAME_BTN_CSS)
-        element.click()
-        self.driver.implicitly_wait(10)
-        element1 = self.driver.find_element(By.CSS_SELECTOR, self.USERNAME_INP_CSS)
-        element1.send_keys(new_name)
-
+        self.driver.find_element(By.CSS_SELECTOR, self.EXPANSION_PANEL_USERNAME_BTN_CSS).click()
+        element = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, self.USERNAME_INP_CSS)))
+        element.send_keys(new_name)
 
     def change_gender_option(self, option):
         """
@@ -135,15 +134,16 @@ class ProfilePage:
         """
         element = self.driver.find_element(By.CSS_SELECTOR, self.EXPANSION_PANEL_FAVORITE_CATEGORIES_BTN_CSS)
         element.click()
-        element = self.driver.find_element(By.CSS_SELECTOR, self.FAVORITE_CATEGORIES_SELECT_CATEGORIES_FORM_CSS)
+        element = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, self.FAVORITE_CATEGORIES_SELECT_CATEGORIES_FORM_CSS)))
         element.click()
-        self.driver.implicitly_wait(10)
-        elements = self.driver.find_elements(By.CSS_SELECTOR, self.FAVORITE_CATEGORIES_CATEGORIES_LIST)
-        self.driver.implicitly_wait(10)
+        elements = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_all_elements_located((By.CSS_SELECTOR, self.FAVORITE_CATEGORIES_CATEGORIES_LIST)))
         for el in elements:
             if el.text == categories:
                 self.driver.implicitly_wait(10)
                 el.click()
+                return
 
     def change_password(self, current_password, new_password):
         """
@@ -152,16 +152,13 @@ class ProfilePage:
         """
         element = self.driver.find_element(By.CSS_SELECTOR, self.EXPANSION_PANEL_CHANGE_PASSWORD_BTN_CSS)
         element.click()
-        self.driver.implicitly_wait(10)
-        element = self.driver.find_element(By.CSS_SELECTOR, self.CHANGE_PASSWORD_CURRENT_PASSWORD_INP_CSS)
+        element = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, self.CHANGE_PASSWORD_CURRENT_PASSWORD_INP_CSS)))
         element.send_keys(current_password)
-        self.driver.implicitly_wait(10)
         element = self.driver.find_element(By.CSS_SELECTOR, self.CHANGE_PASSWORD_NEW_PASSWORD_INP_CSS)
         element.send_keys(new_password)
-        self.driver.implicitly_wait(10)
         element = self.driver.find_element(By.CSS_SELECTOR, self.CHANGE_PASSWORD_REPEAT_NEW_PASSWORD_INP_CSS)
         element.send_keys(new_password)
-        self.driver.implicitly_wait(10)
 
     def click_linked_account_google_btn(self):
         """
@@ -189,7 +186,3 @@ class ProfilePage:
         element.click()
         element = self.driver.find_element(By.CSS_SELECTOR, self.LINKED_ACCOUNTS_MAIL_BTN_CSS)
         element.click()
-
-
-
-
