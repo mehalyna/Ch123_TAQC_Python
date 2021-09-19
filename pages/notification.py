@@ -22,7 +22,6 @@ class NotificationPage:
         """
             Method for clicking edit button.
         """
-        self.driver.implicitly_wait(5)
         self.driver.find_element(By.CSS_SELECTOR, NOTIFICATION_BTN_CSS_SELECTOR.format(notification_num)).click()
 
     def subject_clear_notification_field(self):
@@ -60,10 +59,11 @@ class NotificationPage:
                     "Search" for search button
                     "Reset" for reset button
         """
-        element = self.driver.find_element(By.CSS_SELECTOR, SAVE_RESET_BTNS_NOTIFICATION_CSS)
-        if btn_name in element.text:
-            element.click()
-            return
+        elements = self.driver.find_elements(By.CSS_SELECTOR, SAVE_RESET_BTNS_NOTIFICATION_CSS)
+        for element in elements:
+            if btn_name in element.text:
+                element.click()
+                return
 
     def email_copy_notification_btn(self):
         """

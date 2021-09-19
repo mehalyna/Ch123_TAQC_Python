@@ -21,7 +21,6 @@ class TrackPage:
             Click track information button.
             Track_index used for input number of user we want to get info about.
         """
-        self.driver.implicitly_wait(5)
         self.driver.find_element(By.CSS_SELECTOR, INFO_BTN_TRACK_CSS.format(track_index)).click()
 
     def entity_name_field_track(self, search_text):
@@ -33,13 +32,12 @@ class TrackPage:
     def checkbox_status_track(self, status_name):
         """
             Method for click checkbox status
-                Available commands:
+                Available commands for status_name:
                     'Undefined'
                     'Modified'
                     'Created'
                     'Deleted'
         """
-        self.driver.implicitly_wait(10)
         elements = self.driver.find_elements(By.CSS_SELECTOR, CHECK_BOX_TRACK_CSS)
         for element in elements:
             if status_name in element.text:
@@ -52,10 +50,11 @@ class TrackPage:
                 input "Search" for search button
                 input "Reset" for reset button
         """
-        element = self.driver.find_elements(By.CSS_SELECTOR, SEARCH_RESET_BTNS_CSS)
-        if btn_name in element.text:
-            element.click()
-            return
+        elements = self.driver.find_elements(By.CSS_SELECTOR, SEARCH_RESET_BTNS_CSS)
+        for element in elements:
+            if btn_name in element.text:
+                element.click()
+                return
 
     def from_date_track(self, date):
         """

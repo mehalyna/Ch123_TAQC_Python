@@ -58,11 +58,11 @@ class UsersPage:
                 Available input:
                 "5" , "10" , "15"
         """
-        select = Select(self.driver.find_element(By.CSS_SELECTOR, PAGESIZE_FIELD_CSS))
-        self.driver.implicitly_wait(15)
-        if page_size in element.text:
-            select.select_by_value(page_size)
-            return
+        elements = Select(self.driver.find_element(By.CSS_SELECTOR, PAGESIZE_FIELD_CSS))
+        for element in elements:
+            if page_size in element.text:
+                select.select_by_value(page_size)
+                return
 
     def user_is_blocked(self):
         """
@@ -80,7 +80,7 @@ class UsersPage:
         """
             Method for clicking on checkbox for displaying all user.
         """
-        return self.driver.find_element(By.CSS_SELECTOR, ALL_BTN_CSS).click()
+        self.driver.find_element(By.CSS_SELECTOR, ALL_BTN_CSS).click()
 
     def user_search(self):
         """
@@ -88,7 +88,7 @@ class UsersPage:
         """
         self.driver.find_element(By.CSS_SELECTOR, SEARCH_BTN_CSS).click()
 
-    def user_page(self, page_number):
+    def choose_user_page(self, page_number):
         """
             Method for clicking on specific page number.
             Input page_number for click specific number of page
