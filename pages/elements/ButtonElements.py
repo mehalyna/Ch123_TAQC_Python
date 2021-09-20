@@ -1,7 +1,7 @@
-from pages.common.baseContext import BaseContext
+from pages.common.baseWrapper import BaseWrapper
 
 
-class ButtonElements(BaseContext):
+class ButtonElements(BaseWrapper):
     """
         Class for click on Button by text button.
     """

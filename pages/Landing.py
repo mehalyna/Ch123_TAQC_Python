@@ -1,8 +1,8 @@
-from pages.common.basePage import BasePage
+from pages.common.baseWrapper import BaseWrapper
 from pages.elements.ButtonElement import ButtonElement
 
 
-class LandingPage(BasePage):
+class LandingPage(BaseWrapper):
     """
         Locators and methods for landing page.
     """
@@ -15,8 +15,8 @@ class LandingPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self.sign_up_btn = ButtonElement(self.SIGN_IN_UP_BTN_CSS, driver)
-        self.find_event_btn = ButtonElement(self.FIND_EVENT_BTN_CSS, driver)
-        self.create_event_btn = ButtonElement(self.CREATE_EVENT_BTN_CSS, driver)
-        self.join_eventexpress_btn = ButtonElement(self.JOIN_EVENTEXPRESS_BTN_CSS, driver)
-        self.log_out_btn = ButtonElement(self.LOG_OUT_BTN_CSS, driver)
+        self.sign_up_btn = ButtonElement(self.SIGN_IN_UP_BTN_CSS)
+        self.find_event_btn = ButtonElement(self.FIND_EVENT_BTN_CSS)
+        self.create_event_btn = ButtonElement(self.CREATE_EVENT_BTN_CSS)
+        self.join_eventexpress_btn = ButtonElement(self.JOIN_EVENTEXPRESS_BTN_CSS)
+        self.log_out_btn = ButtonElement(self.LOG_OUT_BTN_CSS)

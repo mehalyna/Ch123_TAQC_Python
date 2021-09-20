@@ -1,9 +1,9 @@
-from pages.common.basePage import BasePage
+from pages.common.baseWrapper import BaseWrapper
 from pages.elements.ButtonElements import ButtonElements
 from pages.elements.DatePicker import DatePicker
 
 
-class IssuesPage(BasePage):
+class IssuesPage(BaseWrapper):
     """ Locators and methods for Issues page. """
     VIEW_BTN_CSS = "tr:nth-child({})  a > button"
     CHECK_CSS = ".checkbox > label"
@@ -17,9 +17,9 @@ class IssuesPage(BasePage):
             Method for class fields declaration.
         """
         super().__init__(driver)
-        self.status_btns = ButtonElements(self.BTN_CSS, driver)
-        self.date_from_dtp = DatePicker(self.DATAPICKER_FROM_CSS, driver)
-        self.date_to_dtp = DatePicker(self.DATAPICKER_TO_CSS, driver)
+        self.status_btns = ButtonElements(self.BTN_CSS)
+        self.date_from_dtp = DatePicker(self.DATAPICKER_FROM_CSS)
+        self.date_to_dtp = DatePicker(self.DATAPICKER_TO_CSS)
 
     def click_view(self, view_number):
         """
@@ -43,6 +43,6 @@ class IssuesPage(BasePage):
 
     def get_amount_of_issue_results(self):
         """
-            Method for get amount of issue.
+            Method for get amount of issues.
         """
         return len(self.find_elements(self.ISSUE_RESULTS_CSS))

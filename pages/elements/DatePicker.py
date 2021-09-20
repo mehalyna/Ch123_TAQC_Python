@@ -1,8 +1,8 @@
-from pages.common.baseContext import BaseContext
+from pages.common.baseWrapper import BaseWrapper
 from selenium.webdriver.common.keys import Keys
 
 
-class DatePicker(BaseContext):
+class DatePicker(BaseWrapper):
     """
         Class for send DatePickers by css selector.
     """

@@ -1,11 +1,11 @@
-from pages.common.baseContext import BaseContext
+from pages.common.baseWrapper import BaseWrapper
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-class ButtonElement(BaseContext):
+class ButtonElement(BaseWrapper):
     """
         Class for click on Button by xpath and css selector.
     """

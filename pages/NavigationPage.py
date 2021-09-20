@@ -1,8 +1,8 @@
-from pages.common.basePage import BasePage
+from pages.common.baseWrapper import BaseWrapper
 from pages.elements.ButtonElement import ButtonElement
 
 
-class NavigationPage(BasePage):
+class NavigationPage(BaseWrapper):
     """
         Locators and methods for navigation menu.
     """

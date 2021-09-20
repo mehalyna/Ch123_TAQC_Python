@@ -1,7 +1,7 @@
-from pages.common.basePage import BasePage
+from pages.common.baseWrapper import BaseWrapper
 
 
-class ModalPage(BasePage):
+class ModalPage(BaseWrapper):
     """
         Locators and methods for Modal page.
     """
