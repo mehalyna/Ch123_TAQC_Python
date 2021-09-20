@@ -3,6 +3,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from pages.elements.buttonElement import ButtonElement
+
 
 class AdminAddCategoryPage:
     """
@@ -22,6 +24,8 @@ class AdminAddCategoryPage:
 
     def __init__(self):
         self.driver = webdriver.Chrome()
+        self.add_ctg_btn = ButtonElement(self.CTG_ADD_BTN_CSS)
+        self.submit_btn = ButtonElement(self.CTG_SUBMIT_BTN_CSS)
 
     def find_category_by_name(self, category_name, wait_time=10):
         """
@@ -39,20 +43,6 @@ class AdminAddCategoryPage:
 
     def get_row(self):
         return self.driver.find_element_by_css_selector(self.CTG_ROW.format(self.index_of_row))
-
-    def click_add_ctg_btn(self):
-        """
-            Method for pressing add category button
-        """
-        element = self.driver.find_element(By.CSS_SELECTOR, self.CTG_ADD_BTN_CSS)
-        element.click()
-
-    def click_submit_btn(self):
-        """
-            Method for pressing submit button
-        """
-        element = self.driver.find_element(By.CSS_SELECTOR, self.CTG_SUBMIT_BTN_CSS)
-        element.click()
 
     def click_cancel_btn(self):
         """
