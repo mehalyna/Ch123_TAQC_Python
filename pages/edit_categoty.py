@@ -29,7 +29,7 @@ class AdminAddCategoryPage:
         :param category_name: name of category which we want to find
         :return row index of category
         """
-        elements = self.driver.find_elements_by_css_selector(self.COLUMN_OF_TABLE_CSS)
+        elements = self.driver.find_elements(By.CSS_SELECTOR, self.COLUMN_OF_TABLE_CSS)
         WebDriverWait(self.driver, wait_time).until(
             EC.visibility_of_all_elements_located((By.CSS_SELECTOR, self.COLUMN_OF_TABLE_CSS)))
         for idx, element in enumerate(elements):
