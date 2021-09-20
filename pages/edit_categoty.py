@@ -4,7 +4,6 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-
 class AdminAddCategoryPage:
     """
         Locators and methods for Admin Edit category page
@@ -30,7 +29,8 @@ class AdminAddCategoryPage:
         :param category_name: name of category which we want to find
         :return row index of category
         """
-        elements = WebDriverWait(self.driver, wait_time).until(
+        elements = self.driver.find_elements_by_css_selector(self.COLUMN_OF_TABLE_CSS)
+        WebDriverWait(self.driver, wait_time).until(
             EC.visibility_of_all_elements_located((By.CSS_SELECTOR, self.COLUMN_OF_TABLE_CSS)))
         for idx, element in enumerate(elements):
             if element.text == category_name:
