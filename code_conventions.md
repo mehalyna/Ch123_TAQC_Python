@@ -495,6 +495,16 @@ Use the following guidelines:
 - If your class is intended to be subclassed, and you have attributes that you do not want subclasses to use, consider naming them with double leading underscores and no trailing underscores. 
 
 
+#### 5.2.11 Designing for Locators
+```
+allocation(nav_menu)/object(find_event)/uiobject(btn...)/type(css/xpath)
+```
+Methods:
+```
+allocation(nav_menu)/object(find_event)/action(find...)/uiobject(btn...)/type(css/xpath)
+```
+
+
 ## References
 
 1. [PEP 8 - Style Guide for Python Code](https://www.python.org/dev/peps/pep-0008/)
