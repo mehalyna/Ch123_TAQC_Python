@@ -27,7 +27,7 @@ class AdminAddCategoryPage:
         self.add_ctg_btn = ButtonElement(self.CTG_ADD_BTN_CSS)
         self.submit_btn = ButtonElement(self.CTG_SUBMIT_BTN_CSS)
 
-    def find_category_by_name(self, category_name, wait_time=10):
+    def get_row_idx_by_category_name(self, category_name, wait_time=10):
         """
             Search for a category row by name
         :param category_name: name of category which we want to find
