@@ -6,9 +6,9 @@ PAGE_NUM_CSS = 'ul > div > div > button:nth-child({})'
 SEARCH_FIELD_CSS = 'div.MuiFormControl-root.MuiTextField-root.MuiFormControl-fullWidth > div > input'
 ROLE_FIELD_CSS = "div.MuiFormControl-root.jss550 > div > select"
 PAGESIZE_FIELD_CSS = 'div.MuiFormControl-root.jss567 > div > select'
-BLOCKED_BTN_CSS = 'div:nth-child(6) > div > label:nth-child(1)'
-ACTIVE_BTN_CSS = 'div:nth-child(6) > div > label:nth-child(2)'
-ALL_BTN_CSS = 'div:nth-child(6) > div > label:nth-child(3)'
+BLOCKED_BOX_CSS = 'div:nth-child(6) > div > label:nth-child(1)'
+ACTIVE_BOX_CSS = 'div:nth-child(6) > div > label:nth-child(2)'
+ALL_BOX_CSS = 'div:nth-child(6) > div > label:nth-child(3)'
 SEARCH_BTN_CSS = 'button > span.MuiButton-label'
 USER_EDIT_CSS = 'tr:nth-child({}) > td:nth-child(6) > button'
 USER_BLOCK_CSS = 'tbody > tr:nth-child({}) > td:nth-child(7) > div'
@@ -32,7 +32,6 @@ class UsersPage:
         """
             Method for clicking user delete button for user with user_index number.
         """
-        self.driver.implicitly_wait(5)
         self.driver.find_element(By.CSS_SELECTOR, USER_BLOCK_CSS.format(user_index)).click()
 
     def user_search_field(self, user_name):
@@ -52,7 +51,7 @@ class UsersPage:
             select.select_by_value(status)
             return
 
-    def user_page_size(self, page_size):
+    def choose_page_size(self, page_size):
         """
             Method for displaying numbers of user in one page.
                 Available input:
@@ -68,19 +67,19 @@ class UsersPage:
         """
             Method for clicking on checkbox for checking if user is blocked.
         """
-        self.driver.find_element(By.CSS_SELECTOR, BLOCKED_BTN_CSS).click()
+        self.driver.find_element(By.CSS_SELECTOR, BLOCKED_BOX_CSS).click()
 
     def user_is_active(self):
         """
             Method for clicking on checkbox for checking if user is active.
         """
-        self.driver.find_element(By.CSS_SELECTOR, ACTIVE_BTN_CSS).click()
+        self.driver.find_element(By.CSS_SELECTOR, ACTIVE_BOX_CSS).click()
 
     def user_all(self):
         """
             Method for clicking on checkbox for displaying all user.
         """
-        self.driver.find_element(By.CSS_SELECTOR, ALL_BTN_CSS).click()
+        self.driver.find_element(By.CSS_SELECTOR, ALL_BOX_CSS).click()
 
     def user_search(self):
         """
