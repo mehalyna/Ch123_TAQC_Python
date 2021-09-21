@@ -49,7 +49,6 @@ class ModalPage(BaseWrapper):
         Method of precondition for testing
         :param username: username
         :param password: pass phrase
-        :return: login the EventExpress app
         """
         self.send_email_input(username)
         self.send_password_input(password)

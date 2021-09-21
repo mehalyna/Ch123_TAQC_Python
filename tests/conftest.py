@@ -12,9 +12,9 @@ def app():
     driver.quit()
 
 
-def login_admin():
+@pytest.fixture(scope="function")
+def admin_login(app):
     """
         Login as an admin
     """
-    with allure.step('Login as an admin'):
-        app.modal.login(config.admin_email, config.admin_pass)
+    app.modal.login(config.admin_email, config.admin_pass)

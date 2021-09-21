@@ -6,6 +6,7 @@ from pages.common.baseWrapper import BaseWrapper
 
 
 class BasePage(BaseWrapper):
+
     def __init__(self, driver):
         """
             Page initialization.
