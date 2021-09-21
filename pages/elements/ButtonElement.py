@@ -31,10 +31,8 @@ class ButtonElement(BaseWrapper):
         """
             Method for click on a needed button by css selector with hover over the item and wait.
         """
-        wait = WebDriverWait(self.driver, wait_time)
-        element = wait.until(
-            EC.element_to_be_clickable(By.CSS_SELECTOR, self.selector)
-        )
+        element = WebDriverWait(self.driver, wait_time).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, self.selector)))
         actions = ActionChains(self.driver)
         actions.move_to_element(element).perform()
         element.click()

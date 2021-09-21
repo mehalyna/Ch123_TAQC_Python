@@ -12,8 +12,8 @@ class NavigationPage(BaseWrapper):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self.navigation_edit_profile_btn = ButtonElement(self.NAV_EDIT_PROFILE_CSS, self)
-        self.log_out_btn = ButtonElement(self.NAV_LOGOUT_CSS, self)
+        self.navigation_edit_profile_btn = ButtonElement(self.NAV_EDIT_PROFILE_CSS, driver)
+        self.log_out_btn = ButtonElement(self.NAV_LOGOUT_CSS, driver)
 
     def go_to_page(self, page_title):
         """

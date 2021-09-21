@@ -17,9 +17,9 @@ class IssuesPage(BaseWrapper):
             Method for class fields declaration.
         """
         super().__init__(driver)
-        self.status_btns = ButtonElements(self.BTN_CSS)
-        self.date_from_dtp = DatePicker(self.DATAPICKER_FROM_CSS)
-        self.date_to_dtp = DatePicker(self.DATAPICKER_TO_CSS)
+        self.status_btns = ButtonElements(self.BTN_CSS, driver)
+        self.date_from_dtp = DatePicker(self.DATAPICKER_FROM_CSS, driver)
+        self.date_to_dtp = DatePicker(self.DATAPICKER_TO_CSS, driver)
 
     def click_view(self, view_number):
         """

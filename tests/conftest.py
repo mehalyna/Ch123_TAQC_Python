@@ -1,9 +1,13 @@
 import pytest
 from selenium import webdriver
 
+from pages.common.BasePage import BasePage
+
 
 @pytest.fixture(scope="function")
-def browser():
+def app():
     driver = webdriver.Chrome()
-    yield driver
+    yield BasePage(driver)
     driver.quit()
+
+
