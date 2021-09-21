@@ -27,14 +27,12 @@ class ButtonElement:
         button = self.driver.find_element(By.XPATH, self.selector)
         button.click()
 
-    def click_by_css_with_wait(self, wait_time=10):
+    def hover_and_click_by_css(self, wait_time):
         """
-            Method for click on a needed button by css selector with wait.
+            Method for click on a needed button by css selector with hover over the item and wait.
         """
-        wait = WebDriverWait(self.driver, wait_time)
-        element = wait.until(
-            EC.element_to_be_clickable(By.CSS_SELECTOR)
-        )
+        element = WebDriverWait(self.driver, wait_time).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, self.selector)))
         actions = ActionChains(self.driver)
         actions.move_to_element(element).perform()
         element.click()

@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 
 class InputElement:
     """
-        Class for send 'data to input'
+        Class for sending data to input field.
     """
     def __init__(self, selector):
         """
@@ -13,9 +13,9 @@ class InputElement:
         self.driver = webdriver.Chrome()
         self.selector = selector
 
-    def send_data_input_css(self, string):
+    def send_data(self, string):
         """
-        Method for send 'data to input'
+        Method for sending data to input field.
         :param string: Variable string should contain text which we need to enter.
         """
         self.driver.find_element(By.CSS_SELECTOR, self.selector).send_keys(string)
