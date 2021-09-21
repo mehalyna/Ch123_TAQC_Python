@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
+
 PAGE_NUM_CSS = 'ul > div > div > button:nth-child({})'
 SEARCH_FIELD_CSS = 'div.MuiFormControl-root.MuiTextField-root.MuiFormControl-fullWidth > div > input'
 ROLE_FIELD_CSS = "div.MuiFormControl-root.jss550 > div > select"
