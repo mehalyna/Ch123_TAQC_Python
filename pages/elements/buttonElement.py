@@ -27,7 +27,7 @@ class ButtonElement:
         button = self.driver.find_element(By.XPATH, self.selector)
         button.click()
 
-    def hover_and_click_by_css(self, wait_time):
+    def hover_and_click_by_css(self, wait_time = 10):
         """
             Method for click on a needed button by css selector with hover over the item and wait.
         """
