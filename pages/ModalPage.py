@@ -1,3 +1,4 @@
+import config
 from pages.common.baseWrapper import BaseWrapper
 
 
@@ -40,3 +41,16 @@ class ModalPage(BaseWrapper):
         """
         element = self.find_element_by_xpath(self.FORM_BTN_XPATH.format(name_button))
         element.click()
+
+    def login(self, username, password):
+        """
+        Sign in method as a scenario
+        actor - is a person with own permissions (admin or user).
+        Method of precondition for testing
+        :param username: username
+        :param password: pass phrase
+        :return: login the EventExpress app
+        """
+        self.send_email_input(username)
+        self.send_password_input(password)
+        self.click_button(config.landing_sign_in_button)
