@@ -84,13 +84,13 @@ class ProfilePage:
         self.change_password_btn = ButtonElement(self.EXPANSION_PANEL_CHANGE_PASSWORD_BTN_CSS)
 
 
-    def input_new_username(self, new_name):
+    def input_new_username(self, new_name, wait_time = 10):
         """
             Method to input new username
             string new name of a user
         """
         self.driver.find_element(By.CSS_SELECTOR, self.EXPANSION_PANEL_USERNAME_BTN_CSS).click()
-        element = WebDriverWait(self.driver, 10).until(
+        element = WebDriverWait(self.driver, wait_time).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, self.USERNAME_INP_CSS)))
         element.send_keys(new_name)
 
@@ -107,31 +107,31 @@ class ProfilePage:
         dropdown.select_by_visible_text(option)
 
 
-    def choose_favorite_categories(self, categories):
+    def choose_favorite_categories(self, *categories, wait_time = 10):
         """
            Method for choosing favorite categories
            string categories : Fishing, Football, Gaming, Golf, Meeting, Mount, Sea, Sport, Summer
         """
         element = self.driver.find_element(By.CSS_SELECTOR, self.EXPANSION_PANEL_FAVORITE_CATEGORIES_BTN_CSS)
         element.click()
-        element = WebDriverWait(self.driver, 10).until(
+        element = WebDriverWait(self.driver, wait_time).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, self.FAVORITE_CATEGORIES_SELECT_CATEGORIES_FORM_CSS)))
         element.click()
-        elements = WebDriverWait(self.driver, 10).until(
+        elements = WebDriverWait(self.driver, wait_time).until(
             EC.presence_of_all_elements_located((By.CSS_SELECTOR, self.FAVORITE_CATEGORIES_CATEGORIES_LIST)))
         for el in elements:
-            if el.text == categories:
+            if el.text in categories:
                 el.click()
                 return
 
-    def change_password(self, current_password, new_password):
+    def change_password(self, current_password, new_password, wait_time=10):
         """
            Method for changing password
            param current_password, new_password
         """
         element = self.driver.find_element(By.CSS_SELECTOR, self.EXPANSION_PANEL_CHANGE_PASSWORD_BTN_CSS)
         element.click()
-        element = WebDriverWait(self.driver, 10).until(
+        element = WebDriverWait(self.driver, wait_time).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, self.CHANGE_PASSWORD_CURRENT_PASSWORD_INP_CSS)))
         element.send_keys(current_password)
         element = self.driver.find_element(By.CSS_SELECTOR, self.CHANGE_PASSWORD_NEW_PASSWORD_INP_CSS)
