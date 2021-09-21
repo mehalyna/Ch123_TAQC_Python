@@ -58,50 +58,31 @@ class ProfilePage:
 
     def __init__(self):
         self.driver = webdriver.Chrome()
+        self.change_avatar_submit_btn = ButtonElement(self.CHANGE_AVATAR_SUBMIT_BTN_CSS)
+        self.change_avatar_crop_btn = ButtonElement(self.CHANGE_AVATAR_CROP_BTN_CSS)
+        self.change_avatar_clear_btn = ButtonElement(self.CHANGE_AVATAR_CLEAR_BTN_CSS)
+        self.change_avatar_upload_new_picture_btn = ButtonElement(self.CHANGE_AVATAR_UPLOAD_NEW_PICTURE)
         self.expansion_panel_date_of_birth_dtp = DatePicker(self.DATE_OF_BIRTH_DATAPICKER_CSS)
         self.username_clear_btn = ButtonElement(self.USERNAME_CLEAR_BTN_CSS)
         self.username_submit_btn = ButtonElement(self.USERNAME_SUBMIT_BTN_CSS)
+        self.gender_submit_btn = ButtonElement(self.GENDER_SUBMIT_BTN_CSS)
         self.favorite_categories_save_btn = ButtonElement(self.FAVORITE_CATEGORIES_SAVE_BTN_CSS)
         self.password_submit_btn = ButtonElement(self.CHANGE_PASSWORD_SUBMIT_BTN_CSS)
         self.password_clear_btn = ButtonElement(self.CHANGE_PASSWORD_CLEAR_BTN_CSS)
         self.date_of_birth_clear_btn = ButtonElement(self.DATE_OF_BIRTH_CLEAR_BTN_CSS)
         self.date_of_birth_submit_btn = ButtonElement(self.DATE_OF_BIRTH_SUBMIT_BTN_CSS)
+        self.linked_account_google_btn = ButtonElement(self.LINKED_ACCOUNTS_GOOGLE_BTN_CSS)
+        self.linked_account_facebook_btn = ButtonElement(self.LINKED_ACCOUNTS_FACEBOOK_BTN_CSS)
+        self.linked_account_mail_btn = ButtonElement(self.LINKED_ACCOUNTS_MAIL_BTN_CSS)
+        self.change_avatar_btn = ButtonElement(self.EXPANSION_PANEL_AVATAR_CHANGE_BTN_CSS)
+        self.username_btn = ButtonElement(self.EXPANSION_PANEL_USERNAME_BTN_CSS)
+        self.gender_btn = ButtonElement(self.EXPANSION_PANEL_GENDER_BTN_CSS)
+        self.date_of_birth_btn = ButtonElement(self.EXPANSION_PANEL_DATE_OF_BIRTH_BTN_CSS)
+        self.favorite_categories_btn = ButtonElement(self.EXPANSION_PANEL_FAVORITE_CATEGORIES_BTN_CSS)
+        self.manage_notification_btn = ButtonElement(self.EXPANSION_PANEL_MANAGE_NOTIFICATION_BTN_CSS)
+        self.linked_accounts_btn = ButtonElement(self.EXPANSION_PANEL_LINKED_ACCOUNTS_BTN_CSS)
+        self.change_password_btn = ButtonElement(self.EXPANSION_PANEL_CHANGE_PASSWORD_BTN_CSS)
 
-    def click_edit_your_profile_btn(self):
-        """
-            Method for opening edit profile page
-        """
-        element = self.driver.find_element(By.CSS_SELECTOR, self.EDIT_PROFILE_BTN_CSS)
-        element.click()
-
-    def click_expansion_panel(self, expansion_panel_number):
-        """
-            Method for click on a needed expansion panel button
-            int expansion_panel_number:
-            1 = Change Avatar
-            2 = Username
-            3 = Gender
-            4 = Date of Birth
-            5 = Favorite Categories
-            6 = Manage Notification
-            7 = Linked Accounts
-            8 = Change password
-        """
-        element = self.driver.find_element(By.CSS_SELECTOR, self.EXPANSION_PANEL_CSS.format(expansion_panel_number))
-        element.click()
-
-    def edit_existing_image(self):
-        """
-            Method for editing existing avatar image
-        """
-        element = self.driver.find_element(By.CSS_SELECTOR, self.EXPANSION_PANEL_AVATAR_CHANGE_BTN_CSS)
-        element.click()
-        wait = WebDriverWait(self.driver, 10)
-        element = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, self.CHANGE_AVATAR_CROP_BTN_CSS)))
-        element.click()
-        wait = WebDriverWait(self.driver, 10)
-        element = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, self.CHANGE_AVATAR_SUBMIT_BTN_CSS)))
-        element.click()
 
     def input_new_username(self, new_name):
         """
@@ -124,8 +105,7 @@ class ProfilePage:
         element.click()
         dropdown = Select(self.driver.find_element(By.CSS_SELECTOR, self.GENDER_OPT_CSS))
         dropdown.select_by_visible_text(option)
-        element = self.driver.find_element(By.CSS_SELECTOR, self.GENDER_SUBMIT_BTN_CSS)
-        element.click()
+
 
     def choose_favorite_categories(self, categories):
         """
@@ -141,7 +121,6 @@ class ProfilePage:
             EC.presence_of_all_elements_located((By.CSS_SELECTOR, self.FAVORITE_CATEGORIES_CATEGORIES_LIST)))
         for el in elements:
             if el.text == categories:
-                self.driver.implicitly_wait(10)
                 el.click()
                 return
 
@@ -160,29 +139,4 @@ class ProfilePage:
         element = self.driver.find_element(By.CSS_SELECTOR, self.CHANGE_PASSWORD_REPEAT_NEW_PASSWORD_INP_CSS)
         element.send_keys(new_password)
 
-    def click_linked_account_google_btn(self):
-        """
-           Method to connect google account to your profile
-        """
-        element = self.driver.find_element(By.CSS_SELECTOR, self.EXPANSION_PANEL_LINKED_ACCOUNTS_BTN_CSS)
-        element.click()
-        element = self.driver.find_element(By.CSS_SELECTOR, self.LINKED_ACCOUNTS_GOOGLE_BTN_CSS)
-        element.click()
 
-    def click_linked_account_facebook_btn(self):
-        """
-           Method to connect facebook account to your profile
-        """
-        element = self.driver.find_element(By.CSS_SELECTOR, self.EXPANSION_PANEL_LINKED_ACCOUNTS_BTN_CSS)
-        element.click()
-        element = self.driver.find_element(By.CSS_SELECTOR, self.LINKED_ACCOUNTS_FACEBOOK_BTN_CSS)
-        element.click()
-
-    def click_linked_account_mail_btn(self):
-        """
-           Method to connect mail to your profile
-        """
-        element = self.driver.find_element(By.CSS_SELECTOR, self.EXPANSION_PANEL_LINKED_ACCOUNTS_BTN_CSS)
-        element.click()
-        element = self.driver.find_element(By.CSS_SELECTOR, self.LINKED_ACCOUNTS_MAIL_BTN_CSS)
-        element.click()
