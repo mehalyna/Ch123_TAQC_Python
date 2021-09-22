@@ -1,3 +1,4 @@
+import config
 from pages.common.baseWrapper import BaseWrapper
 
 
@@ -11,11 +12,6 @@ class ModalPage(BaseWrapper):
     FORM_PASSWORD_INP_XPATH = f"{MODAL_DIALOG_XPATH}//input[@name='password']"
     FORM_REGISTER_PASSWORD_REPEAT_INP_XPATH = f"{MODAL_DIALOG_XPATH}//input[@name='RepeatPassword']"
     FORM_BTN_XPATH = f"{MODAL_DIALOG_XPATH}//span[text() = '{{}}']"
-    SIGN_IN_BUTTON_TEXT = "Sign In"
-    FORM_PAGE_LOGIN_TEXT = "Login"
-    FORM_PAGE_REGISTER_TEXT = "Register"
-    FORM_PAGE_BUTTON_SING_IN_TEXT = "Sign Up"
-    SUCCESS_PAGE_ALERT_TEXT = "div.alert-success"
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -46,9 +42,6 @@ class ModalPage(BaseWrapper):
         element = self.find_element_by_xpath(self.FORM_BTN_XPATH.format(name_button))
         element.click()
 
-    def get_success_register_text(self):
-        return self.find_element_by_css(self.SUCCESS_PAGE_ALERT_TEXT).text
-
     def login(self, username, password):
         """
         Sign in method as a scenario
@@ -59,11 +52,4 @@ class ModalPage(BaseWrapper):
         """
         self.send_email_input(username)
         self.send_password_input(password)
-        self.click_button(self.SIGN_IN_BUTTON_TEXT)
-
-    def registration(self, username, password):
-        self.click_page(self.FORM_PAGE_REGISTER_TEXT)
-        self.send_email_input(username)
-        self.send_password_input(password)
-        self.send_password_repeat_input(password)
-        self.click_button(self.FORM_PAGE_BUTTON_SING_IN_TEXT)
+        self.click_button(config.landing_sign_in_button)
