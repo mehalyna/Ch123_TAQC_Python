@@ -17,4 +17,4 @@ def admin_login(app):
     """
         Login as an admin
     """
-    app.modal.login(config.ADMIN_EMAIL, config.ADMIN_PASS)
+    app.modal.login(config.admin_email, config.admin_pass)
