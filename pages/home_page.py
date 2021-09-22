@@ -1,6 +1,7 @@
 from pages.elements.buttonElement import ButtonElement
 from pages.elements.buttons import ButtonElements
 from pages.elements.datepickers import DatePicker
+from pages.elements.InputElement import InputElement
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
@@ -33,34 +34,10 @@ class HomePage:
         self.reset_favourite_search_btn = ButtonElements(self.HOME_PAGE_RESET_FAVORITE_SEARCH_BTN_CSS)
         self.less_btn = ButtonElement(self.MORE_FILTERS_MENU_LESS_BTN_CSS)
         self.filter_by_location_btn = ButtonElement(self.MORE_FILTERS_MENU_FILTER_BY_LOCATION_BTN_CSS)
-
-    def click_to_event_link(self, index):
-        """
-            Method for click card to event.
-            :param index: Variable index should contain number which we need to enter (number of card to event).
-        """
-        self.driver.find_element(By.CSS_SELECTOR, self.HOME_PAGE_CARD_TO_EVENTS_LINK_CSS.format(index)).click()
-
-    def click_number_of_page_btn(self, index):
-        """
-            Method for click number of page.
-            :param index: Variable index should contain number which we need to enter (number of page).
-        """
-        self.driver.find_element(By.CSS_SELECTOR, self.HOME_PAGE_NUMBER_OF_PAGE_BTN_CSS.format(index)).click()
-
-    def send_keyword_input(self, string):
-        """
-            Method for input text in 'keyword' field.
-            :param string: Variable string should contain text which we need to enter (text for 'keyword' field).
-        """
-        self.driver.find_element(By.CSS_SELECTOR, self.HOME_PAGE_KEYWORD_INP_CSS).send_keys(string)
-
-    def send_hashtags_input(self, string):
-        """
-            Method for input text in 'hashtags' field.
-            :param string: Variable string should contain text which we need to enter (text for 'hashtags' field).
-        """
-        self.driver.find_element(By.CSS_SELECTOR, self.MORE_FILTERS_MENU_HASHTAGS_INP_CSS).send_keys(string)
+        self.event_link = ButtonElement(self.HOME_PAGE_CARD_TO_EVENTS_LINK_CSS)
+        self.number_of_page_btn = ButtonElement(self.HOME_PAGE_NUMBER_OF_PAGE_BTN_CSS)
+        self.keyword_input = InputElement(self.HOME_PAGE_KEYWORD_INP_CSS)
+        self.hashtags_input = InputElement(self.MORE_FILTERS_MENU_HASHTAGS_INP_CSS)
 
     def click_filter_checkbox(self, filter):
         """
