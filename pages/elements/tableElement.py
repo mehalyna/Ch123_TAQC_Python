@@ -24,6 +24,9 @@ class TableElement(BaseWrapper):
             if element.text == search_name:
                 return idx
 
+    def get_row(self, row_index):
+        return self.driver.find_element_by_css_selector('tr:nth-child({})'.format(row_index))
+
 
 
 
