@@ -59,7 +59,7 @@ class UsersPage:
         elements = Select(self.driver.find_elements(By.CSS_SELECTOR, PAGESIZE_FIELD_CSS))
         for element in elements:
             if page_size in element.text:
-                select.select_by_value(page_size)
+                elements.select_by_value(page_size)
                 return
 
     def choose_user_status(self, status):
@@ -73,7 +73,7 @@ class UsersPage:
         elements = Select(self.driver.find_elements(By.CSS_SELECTOR, USER_STATUS_BOX_CSS))
         for element in elements:
             if status in element.text:
-                element.click()
+                elements.select_by_value(status)
                 return
 
     def user_search(self):
