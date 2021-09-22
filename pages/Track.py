@@ -5,8 +5,8 @@ ENTYTY_NAME_FIELD_TRACK_CSS = 'div:nth-child(1) > div:nth-child(1)'
 FROM_DATE_FIELD_TRACK_CSS = 'div:nth-child(1) > div:nth-child(3) > div > div > input'
 TO_DATE_FIELD_TRACK_CSS = 'div:nth-child(1) > div:nth-child(4) > div > div > input'
 INFO_BTN_TRACK_CSS = 'tr:nth-child({}) > td:nth-child(5) > div > button'
-CHECK_BOX_TRACK_CSS = 'div.checkbox > label'
-SEARCH_RESET_BTNS_CSS = "button > span.MuiButton-label"
+CHECK_BOX_TRACK_CSS = '.checkbox > label'
+SEARCH_RESET_BTNS_CSS = ".form-group.d-flex"
 
 
 class TrackPage:

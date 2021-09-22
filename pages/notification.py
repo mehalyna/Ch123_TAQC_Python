@@ -7,7 +7,7 @@ SUBJECT_NOTIFICATION_FIELD_CSS = 'form > div:nth-child(2) > div > div > input'
 MESSAGE_NOTIFICATION_FIELD_CSS = 'form > div:nth-child(3) > div > div > textarea'
 USER_EMAIL_FIELD_NOTIFICATION_CSS = 'div > div > ul > li'
 NOTIFICATION_BTN_CSS_SELECTOR = 'tr:nth-child({}) > td:nth-child(5) > a > button.text-info'
-SAVE_RESET_BTNS_NOTIFICATION_CSS = 'div.align-self-end'
+SAVE_RESET_BTNS_NOTIFICATION_CSS = '.align-self-end'
 
 
 class NotificationPage:

@@ -4,13 +4,11 @@ from selenium.webdriver.support.ui import Select
 
 
 PAGE_NUM_CSS = 'ul > div > div > button:nth-child({})'
-SEARCH_FIELD_CSS = 'div.MuiFormControl-root.MuiTextField-root.MuiFormControl-fullWidth > div > input'
-ROLE_FIELD_CSS = "div.MuiFormControl-root.jss550 > div > select"
-PAGESIZE_FIELD_CSS = 'div.MuiFormControl-root.jss567 > div > select'
-BLOCKED_BOX_CSS = 'div:nth-child(6) > div > label:nth-child(1)'
-ACTIVE_BOX_CSS = 'div:nth-child(6) > div > label:nth-child(2)'
-ALL_BOX_CSS = 'div:nth-child(6) > div > label:nth-child(3)'
+SEARCH_FIELD_CSS = '.MuiFormControl-root.MuiTextField-root.MuiFormControl-fullWidth > div > input'
+ROLE_FIELD_CSS = ".MuiFormControl-root.jss550 > div > select"
+PAGESIZE_FIELD_CSS = '.MuiFormControl-root.jss567 > div > select'
 SEARCH_BTN_CSS = 'button > span.MuiButton-label'
+USER_STATUS_BOX_CSS = 'div:nth-child(6)'
 USER_EDIT_CSS = 'tr:nth-child({}) > td:nth-child(6) > button'
 USER_BLOCK_CSS = 'tbody > tr:nth-child({}) > td:nth-child(7) > div'
 
@@ -41,7 +39,7 @@ class UsersPage:
         """
         self.driver.find_element(By.CSS_SELECTOR, SEARCH_FIELD_CSS).send_keys(user_name)
 
-    def get_user_role(self, status):
+    def choose_user_role(self, status):
         """
             Method for declaring that we search user with role
                 'Admin'
@@ -58,29 +56,25 @@ class UsersPage:
                 Available input:
                 "5" , "10" , "15"
         """
-        elements = Select(self.driver.find_element(By.CSS_SELECTOR, PAGESIZE_FIELD_CSS))
+        elements = Select(self.driver.find_elements(By.CSS_SELECTOR, PAGESIZE_FIELD_CSS))
         for element in elements:
             if page_size in element.text:
                 select.select_by_value(page_size)
                 return
 
-    def user_is_blocked(self):
+    def choose_user_status(self, status):
         """
-            Method for clicking on checkbox for checking if user is blocked.
+            Method for choosing check-box on page user
+                Status available commands:
+                    'Active' to choose all active users
+                    'Blocked' to choose all blocked users
+                    'All' to choose all users
         """
-        self.driver.find_element(By.CSS_SELECTOR, BLOCKED_BOX_CSS).click()
-
-    def user_is_active(self):
-        """
-            Method for clicking on checkbox for checking if user is active.
-        """
-        self.driver.find_element(By.CSS_SELECTOR, ACTIVE_BOX_CSS).click()
-
-    def user_all(self):
-        """
-            Method for clicking on checkbox for displaying all user.
-        """
-        self.driver.find_element(By.CSS_SELECTOR, ALL_BOX_CSS).click()
+        elements = Select(self.driver.find_elements(By.CSS_SELECTOR, USER_STATUS_BOX_CSS))
+        for element in elements:
+            if status in element.text:
+                element.click()
+                return
 
     def user_search(self):
         """
