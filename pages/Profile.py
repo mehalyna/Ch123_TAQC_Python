@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from pages.elements.datepickers import DatePicker
 from pages.elements.buttonElement import ButtonElement
+from pages.elements.buttons import ButtonElements
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
@@ -13,15 +14,7 @@ class ProfilePage:
     """
     EDIT_PROFILE_BTN_CSS = "a:nth-child(1) > button"
     # Expansion panel Locators
-    EXPANSION_PANEL_CSS = '.MuiExpansionPanel-root:nth-child({})'
-    EXPANSION_PANEL_AVATAR_CHANGE_BTN_CSS = ".MuiExpansionPanel-root:nth-child(1)"
-    EXPANSION_PANEL_USERNAME_BTN_CSS = ".MuiExpansionPanel-root:nth-child(2)"
-    EXPANSION_PANEL_GENDER_BTN_CSS = ".MuiExpansionPanel-root:nth-child(3)"
-    EXPANSION_PANEL_DATE_OF_BIRTH_BTN_CSS = ".MuiExpansionPanel-root:nth-child(4)"
-    EXPANSION_PANEL_FAVORITE_CATEGORIES_BTN_CSS = ".MuiExpansionPanel-root:nth-child(5)"
-    EXPANSION_PANEL_MANAGE_NOTIFICATION_BTN_CSS = ".MuiExpansionPanel-root:nth-child(6)"
-    EXPANSION_PANEL_LINKED_ACCOUNTS_BTN_CSS = ".MuiExpansionPanel-root:nth-child(7)"
-    EXPANSION_PANEL_CHANGE_PASSWORD_BTN_CSS = ".MuiExpansionPanel-root:nth-child(8)"
+    EXPANSION_PANEL_ALL_BTN_CSS = '.MuiExpansionPanelSummary-content > p:nth-child(1)'
     # Locators for action inside expansion panels manage notification
     MANAGE_NOTIFICATION_SAVE_BTN_CSS = ".MuiExpansionPanel-root:nth-child(6)  button[type = 'submit']"
     # Locators for action inside expansion panels Username
@@ -58,6 +51,7 @@ class ProfilePage:
 
     def __init__(self):
         self.driver = webdriver.Chrome()
+        self.expansion_panel_by_name_btn = ButtonElements(self.EXPANSION_PANEL_ALL_BTN_CSS)
         self.change_avatar_submit_btn = ButtonElement(self.CHANGE_AVATAR_SUBMIT_BTN_CSS)
         self.change_avatar_crop_btn = ButtonElement(self.CHANGE_AVATAR_CROP_BTN_CSS)
         self.change_avatar_clear_btn = ButtonElement(self.CHANGE_AVATAR_CLEAR_BTN_CSS)
@@ -74,14 +68,8 @@ class ProfilePage:
         self.linked_account_google_btn = ButtonElement(self.LINKED_ACCOUNTS_GOOGLE_BTN_CSS)
         self.linked_account_facebook_btn = ButtonElement(self.LINKED_ACCOUNTS_FACEBOOK_BTN_CSS)
         self.linked_account_mail_btn = ButtonElement(self.LINKED_ACCOUNTS_MAIL_BTN_CSS)
-        self.change_avatar_btn = ButtonElement(self.EXPANSION_PANEL_AVATAR_CHANGE_BTN_CSS)
-        self.username_btn = ButtonElement(self.EXPANSION_PANEL_USERNAME_BTN_CSS)
-        self.gender_btn = ButtonElement(self.EXPANSION_PANEL_GENDER_BTN_CSS)
-        self.date_of_birth_btn = ButtonElement(self.EXPANSION_PANEL_DATE_OF_BIRTH_BTN_CSS)
-        self.favorite_categories_btn = ButtonElement(self.EXPANSION_PANEL_FAVORITE_CATEGORIES_BTN_CSS)
-        self.manage_notification_btn = ButtonElement(self.EXPANSION_PANEL_MANAGE_NOTIFICATION_BTN_CSS)
-        self.linked_accounts_btn = ButtonElement(self.EXPANSION_PANEL_LINKED_ACCOUNTS_BTN_CSS)
-        self.change_password_btn = ButtonElement(self.EXPANSION_PANEL_CHANGE_PASSWORD_BTN_CSS)
+
+
 
 
     def input_new_username(self, new_name, wait_time = 10):
@@ -89,7 +77,6 @@ class ProfilePage:
             Method to input new username
             string new name of a user
         """
-        self.driver.find_element(By.CSS_SELECTOR, self.EXPANSION_PANEL_USERNAME_BTN_CSS).click()
         element = WebDriverWait(self.driver, wait_time).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, self.USERNAME_INP_CSS)))
         element.send_keys(new_name)
@@ -99,21 +86,17 @@ class ProfilePage:
            Method for changing gender
            string param opti: Male, Female, other
         """
-        element = self.driver.find_element(By.CSS_SELECTOR, self.EXPANSION_PANEL_GENDER_BTN_CSS)
-        element.click()
         element = self.driver.find_element(By.CSS_SELECTOR, self.GENDER_DROPDOWN_CSS)
         element.click()
         dropdown = Select(self.driver.find_element(By.CSS_SELECTOR, self.GENDER_OPT_CSS))
         dropdown.select_by_visible_text(option)
 
 
-    def choose_favorite_categories(self, *categories, wait_time = 10):
+    def choose_favorite_categories(self, wait_time = 10, *categories):
         """
            Method for choosing favorite categories
            string categories : Fishing, Football, Gaming, Golf, Meeting, Mount, Sea, Sport, Summer
         """
-        element = self.driver.find_element(By.CSS_SELECTOR, self.EXPANSION_PANEL_FAVORITE_CATEGORIES_BTN_CSS)
-        element.click()
         element = WebDriverWait(self.driver, wait_time).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, self.FAVORITE_CATEGORIES_SELECT_CATEGORIES_FORM_CSS)))
         element.click()
@@ -129,8 +112,6 @@ class ProfilePage:
            Method for changing password
            param current_password, new_password
         """
-        element = self.driver.find_element(By.CSS_SELECTOR, self.EXPANSION_PANEL_CHANGE_PASSWORD_BTN_CSS)
-        element.click()
         element = WebDriverWait(self.driver, wait_time).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, self.CHANGE_PASSWORD_CURRENT_PASSWORD_INP_CSS)))
         element.send_keys(current_password)
