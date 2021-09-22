@@ -12,7 +12,7 @@ class BaseWrapper:
             Method for class fields declaration.
         """
         self.driver = driver
-        self.base_url = config.base_url
+        self.base_url = config.BASE_URL
 
     def find_element_by_css(self, locator, timeout=10):
         """
@@ -42,4 +42,4 @@ class BaseWrapper:
         """
             Method for go to the base_url
         """
-        return self.driver.get(self.base_url)
+        return self.driver.get(config.BASE_URL)
