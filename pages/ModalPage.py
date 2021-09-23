@@ -62,6 +62,13 @@ class ModalPage(BaseWrapper):
         self.click_button(self.SIGN_IN_BUTTON_TEXT)
 
     def registration(self, username, password):
+        """
+        Registration method as a scenario
+        actor - is a person with own permissions (admin or user).
+        Method of precondition for testing
+        :param username: username
+        :param password: pass phrase
+        """
         self.click_page(self.FORM_PAGE_REGISTER_TEXT)
         self.send_email_input(username)
         self.send_password_input(password)
