@@ -42,4 +42,5 @@ class ButtonElement(BaseWrapper):
         Method for click on a needed button by index and css selector.
         :param index: Variable index should contain number which we need to enter.
         """
-        self.driver.find_element(By.CSS_SELECTOR, self.selector.format(index)).click()
+        button = self.find_element_by_css(self.selector.format(index))
+        button.click()
