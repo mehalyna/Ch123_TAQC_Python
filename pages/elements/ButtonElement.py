@@ -36,3 +36,11 @@ class ButtonElement(BaseWrapper):
         actions = ActionChains(self.driver)
         actions.move_to_element(element).perform()
         element.click()
+
+    def click_btn_by_index_css(self, index):
+        """
+        Method for click on a needed button by index and css selector.
+        :param index: Variable index should contain number which we need to enter.
+        """
+        button = self.find_element_by_css(self.selector.format(index))
+        button.click()
