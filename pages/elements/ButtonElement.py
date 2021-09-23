@@ -1,33 +1,33 @@
-from selenium import webdriver
+from pages.common.baseWrapper import BaseWrapper
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-class ButtonElement:
+class ButtonElement(BaseWrapper):
     """
-        Class for click on Button by css selector.
+        Class for click on Button by xpath and css selector.
     """
-    def __init__(self, selector):
-        self.driver = webdriver.Chrome()
+    def __init__(self, selector, driver):
+        super().__init__(driver)
         self.selector = selector
 
     def click_btn_by_css(self):
         """
             Method for click on a needed button by css selector.
         """
-        button = self.driver.find_element(By.CSS_SELECTOR, self.selector)
+        button = self.find_element_by_css(self.selector)
         button.click()
 
     def click_btn_by_xpath(self):
         """
             Method for click on a needed button by xpath selector.
         """
-        button = self.driver.find_element(By.XPATH, self.selector)
+        button = self.find_element_by_xpath(self.selector)
         button.click()
 
-    def hover_and_click_by_css(self, wait_time = 10):
+    def hover_and_click_by_css(self, wait_time=10):
         """
             Method for click on a needed button by css selector with hover over the item and wait.
         """
@@ -42,4 +42,5 @@ class ButtonElement:
         Method for click on a needed button by index and css selector.
         :param index: Variable index should contain number which we need to enter.
         """
-        self.driver.find_element(By.CSS_SELECTOR, self.selector.format(index)).click()
+        button = self.find_element_by_css(self.selector.format(index))
+        button.click()

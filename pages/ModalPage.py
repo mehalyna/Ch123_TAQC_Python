@@ -1,3 +1,4 @@
+import config
 from pages.common.baseWrapper import BaseWrapper
 
 
@@ -11,7 +12,6 @@ class ModalPage(BaseWrapper):
     FORM_PASSWORD_INP_XPATH = f"{MODAL_DIALOG_XPATH}//input[@name='password']"
     FORM_REGISTER_PASSWORD_REPEAT_INP_XPATH = f"{MODAL_DIALOG_XPATH}//input[@name='RepeatPassword']"
     FORM_BTN_XPATH = f"{MODAL_DIALOG_XPATH}//span[text() = '{{}}']"
-    SIGN_IN_BUTTON_TEXT = "Sign In"
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -52,4 +52,4 @@ class ModalPage(BaseWrapper):
         """
         self.send_email_input(username)
         self.send_password_input(password)
-        self.click_button(self.SIGN_IN_BUTTON_TEXT)
+        self.click_button(config.landing_sign_in_button)

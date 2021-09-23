@@ -1,9 +1,7 @@
-import config
 """
     Testing the 'Issues' page
 """
-ISSUES_PAGE_TEXT = "Issues"
-SEARCH_BUTTON_TEXT = "SEARCH"
+import config
 
 
 def test_issue_filter(app):
@@ -13,11 +11,11 @@ def test_issue_filter(app):
     expected_result = 2
     app.landing.go_to_site()
     app.landing.sign_up_btn.click_btn_by_css()
-    app.modal.login(config.ADMIN_EMAIL, config.ADMIN_PASS)
+    app.modal.login(config.admin_email, config.admin_pass)
     app.landing.find_event_btn.click_btn_by_css()
-    app.navigation.go_to_page(ISSUES_PAGE_TEXT)
+    app.navigation.go_to_page("Issues")
     app.issues.date_from_dtp.write_date_to_datepicker(21, 6, 2021)
     app.issues.date_to_dtp.write_date_to_datepicker(15, 9, 2022)
-    app.issues.status_btns.click_btn_by_name(SEARCH_BUTTON_TEXT)
+    app.issues.status_btns.click_btn_by_name("SEARCH")
     assert expected_result == app.issues.get_amount_of_issue_results(), \
         "amount of issue results doesn`t same as expected"

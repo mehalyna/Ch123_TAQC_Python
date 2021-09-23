@@ -1,7 +1,6 @@
 flake8
 pylint
 pycodstyle
-telnetlib
 pytest
 selenium
 
