@@ -1,4 +1,4 @@
-from pages.common.baseWrapper import BaseWrapper
+from pages.common.BaseWrapper import BaseWrapper
 from pages.elements.ButtonElements import ButtonElements
 from pages.elements.DatePicker import DatePicker
 

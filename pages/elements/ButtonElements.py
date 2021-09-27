@@ -1,4 +1,4 @@
-from pages.common.baseWrapper import BaseWrapper
+from pages.common.BaseWrapper import BaseWrapper
 
 
 class ButtonElements(BaseWrapper):
@@ -14,6 +14,16 @@ class ButtonElements(BaseWrapper):
             Method for click on a needed button by text button and css selector.
         """
         elements = self.find_elements(self.selector)
+        for element in elements:
+            if btn_name in element.text:
+                element.click()
+                return
+
+    def click_btn_by_name_by_xpath(self, btn_name):
+        """
+            Method for click on a needed button by text button and xpath.
+        """
+        elements = self.find_elements_by_xpath(self.selector)
         for element in elements:
             if btn_name in element.text:
                 element.click()

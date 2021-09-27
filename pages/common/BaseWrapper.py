@@ -1,3 +1,5 @@
+import allure
+from allure_commons.types import AttachmentType
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -18,9 +20,13 @@ class BaseWrapper:
         """
             Method for search element by css selector with wait
         """
-        WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.CSS_SELECTOR, locator)),
-                                                  message=f"Can't find element by locator {locator}")
-        return self.driver.find_element(By.CSS_SELECTOR, locator)
+        try:
+            WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.CSS_SELECTOR, locator)),
+                                                      message=f"Can't find element by locator {locator}")
+            return self.driver.find_element(By.CSS_SELECTOR, locator)
+        except:
+            allure.attach(self.driver.get_screenshot_as_png(), name="Screenshot",
+                          attachment_type=AttachmentType.PNG)
 
     def find_element_by_xpath(self, locator, timeout=10):
         """
@@ -37,6 +43,14 @@ class BaseWrapper:
         WebDriverWait(self.driver, timeout).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, locator)),
                                                   message=f"Can't find elements by locator {locator}")
         return self.driver.find_elements(By.CSS_SELECTOR, locator)
+
+    def find_elements_by_xpath(self, locator, timeout=10):
+        """
+            Method for search elements by xpath selector with wait
+        """
+        WebDriverWait(self.driver, timeout).until(EC.presence_of_all_elements_located((By.XPATH, locator)),
+                                                  message=f"Can't find elements by locator {locator}")
+        return self.driver.find_elements(By.XPATH, locator)
 
     def go_to_site(self):
         """

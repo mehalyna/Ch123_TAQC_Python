@@ -2,7 +2,7 @@ from pages.Issues import IssuesPage
 from pages.Landing import LandingPage
 from pages.ModalPage import ModalPage
 from pages.NavigationPage import NavigationPage
-from pages.common.baseWrapper import BaseWrapper
+from pages.common.BaseWrapper import BaseWrapper
 
 
 class BasePage(BaseWrapper):

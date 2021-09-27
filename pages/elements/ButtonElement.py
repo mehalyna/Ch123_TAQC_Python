@@ -1,4 +1,4 @@
-from pages.common.baseWrapper import BaseWrapper
+from pages.common.BaseWrapper import BaseWrapper
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
