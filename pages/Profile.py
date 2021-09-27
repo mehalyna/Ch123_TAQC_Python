@@ -1,14 +1,16 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
-from pages.elements.datepickers import DatePicker
-from pages.elements.buttonElement import ButtonElement
-from pages.elements.buttons import ButtonElements
+from pages.elements.DatePicker import DatePicker
+from pages.elements.ButtonElement import ButtonElement
+from pages.elements.ButtonElements import ButtonElements
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
+from pages.common.baseWrapper import BaseWrapper
 
-class ProfilePage:
+
+class ProfilePage(BaseWrapper):
     """
        Locators and methods for Profile Page.
     """
@@ -49,25 +51,26 @@ class ProfilePage:
     CHANGE_PASSWORD_CLEAR_BTN_CSS = ".MuiExpansionPanel-root:nth-child(8)  button[type= 'button']"
     CHANGE_PASSWORD_SUBMIT_BTN_CSS = ".MuiExpansionPanel-root:nth-child(8)  button[type= 'submit']"
 
-    def __init__(self):
+    def __init__(self, driver):
+        super().__init__(driver)
         self.driver = webdriver.Chrome()
-        self.expansion_panel_by_name_btn = ButtonElements(self.EXPANSION_PANEL_ALL_BTN_CSS)
-        self.change_avatar_submit_btn = ButtonElement(self.CHANGE_AVATAR_SUBMIT_BTN_CSS)
-        self.change_avatar_crop_btn = ButtonElement(self.CHANGE_AVATAR_CROP_BTN_CSS)
-        self.change_avatar_clear_btn = ButtonElement(self.CHANGE_AVATAR_CLEAR_BTN_CSS)
-        self.change_avatar_upload_new_picture_btn = ButtonElement(self.CHANGE_AVATAR_UPLOAD_NEW_PICTURE)
-        self.expansion_panel_date_of_birth_dtp = DatePicker(self.DATE_OF_BIRTH_DATAPICKER_CSS)
-        self.username_clear_btn = ButtonElement(self.USERNAME_CLEAR_BTN_CSS)
-        self.username_submit_btn = ButtonElement(self.USERNAME_SUBMIT_BTN_CSS)
-        self.gender_submit_btn = ButtonElement(self.GENDER_SUBMIT_BTN_CSS)
-        self.favorite_categories_save_btn = ButtonElement(self.FAVORITE_CATEGORIES_SAVE_BTN_CSS)
-        self.password_submit_btn = ButtonElement(self.CHANGE_PASSWORD_SUBMIT_BTN_CSS)
-        self.password_clear_btn = ButtonElement(self.CHANGE_PASSWORD_CLEAR_BTN_CSS)
-        self.date_of_birth_clear_btn = ButtonElement(self.DATE_OF_BIRTH_CLEAR_BTN_CSS)
-        self.date_of_birth_submit_btn = ButtonElement(self.DATE_OF_BIRTH_SUBMIT_BTN_CSS)
-        self.linked_account_google_btn = ButtonElement(self.LINKED_ACCOUNTS_GOOGLE_BTN_CSS)
-        self.linked_account_facebook_btn = ButtonElement(self.LINKED_ACCOUNTS_FACEBOOK_BTN_CSS)
-        self.linked_account_mail_btn = ButtonElement(self.LINKED_ACCOUNTS_MAIL_BTN_CSS)
+        self.expansion_panel_by_name_btn = ButtonElements(self.EXPANSION_PANEL_ALL_BTN_CSS, driver)
+        self.change_avatar_submit_btn = ButtonElement(self.CHANGE_AVATAR_SUBMIT_BTN_CSS, driver)
+        self.change_avatar_crop_btn = ButtonElement(self.CHANGE_AVATAR_CROP_BTN_CSS, driver)
+        self.change_avatar_clear_btn = ButtonElement(self.CHANGE_AVATAR_CLEAR_BTN_CSS, driver)
+        self.change_avatar_upload_new_picture_btn = ButtonElement(self.CHANGE_AVATAR_UPLOAD_NEW_PICTURE, driver)
+        self.expansion_panel_date_of_birth_dtp = DatePicker(self.DATE_OF_BIRTH_DATAPICKER_CSS, driver)
+        self.username_clear_btn = ButtonElement(self.USERNAME_CLEAR_BTN_CSS, driver)
+        self.username_submit_btn = ButtonElement(self.USERNAME_SUBMIT_BTN_CSS, driver)
+        self.gender_submit_btn = ButtonElement(self.GENDER_SUBMIT_BTN_CSS, driver)
+        self.favorite_categories_save_btn = ButtonElement(self.FAVORITE_CATEGORIES_SAVE_BTN_CSS, driver)
+        self.password_submit_btn = ButtonElement(self.CHANGE_PASSWORD_SUBMIT_BTN_CSS, driver)
+        self.password_clear_btn = ButtonElement(self.CHANGE_PASSWORD_CLEAR_BTN_CSS, driver)
+        self.date_of_birth_clear_btn = ButtonElement(self.DATE_OF_BIRTH_CLEAR_BTN_CSS, driver)
+        self.date_of_birth_submit_btn = ButtonElement(self.DATE_OF_BIRTH_SUBMIT_BTN_CSS, driver)
+        self.linked_account_google_btn = ButtonElement(self.LINKED_ACCOUNTS_GOOGLE_BTN_CSS, driver)
+        self.linked_account_facebook_btn = ButtonElement(self.LINKED_ACCOUNTS_FACEBOOK_BTN_CSS, driver)
+        self.linked_account_mail_btn = ButtonElement(self.LINKED_ACCOUNTS_MAIL_BTN_CSS, driver)
 
 
 
