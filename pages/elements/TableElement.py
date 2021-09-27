@@ -23,8 +23,7 @@ class TableElement(BaseWrapper):
             EC.visibility_of_all_elements_located((By.CSS_SELECTOR, self.table_selector)))
         for idx, element in enumerate(elements):
             if element.text == search_name:
-                row_idx = "tr:nth-child({})".format(idx)
-                return row_idx
+                return idx
 
 
 
