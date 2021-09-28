@@ -9,7 +9,6 @@ class TableElement(BaseWrapper):
 
     def __init__(self, table_selector, driver):
         super().__init__(driver)
-        self.row_idx = None
         self.table_selector = table_selector
 
     def find_element_in_row(self, search_name, wait_time = 10):
@@ -24,12 +23,3 @@ class TableElement(BaseWrapper):
         for idx, element in enumerate(elements):
             if element.text == search_name:
                 return idx
-
-
-
-
-
-
-
-
-

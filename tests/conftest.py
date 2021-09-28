@@ -1,7 +1,7 @@
-import allure
 import pytest
-import config
 from selenium import webdriver
+
+import config
 from pages.common.BasePage import BasePage
 
 
