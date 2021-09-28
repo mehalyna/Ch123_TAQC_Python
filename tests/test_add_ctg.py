@@ -11,7 +11,6 @@ def test_ctg_add(app):
     """
         Verify that the admin has the ability to add a new category.
     """
-    expected_result = not None
     app.landing.go_to_site()
     app.modal.login(config.admin_email, config.admin_pass)
     app.landing.sign_up_btn.click_btn_by_css()
