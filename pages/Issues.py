@@ -1,4 +1,4 @@
-from pages.common.baseWrapper import BaseWrapper
+from pages.common.BaseWrapper import BaseWrapper
 from pages.elements.ButtonElements import ButtonElements
 from pages.elements.DatePicker import DatePicker
 
@@ -46,3 +46,9 @@ class IssuesPage(BaseWrapper):
             Method for get amount of issues.
         """
         return len(self.find_elements(self.ISSUE_RESULTS_CSS))
+
+    def get_datepicker_text(self):
+        """
+            Method for get value of input.
+        """
+        return self.find_element_by_css(self.DATAPICKER_FROM_CSS).text
