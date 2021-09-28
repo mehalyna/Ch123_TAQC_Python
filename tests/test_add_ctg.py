@@ -1,4 +1,6 @@
-# Testing the 'Categories' page
+"""
+Testing the 'Categories' page
+"""
 
 import config
 
@@ -20,7 +22,7 @@ def test_ctg_add(app):
     app.categories.ctg_name_inp.send_data(NAME_OF_CTG)
     app.categories.submit_btn.click_btn_by_css()
     assert app.categories.row_index.find_element_in_row(NAME_OF_CTG) is not None, \
-        "category {} wasn't added".format(NAME_OF_CTG)
+        f"category {NAME_OF_CTG} wasn't added"
 
 
 def test_edit_ctg(app):

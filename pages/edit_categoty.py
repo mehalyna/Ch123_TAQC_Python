@@ -25,10 +25,8 @@ class AdminAddCategoryPage(BaseWrapper):
     NUMBER_OF_EVENTS_VALUE_CSS = f"{CTG_ROW} td:nth-child(3)"
     COLUMN_OF_TABLE_CSS = "tr > td:nth-child(1):not(td.align-middle)"
 
-
     def __init__(self, driver):
         super().__init__(driver)
-        self.driver = webdriver.Chrome()
         self.add_ctg_btn = ButtonElement(self.CTG_ADD_BTN_CSS, self.driver)
         self.submit_btn = ButtonElement(self.CTG_SUBMIT_BTN_CSS, self.driver)
         self.ctg_name_inp = InputElement(self.CTG_INP_FIELD_CSS, self.driver)
