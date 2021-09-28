@@ -72,4 +72,4 @@ def test_issue_reset_btn(admin_setup):
         admin_setup.issues.status_btns.click_btn_by_name_by_css(SEARCH_BUTTON_TEXT)
     with allure.step("Click 'Reset' button"):
         admin_setup.issues.status_btns.click_btn_by_name_by_css(RESET_BUTTON_TEXT)
-    assert expected_result == admin_setup.issues.get_input_value(), "input is not empty"
+    assert expected_result == admin_setup.issues.get_datepicker_text(), "input is not empty"
