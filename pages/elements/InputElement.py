@@ -12,7 +12,7 @@ class InputElement(BaseWrapper):
         super().__init__(driver)
         self.selector = selector
 
-    def send_data(self, string):
+    def send_data_by_css(self, string):
         """
         Method for sending data to input field by css.
         :param string: Variable string should contain text which we need to enter.

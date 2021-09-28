@@ -27,6 +27,8 @@ def test_landing_login(admin_setup):
             "username results doesn`t same as expected"
 
 
+@allure.title("Test registration:")
+@allure.severity(Severity.CRITICAL)
 def test_landing_registration(app):
     """
         Verify that user have ability register new account.
