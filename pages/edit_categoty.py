@@ -2,8 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from pages.elements.ButtonElement import ButtonElement
 from pages.common.baseWrapper import BaseWrapper
+from pages.elements.ButtonElement import ButtonElement
 from pages.elements.InputElement import InputElement
 from pages.elements.TableElement import TableElement
 from pages.elements.TextElement import TextElement
