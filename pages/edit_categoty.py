@@ -39,8 +39,3 @@ class AdminAddCategoryPage(BaseWrapper):
         self.users_in_ctg = TextElement(self.NUMBER_OF_USERS_VALUE_CSS, self.driver)
         self.events_in_ctg = TextElement(self.NUMBER_OF_EVENTS_VALUE_CSS, self.driver)
         self.ctg_name = TextElement(self.CTG_NAME_CSS, self.driver)
-
-
-
-
-
