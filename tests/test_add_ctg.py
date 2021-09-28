@@ -52,11 +52,11 @@ def test_cancel_changes(app):
     app.landing.sign_up_btn.click_btn_by_css()
     app.landing.find_event_btn.click_btn_by_css()
     app.navigation.go_to_page("Categories")
-    idx = app.categories.row_index.find_element_in_row("funny")
-    app.categories.edit_ctg_btn.click_btn_by_index_css(idx)
+    ctg_row_index = app.categories.row_index.find_element_in_row("funny")
+    app.categories.edit_ctg_btn.click_btn_by_index_css(ctg_row_index)
     app.categories.ctg_name_inp.send_data("funny_new")
-    app.categories.cancel_ctg_btn.click_btn_by_index_css(idx)
-    assert expected_result == app.categories.ctg_name.get_element_text_by_index(idx), \
+    app.categories.cancel_ctg_btn.click_btn_by_index_css(ctg_row_index)
+    assert expected_result == app.categories.ctg_name.get_element_text_by_index(ctg_row_index), \
         "category was changed"
 
 
@@ -70,7 +70,7 @@ def test_delete_ctg(app):
     app.landing.sign_up_btn.click_btn_by_css()
     app.landing.find_event_btn.click_btn_by_css()
     app.navigation.go_to_page("Categories")
-    idx = app.categories.row_index.find_element_in_row("funny")
-    app.categories.delete_ctg_btn.click_btn_by_index_css(idx)
+    ctg_row_index = app.categories.row_index.find_element_in_row("funny")
+    app.categories.delete_ctg_btn.click_btn_by_index_css(ctg_row_index)
     assert expected_result == app.categories.row_index.find_element_in_row("funny"), \
         "category wasn't deleted"
