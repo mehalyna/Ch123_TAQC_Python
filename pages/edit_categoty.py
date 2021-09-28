@@ -13,16 +13,16 @@ class AdminAddCategoryPage(BaseWrapper):
     """
         Locators and methods for Admin Edit category page
     """
-    index_of_row = 0
-    CTG_NAME_CSS = "tr:nth-child({}) td:nth-child(1)"
+    CTG_ROW = "tr:nth-child({})"
+    CTG_NAME_CSS = f"{CTG_ROW} td:nth-child(1)"
     CTG_ADD_BTN_CSS = ".ml-0"
     CTG_INP_FIELD_CSS = "#save-form"
     CTG_SUBMIT_BTN_CSS = ".text-success"
-    CTG_CANCEL_BTN_CSS = "tr:nth-child({}) .text-danger"
-    CTG_EDIT_BTN_CSS = "tr:nth-child({}) .text-info"
-    CTG_DELETE_BTN = "tr:nth-child({}) td:nth-child(5) button.text-danger"
-    NUMBER_OF_USERS_VALUE_CSS = "tr:nth-child({}) td:nth-child(2)"
-    NUMBER_OF_EVENTS_VALUE_CSS = "tr:nth-child({}) td:nth-child(3)"
+    CTG_CANCEL_BTN_CSS = f"{CTG_ROW} .text-danger"
+    CTG_EDIT_BTN_CSS = f"{CTG_ROW} .text-info"
+    CTG_DELETE_BTN = f"{CTG_ROW} td:nth-child(5) button.text-danger"
+    NUMBER_OF_USERS_VALUE_CSS = f"{CTG_ROW} td:nth-child(2)"
+    NUMBER_OF_EVENTS_VALUE_CSS = f"{CTG_ROW} td:nth-child(3)"
     COLUMN_OF_TABLE_CSS = "tr > td:nth-child(1):not(td.align-middle)"
 
 
