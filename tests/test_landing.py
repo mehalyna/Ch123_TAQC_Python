@@ -23,7 +23,7 @@ def test_landing_login(admin_setup):
     expected_result = "Admin"
     with allure.step("Click find event button and go to home page"):
         admin_setup.landing.find_event_btn.click_btn_by_css()
-    with allure.step("Checking excepted result"):
+    with allure.step("Verify username is as expected"):
         assert expected_result == admin_setup.navigation.get_user_name(), \
             "username results doesn`t same as expected"
 
@@ -41,6 +41,6 @@ def test_landing_registration(app):
         app.landing.sign_up_btn.click_btn_by_css()
     with allure.step("Go to 'Registration' page"):
         app.modal.registration(config.ADMIN_EMAIL, config.ADMIN_PASS)
-    with allure.step("Checking excepted result"):
+    with allure.step("Verify registration was successful"):
         assert expected_result == app.modal.get_success_register_text(), \
             "alert message doesn`t same as expected"

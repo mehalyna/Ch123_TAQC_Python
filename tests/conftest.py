@@ -28,7 +28,7 @@ def admin_setup(app):
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item):
     """
-    Hook the "item" object on a test failure
+        Hook the "item" object on a test failure
     """
     outcome = yield
     rep = outcome.get_result()
@@ -38,7 +38,7 @@ def pytest_runtest_makereport(item):
 @pytest.fixture(autouse=True)
 def screenshot_on_failure(request, app):
     """
-    Make screenshot on a test failure
+        Make screenshot on a test failure
     """
     yield
     if request.node.rep_setup.failed:
@@ -48,6 +48,9 @@ def screenshot_on_failure(request, app):
 
 
 def make_screenshot(driver, function_name):
+    """
+        Method for making screenshot.
+    """
     allure.attach(driver.get_screenshot_as_png(),
                   name=function_name,
                   attachment_type=AttachmentType.PNG)
