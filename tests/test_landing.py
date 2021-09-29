@@ -1,6 +1,7 @@
 import allure
 from allure_commons.types import Severity
 import config
+import pytest
 
 """
     Testing the 'Landing' page
@@ -29,6 +30,7 @@ def test_landing_login(admin_setup):
 
 @allure.title("Test registration:")
 @allure.severity(Severity.CRITICAL)
+@pytest.mark.skip(reason="no way of currently testing this")
 def test_landing_registration(app):
     """
         Verify that user have ability register new account.

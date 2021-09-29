@@ -1,8 +1,7 @@
 import allure
-import pytest
 from allure_commons.types import AttachmentType
-
 import config
+import pytest
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from pages.common.BasePage import BasePage
@@ -41,18 +40,14 @@ def screenshot_on_failure(request, app):
     """
     Make screenshot on a test failure
     """
-    # Intentionally blank section
     yield
-    # request.node is an "item" because we use the default
-    # "function" scope
     if request.node.rep_setup.failed:
-        print("setting up a test failed!", request.node.nodeid)
-        allure.attach(app.driver.get_screenshot_as_png(),
-                      name=request.function.__name__,
-                      attachment_type=AttachmentType.PNG)
-    elif request.node.rep_setup.passed:
-        if request.node.rep_call.failed:
-            print("executing test failed", request.node.nodeid)
-            allure.attach(app.driver.get_screenshot_as_png(),
-                          name=request.function.__name__,
-                          attachment_type=AttachmentType.PNG)
+        make_screenshot(app.driver, request.function.__name__)
+    elif request.node.rep_call.failed:
+        make_screenshot(app.driver, request.function.__name__)
+
+
+def make_screenshot(driver, function_name):
+    allure.attach(driver.get_screenshot_as_png(),
+                  name=function_name,
+                  attachment_type=AttachmentType.PNG)
