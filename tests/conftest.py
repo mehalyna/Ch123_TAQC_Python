@@ -1,12 +1,13 @@
 import pytest
 import config
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 from pages.common.BasePage import BasePage
 
 
 @pytest.fixture(scope="function")
 def app():
-    driver = webdriver.Chrome()
+    driver = webdriver.Chrome(ChromeDriverManager().install())
     yield BasePage(driver)
     driver.quit()
 

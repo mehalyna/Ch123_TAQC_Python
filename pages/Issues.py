@@ -49,6 +49,6 @@ class IssuesPage(BaseWrapper):
 
     def get_datepicker_text(self):
         """
-            Method for get value of input.
+            Returns value from datepicker field.
         """
         return self.find_element_by_css(self.DATAPICKER_FROM_CSS).text
