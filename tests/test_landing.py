@@ -33,7 +33,7 @@ def test_landing_login(admin_setup):
 @pytest.mark.skip(reason="no way of currently testing this")
 def test_landing_registration(app):
     """
-        Verify that user have ability register new account.
+        Verify that the user has the ability to register a new account.
     """
     expected_result = "Your register was successfull. Please confirm your email."
     with allure.step("Go to site and click sign up button"):

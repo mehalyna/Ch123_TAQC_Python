@@ -19,7 +19,7 @@ CHECK_RESOLVE_TEXT = "Resolve"
 @allure.severity(Severity.NORMAL)
 def test_datepicker_on_issue_page(admin_setup):
     """
-        Verify that admin has an ability to filter issues using DatePicker fields.
+        Verify that admin has the ability to filter issues using DatePicker fields.
     """
     expected_result = 2
     with allure.step("Click find event button and go to issue page"):
@@ -58,7 +58,7 @@ def test_issue_filter(admin_setup):
 @allure.severity(Severity.NORMAL)
 def test_issue_reset_btn(admin_setup):
     """
-        Verify that admin have ability clear input fields clicking by button 'RESET'.
+        Verify that admin has the ability clear input fields clicking by button 'RESET'.
     """
     expected_result = ""
     with allure.step("Click find event button and go to issue page"):
