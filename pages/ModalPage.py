@@ -30,7 +30,7 @@ class ModalPage(BaseWrapper):
 
     def get_success_register_text(self):
         """
-            Method for return string that contains on the success register page, for check expected result.
+            Method for getting the message about successful registration.
         """
         return self.find_element_by_css(self.SUCCESS_PAGE_ALERT_TEXT_CSS).text
 

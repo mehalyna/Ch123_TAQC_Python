@@ -49,7 +49,7 @@ def screenshot_on_failure(request, app):
 
 def make_screenshot(driver, function_name):
     """
-        Method for making screenshot.
+         Method for making a screenshot.
     """
     allure.attach(driver.get_screenshot_as_png(),
                   name=function_name,
