@@ -49,8 +49,9 @@ def test_issue_filter(admin_setup):
         admin_setup.issues.click_issue_status_filter(CHECK_OPEN_TEXT)
     with allure.step("Click 'Search' button"):
         admin_setup.issues.status_btns.click_btn_by_name_by_css(SEARCH_BUTTON_TEXT)
-    assert expected_result == admin_setup.issues.get_amount_of_issue_results(), \
-        "amount of issue results doesn`t same as expected"
+    with allure.step("Checking the amount of issues"):
+        assert expected_result == admin_setup.issues.get_amount_of_issue_results(), \
+            "amount of issue results doesn`t same as expected"
 
 
 @allure.title("Test 'Reset button':")
@@ -72,4 +73,5 @@ def test_issue_reset_btn(admin_setup):
         admin_setup.issues.status_btns.click_btn_by_name_by_css(SEARCH_BUTTON_TEXT)
     with allure.step("Click 'Reset' button"):
         admin_setup.issues.status_btns.click_btn_by_name_by_css(RESET_BUTTON_TEXT)
-    assert expected_result == admin_setup.issues.get_datepicker_text(), "input is not empty"
+    with allure.step("Checking the amount of issues"):
+        assert expected_result == admin_setup.issues.get_datepicker_text(), "input is not empty"
