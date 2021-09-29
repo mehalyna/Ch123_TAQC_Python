@@ -58,7 +58,7 @@ def test_issue_filter(admin_setup):
 @allure.severity(Severity.NORMAL)
 def test_issue_reset_btn(admin_setup):
     """
-        Verify that admin has the ability clear input fields clicking by button 'RESET'.
+        Verify that admin has the ability to clear input fields clicking by button 'RESET'.
     """
     expected_result = ""
     with allure.step("Click find event button and go to issue page"):

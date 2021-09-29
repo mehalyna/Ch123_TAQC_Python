@@ -18,7 +18,7 @@ CHECK_RESOLVE_TEXT = "Resolve"
 @allure.severity(Severity.BLOCKER)
 def test_landing_login(admin_setup):
     """
-         Verify that user has the ability to login in as a Admin.
+         Verify that user has the ability to login in as an Admin.
     """
     expected_result = "Admin"
     with allure.step("Click find event button and go to home page"):
