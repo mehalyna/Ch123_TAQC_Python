@@ -1,4 +1,4 @@
-from pages.common.baseWrapper import BaseWrapper
+from pages.common.BaseWrapper import BaseWrapper
 from selenium.webdriver.common.keys import Keys
 
 
@@ -25,3 +25,8 @@ class DatePicker(BaseWrapper):
         element.send_keys(Keys.ARROW_LEFT)
         element.send_keys(day)
 
+    def get_datepicker_text(self):
+        """
+            Returns value from datepicker field by css selector.
+        """
+        return self.find_element_by_css(self.css_selector).text
