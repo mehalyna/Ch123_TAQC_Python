@@ -1,5 +1,5 @@
 """
-    Test data for logging in us admin
+    Test data for login as admin.
 """
 ADMIN_EMAIL = "admin@gmail.com"
 ADMIN_PASS = "1qaz1qaz"

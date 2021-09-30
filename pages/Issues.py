@@ -46,3 +46,4 @@ class IssuesPage(BaseWrapper):
             Method for get amount of issues.
         """
         return len(self.find_elements(self.ISSUE_RESULTS_CSS))
+

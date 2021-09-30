@@ -9,7 +9,7 @@ class ButtonElements(BaseWrapper):
         super().__init__(driver)
         self.selector = selector
 
-    def click_btn_by_name(self, btn_name):
+    def click_btn_by_name_by_css(self, btn_name):
         """
             Method for click on a needed button by text button and css selector.
         """
