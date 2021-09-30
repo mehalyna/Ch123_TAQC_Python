@@ -1,8 +1,8 @@
-import allure
 import pytest
 import config
 from selenium import webdriver
 from pages.common.BasePage import BasePage
+import os
 
 
 @pytest.fixture(scope="function")

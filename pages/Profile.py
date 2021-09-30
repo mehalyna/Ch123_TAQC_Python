@@ -7,7 +7,7 @@ from pages.elements.ButtonElements import ButtonElements
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-from pages.common.baseWrapper import BaseWrapper
+from pages.common.BaseWrapper import BaseWrapper
 
 
 class ProfilePage(BaseWrapper):
@@ -51,9 +51,12 @@ class ProfilePage(BaseWrapper):
     CHANGE_PASSWORD_CLEAR_BTN_CSS = ".MuiExpansionPanel-root:nth-child(8)  button[type= 'button']"
     CHANGE_PASSWORD_SUBMIT_BTN_CSS = ".MuiExpansionPanel-root:nth-child(8)  button[type= 'submit']"
 
+    NEW_USERNAME = '.MuiExpansionPanel-root:nth-child(2) p:nth-child(2)'
+    NEW_GENDER = '.MuiExpansionPanel-root:nth-child(3) p:nth-child(2)'
+
     def __init__(self, driver):
         super().__init__(driver)
-        self.driver = webdriver.Chrome()
+        self.edit_profile_btn = ButtonElement(self.EDIT_PROFILE_BTN_CSS, driver)
         self.expansion_panel_by_name_btn = ButtonElements(self.EXPANSION_PANEL_ALL_BTN_CSS, driver)
         self.change_avatar_submit_btn = ButtonElement(self.CHANGE_AVATAR_SUBMIT_BTN_CSS, driver)
         self.change_avatar_crop_btn = ButtonElement(self.CHANGE_AVATAR_CROP_BTN_CSS, driver)
@@ -62,6 +65,8 @@ class ProfilePage(BaseWrapper):
         self.expansion_panel_date_of_birth_dtp = DatePicker(self.DATE_OF_BIRTH_DATAPICKER_CSS, driver)
         self.username_clear_btn = ButtonElement(self.USERNAME_CLEAR_BTN_CSS, driver)
         self.username_submit_btn = ButtonElement(self.USERNAME_SUBMIT_BTN_CSS, driver)
+
+        self.gender_dropdown_btn = ButtonElement(self.GENDER_DROPDOWN_CSS, driver)
         self.gender_submit_btn = ButtonElement(self.GENDER_SUBMIT_BTN_CSS, driver)
         self.favorite_categories_save_btn = ButtonElement(self.FAVORITE_CATEGORIES_SAVE_BTN_CSS, driver)
         self.password_submit_btn = ButtonElement(self.CHANGE_PASSWORD_SUBMIT_BTN_CSS, driver)
@@ -72,8 +77,13 @@ class ProfilePage(BaseWrapper):
         self.linked_account_facebook_btn = ButtonElement(self.LINKED_ACCOUNTS_FACEBOOK_BTN_CSS, driver)
         self.linked_account_mail_btn = ButtonElement(self.LINKED_ACCOUNTS_MAIL_BTN_CSS, driver)
 
-
-
+    def click_edit_your_profile_btn(self, wait_time = 10):
+        """
+            Method for opening edit profile page
+        """
+        element = WebDriverWait(self.driver, wait_time).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, self.EDIT_PROFILE_BTN_CSS)))
+        element.click()
 
     def input_new_username(self, new_name, wait_time = 10):
         """
@@ -84,14 +94,26 @@ class ProfilePage(BaseWrapper):
             EC.element_to_be_clickable((By.CSS_SELECTOR, self.USERNAME_INP_CSS)))
         element.send_keys(new_name)
 
-    def change_gender_option(self, option):
+    def check_new_username(self):
+
+        return self.find_element_by_css(self.NEW_USERNAME).text
+
+    def check_new_gender(self):
+
+        return self.find_element_by_css(self.NEW_GENDER).text
+
+    def change_gender_option(self, option, wait_time = 10):
         """
            Method for changing gender
            string param opti: Male, Female, other
         """
-        element = self.driver.find_element(By.CSS_SELECTOR, self.GENDER_DROPDOWN_CSS)
+        #element = self.driver.find_element(By.CSS_SELECTOR, self.GENDER_DROPDOWN_CSS)
+        element = WebDriverWait(self.driver, wait_time).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, self.GENDER_DROPDOWN_CSS)))
+
         element.click()
         dropdown = Select(self.driver.find_element(By.CSS_SELECTOR, self.GENDER_OPT_CSS))
+
         dropdown.select_by_visible_text(option)
 
 
