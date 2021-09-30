@@ -4,6 +4,7 @@ Testing the 'Categories' page
 
 import config
 
+
 NAME_OF_CTG = "fun"
 NAME_FOR_EDIT = "funny"
 NAME_FOR_CANCEL = "funny_new"
@@ -14,7 +15,7 @@ def test_ctg_add(app):
         Verify that the admin has the ability to add a new category.
     """
     app.landing.go_to_site()
-    app.modal.login(config.admin_email, config.admin_pass)
+    app.modal.login(config.ADMIN_EMAIL, config.ADMIN_PASS)
     app.landing.sign_up_btn.click_btn_by_css()
     app.landing.find_event_btn.click_btn_by_css()
     app.navigation.go_to_page("Categories")
@@ -31,7 +32,7 @@ def test_edit_ctg(app):
     """
     expected_result = "funny"
     app.landing.go_to_site()
-    app.modal.login(config.admin_email, config.admin_pass)
+    app.modal.login(config., config.admin_pass)
     app.landing.sign_up_btn.click_btn_by_css()
     app.landing.find_event_btn.click_btn_by_css()
     app.navigation.go_to_page("Categories")
@@ -75,3 +76,5 @@ def test_delete_ctg(app):
     app.categories.delete_ctg_btn.click_btn_by_index_css(ctg_row_index)
     assert expected_result == app.categories.row_index.find_element_in_row("funny"), \
         "category wasn't deleted"
+
+

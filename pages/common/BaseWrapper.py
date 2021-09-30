@@ -4,6 +4,9 @@ import config
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from Logger import Logger
+
+mylogger = Logger(logger="BaseWrapper").getlog()
 
 
 class BaseWrapper:
@@ -26,6 +29,7 @@ class BaseWrapper:
         except:
             allure.attach(self.driver.get_screenshot_as_png(), name="Screenshot",
                           attachment_type=AttachmentType.PNG)
+            mylogger.error("element not found")
 
     def find_element_by_xpath(self, locator, timeout=10):
         """
@@ -38,6 +42,7 @@ class BaseWrapper:
         except:
             allure.attach(self.driver.get_screenshot_as_png(), name="Screenshot",
                           attachment_type=AttachmentType.PNG)
+            mylogger.error("element not found")
 
     def find_elements(self, locator, timeout=10):
         """
@@ -45,11 +50,12 @@ class BaseWrapper:
         """
         try:
             WebDriverWait(self.driver, timeout).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, locator)),
-                                                  message=f"Can't find elements by locator {locator}")
+                                                      message=f"Can't find elements by locator {locator}")
             return self.driver.find_elements(By.CSS_SELECTOR, locator)
         except:
             allure.attach(self.driver.get_screenshot_as_png(), name="Screenshot",
                           attachment_type=AttachmentType.PNG)
+            mylogger.error("element not found")
 
     def find_elements_by_xpath(self, locator, timeout=10):
         """
@@ -57,14 +63,17 @@ class BaseWrapper:
         """
         try:
             WebDriverWait(self.driver, timeout).until(EC.presence_of_all_elements_located((By.XPATH, locator)),
-                                                  message=f"Can't find elements by locator {locator}")
+                                                      message=f"Can't find elements by locator {locator}")
             return self.driver.find_elements(By.XPATH, locator)
         except:
             allure.attach(self.driver.get_screenshot_as_png(), name="Screenshot",
                           attachment_type=AttachmentType.PNG)
+            mylogger.error("element not found")
 
     def go_to_site(self):
         """
             Method for go to the base_url
         """
         return self.driver.get(config.BASE_URL)
+
+

@@ -1,6 +1,5 @@
 import pytest
 from selenium import webdriver
-
 import config
 from pages.common.BasePage import BasePage
 
