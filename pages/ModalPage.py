@@ -30,7 +30,7 @@ class ModalPage(BaseWrapper):
 
     def get_success_register_text(self):
         """
-            Method for return string that contains on the success register page, for check expected result.
+            Method for getting the message about successful registration.
         """
         return self.find_element_by_css(self.SUCCESS_PAGE_ALERT_TEXT_CSS).text
 
@@ -56,4 +56,4 @@ class ModalPage(BaseWrapper):
         self.email_inp.send_data_by_xpath(username)
         self.pass_inp.send_data_by_xpath(password)
         self.pass_repeat_inp.send_data_by_xpath(password)
-        #self.sign_in_up_clear_btns.click_btn_by_name_by_xpath(FORM_PAGE_BUTTON_SING_UP_TEXT)
+        self.sign_in_up_clear_btns.click_btn_by_name_by_xpath(FORM_PAGE_BUTTON_SING_UP_TEXT)
