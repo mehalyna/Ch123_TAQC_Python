@@ -3,7 +3,7 @@ import os.path
 import time
 
 
-class Logger(object):
+class LoggerConfig(object):
     def __init__(self, logger):
         """
         Specify the file path to save the log, log level, and call file
