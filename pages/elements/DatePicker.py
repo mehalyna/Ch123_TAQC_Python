@@ -24,4 +24,3 @@ class DatePicker(BaseWrapper):
         element.send_keys(Keys.ARROW_LEFT)
         element.send_keys(Keys.ARROW_LEFT)
         element.send_keys(day)
-

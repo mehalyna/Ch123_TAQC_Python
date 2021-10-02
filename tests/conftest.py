@@ -1,4 +1,3 @@
-import allure
 import pytest
 import config
 from selenium import webdriver
