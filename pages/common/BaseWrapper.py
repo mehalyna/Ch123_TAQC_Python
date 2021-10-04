@@ -6,7 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from pages.common.Logger_config import LoggerConfig
 
 mylogger = LoggerConfig(logger="BaseWrapper").getlog()
-
+LoggerConfig.delete_log()
 
 class BaseWrapper:
 

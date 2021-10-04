@@ -1,6 +1,9 @@
 import logging
 import os.path
 import time
+import datetime
+import os
+import Logs
 
 
 class LoggerConfig(object):
@@ -15,8 +18,8 @@ class LoggerConfig(object):
 
         #  Create a handler to write to the log file
         time_set = time.strftime('%Y%m%d%H%M', time.localtime(time.time()))
-        log_path = os.path.dirname(os.getcwd()) + '/Logs/'
-        log_name = log_path + time_set + '.log'
+        log_path = (os.path.dirname(os.getcwd())).join('/Logs/')
+        log_name = (log_path).join(time_set).join('.log')
         log_handler = logging.FileHandler(log_name)
         log_handler.setLevel(logging.INFO)
 
@@ -35,3 +38,13 @@ class LoggerConfig(object):
 
     def getlog(self):
         return self.logger
+
+    def delete_log(self):
+        for files in os.listdir("Logs"):
+            year_of_log = int(files[:4])
+            month_of_log = int(files[4:6])
+            day_of_log = int(files[6:8])
+            date_of_log = datetime.date(year_of_log, month_of_log, day_of_log)
+            if datetime.date.today() - date_of_log >= 7:
+                name_log = 'Logs/'.join(str(files))
+                os.remove(name_log)
