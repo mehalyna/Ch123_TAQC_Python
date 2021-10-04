@@ -4,7 +4,6 @@ from selenium.webdriver.support import expected_conditions as EC
 
 import config
 
-
 class BaseWrapper:
 
     def __init__(self, driver):
@@ -14,7 +13,7 @@ class BaseWrapper:
         self.driver = driver
         self.base_url = config.base_url
 
-    def find_element_by_css(self, locator, timeout=10):
+    def find_element_by_css(self, locator, timeout=50):
         """
             Method for search element by css selector with wait
         """

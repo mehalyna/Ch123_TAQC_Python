@@ -56,9 +56,9 @@ class HomePage(BaseWrapper):
                 element.click()
                 return
 
-    def check_results(self):
+    def is_results_present(self):
         """
-            Method for checking results.
+            Returns True if the results is displayed.
         """
         return self.find_element_by_css(self.RESULTS_CSS).is_displayed()
 
@@ -68,8 +68,8 @@ class HomePage(BaseWrapper):
         """
         return self.driver.current_url
 
-    def is_title_exist(self):
+    def is_title_displayed(self):
         """
-            Method for checking title from event.
+            Returns True if the title is displayed.
         """
         return self.find_element_by_css(self.EVENT_TITLE_CSS).is_displayed()
