@@ -1,6 +1,7 @@
 from pages.Issues import IssuesPage
 from pages.Landing import LandingPage
 from pages.ModalPage import ModalPage
+from pages.NavigationForAdmin import NavigationForAdmin
 from pages.NavigationPage import NavigationPage
 from pages.Edit_categoty import AdminAddCategoryPage
 from pages.common.BaseWrapper import BaseWrapper
@@ -18,3 +19,4 @@ class BasePage(BaseWrapper):
         self.modal = ModalPage(driver)
         self.navigation = NavigationPage(driver)
         self.categories = AdminAddCategoryPage(driver)
+        self.admin_panel = NavigationForAdmin(driver)

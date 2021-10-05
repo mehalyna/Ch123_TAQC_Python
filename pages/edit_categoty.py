@@ -12,7 +12,7 @@ class AdminAddCategoryPage(BaseWrapper):
     CTG_ROW = "tr:nth-child({})"
     CTG_NAME_CSS = f"{CTG_ROW} td:nth-child(1)"
     CTG_ADD_BTN_CSS = ".ml-0"
-    CTG_INP_FIELD_CSS = "#save-form"
+    CTG_INP_FIELD_CSS = ".MuiInputBase-input.MuiInput-input"
     CTG_SUBMIT_BTN_CSS = ".text-success"
     CTG_CANCEL_BTN_CSS = f"{CTG_ROW} .text-danger"
     CTG_EDIT_BTN_CSS = f"{CTG_ROW} .text-info"
@@ -33,3 +33,6 @@ class AdminAddCategoryPage(BaseWrapper):
         self.users_in_ctg = TextElement(self.NUMBER_OF_USERS_VALUE_CSS, driver)
         self.events_in_ctg = TextElement(self.NUMBER_OF_EVENTS_VALUE_CSS, driver)
         self.ctg_name = TextElement(self.CTG_NAME_CSS, driver)
+
+
+
