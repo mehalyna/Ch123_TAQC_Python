@@ -28,9 +28,9 @@ class BaseWrapper:
             mylogger.info(f"Element located {locator} found successful")
             return element
         except TimeoutError:
-            mylogger.error("Element not found, timeout")
+            mylogger.error(f"Element located {locator} not found, timeout")
         except NoSuchElementException:
-            mylogger.error("Element not found")
+            mylogger.error(f"Element located {locator} not found")
 
     def find_element_by_xpath(self, locator, timeout=10):
         """
@@ -43,9 +43,9 @@ class BaseWrapper:
             mylogger.info(f"Element located {locator} found successful")
             return element
         except TimeoutError:
-            mylogger.error("Element not found, timeout")
+            mylogger.error(f"Element located {locator} not found, timeout")
         except NoSuchElementException:
-            mylogger.error("Element not found")
+            mylogger.error(f"Element located {locator} not found")
 
 
     def find_elements(self, locator, timeout=10):
@@ -59,9 +59,9 @@ class BaseWrapper:
             mylogger.info(f"Elements located {locator} found successful")
             return elements
         except TimeoutError:
-            mylogger.error("Elements not found, timeout")
+            mylogger.error(f"Elements located {locator} not found, timeout")
         except NoSuchElementException:
-            mylogger.error("Element not found")
+            mylogger.error(f"Element located {locator} not found")
 
 
     def find_elements_by_xpath(self, locator, timeout=10):
@@ -75,9 +75,9 @@ class BaseWrapper:
             mylogger.info(f"Elements located {locator} found successful")
             return elements
         except TimeoutError:
-            mylogger.error("Elements not found, timeout")
+            mylogger.error(f"Elements located {locator} not found, timeout")
         except NoSuchElementException:
-            mylogger.error("Element not  found")
+            mylogger.error(f"Elements located {locator} not  found")
 
 
     def go_to_site(self):
