@@ -3,7 +3,7 @@ import os.path
 import time
 import datetime
 import os
-import Logs
+
 
 
 class LoggerConfig(object):
@@ -16,9 +16,13 @@ class LoggerConfig(object):
         self.logger = logging.getLogger(logger)
         self.logger.setLevel(logging.DEBUG)
 
+        if not os.path.isdir("folder_for_logs"):
+            os.mkdir("folder_for_logs")
+
         #  Create a handler to write to the log file
         time_set = time.strftime('%Y%m%d%H%M', time.localtime(time.time()))
-        log_path = os.path.dirname(os.getcwd()) + '/Logs/'
+
+        log_path = os.path.dirname(os.getcwd()) + '/tests/' + '/folder_for_logs/'
         log_name = log_path + time_set + '.log'
         log_handler = logging.FileHandler(log_name)
         log_handler.setLevel(logging.INFO)
@@ -30,7 +34,8 @@ class LoggerConfig(object):
         #  Add handler to logger
         self.logger.addHandler(log_handler)
 
-    def getlog(self):
+    def get_log(self):
         return self.logger
+
 
 
