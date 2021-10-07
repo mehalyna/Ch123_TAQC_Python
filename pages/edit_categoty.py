@@ -2,7 +2,9 @@ from pages.common.BaseWrapper import BaseWrapper
 from pages.elements.ButtonElement import ButtonElement
 from pages.elements.InputElement import InputElement
 from pages.elements.TableElement import TableElement
-from pages.elements.TextElement import TextElement
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
 
 class AdminAddCategoryPage(BaseWrapper):
@@ -30,9 +32,17 @@ class AdminAddCategoryPage(BaseWrapper):
         self.edit_ctg_btn = ButtonElement(self.CTG_EDIT_BTN_CSS, driver)
         self.cancel_ctg_btn = ButtonElement(self.CTG_CANCEL_BTN_CSS, driver)
         self.delete_ctg_btn = ButtonElement(self.CTG_DELETE_BTN, driver)
-        self.users_in_ctg = TextElement(self.NUMBER_OF_USERS_VALUE_CSS, driver)
-        self.events_in_ctg = TextElement(self.NUMBER_OF_EVENTS_VALUE_CSS, driver)
-        self.ctg_name = TextElement(self.CTG_NAME_CSS, driver)
+
+    def get_element_text_by_index(self, index, selector, wait_time=10):
+        """
+            Method for getting text of element by index
+        :index - index of element, which we need to enter
+                into locator before getting text
+        """
+        element_selector = selector.format(index)
+        WebDriverWait(self.driver, wait_time).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, element_selector)))
+        return self.find_element_by_css(element_selector).text
 
 
 

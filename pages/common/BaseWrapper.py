@@ -5,8 +5,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from pages.common.Logger_config import LoggerConfig
 
-mylogger = LoggerConfig(logger="BaseWrapper").getlog()
-# LoggerConfig(logger="BaseWrapper").delete_log()
+mylogger = LoggerConfig(logger="BaseWrapper").get_log()
+
 
 class BaseWrapper:
 
@@ -25,12 +25,12 @@ class BaseWrapper:
             WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.CSS_SELECTOR, locator)),
                                                       message=f"Can't find element by locator {locator}")
             element = self.driver.find_element(By.CSS_SELECTOR, locator)
-            mylogger.info(f"Element located {locator} found successful")
+            mylogger.info(f"Element {locator} found successful")
             return element
         except TimeoutError:
-            mylogger.error(f"Element located {locator} not found, timeout")
+            mylogger.error(f"Element {locator} was not found during {timeout} timeout")
         except NoSuchElementException:
-            mylogger.error(f"Element located {locator} not found")
+            mylogger.error(f"Element {locator} not found")
 
     def find_element_by_xpath(self, locator, timeout=10):
         """
@@ -40,12 +40,12 @@ class BaseWrapper:
             WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.XPATH, locator)),
                                                       message=f"Can't find element by locator {locator}")
             element = self.driver.find_element(By.XPATH, locator)
-            mylogger.info(f"Element located {locator} found successful")
+            mylogger.info(f"Element {locator} found successful")
             return element
         except TimeoutError:
-            mylogger.error(f"Element located {locator} not found, timeout")
+            mylogger.error(f"Element {locator} was not found during {timeout} timeout")
         except NoSuchElementException:
-            mylogger.error(f"Element located {locator} not found")
+            mylogger.error(f"Element {locator} not found")
 
 
     def find_elements(self, locator, timeout=10):
@@ -56,12 +56,12 @@ class BaseWrapper:
             WebDriverWait(self.driver, timeout).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, locator)),
                                                       message=f"Can't find elements by locator {locator}")
             elements = self.driver.find_elements(By.CSS_SELECTOR, locator)
-            mylogger.info(f"Elements located {locator} found successful")
+            mylogger.info(f"Elements {locator} found successful")
             return elements
         except TimeoutError:
-            mylogger.error(f"Elements located {locator} not found, timeout")
+            mylogger.error(f"Elements {locator} was not found during {timeout} timeout")
         except NoSuchElementException:
-            mylogger.error(f"Element located {locator} not found")
+            mylogger.error(f"Element {locator} not found")
 
 
     def find_elements_by_xpath(self, locator, timeout=10):
@@ -72,12 +72,12 @@ class BaseWrapper:
             WebDriverWait(self.driver, timeout).until(EC.presence_of_all_elements_located((By.XPATH, locator)),
                                                       message=f"Can't find elements by locator {locator}")
             elements = self.driver.find_elements(By.XPATH, locator)
-            mylogger.info(f"Elements located {locator} found successful")
+            mylogger.info(f"Elements {locator} found successful")
             return elements
         except TimeoutError:
-            mylogger.error(f"Elements located {locator} not found, timeout")
+            mylogger.error(f"Elements {locator} was not found during {timeout} timeout")
         except NoSuchElementException:
-            mylogger.error(f"Elements located {locator} not  found")
+            mylogger.error(f"Elements {locator} not  found")
 
 
     def go_to_site(self):

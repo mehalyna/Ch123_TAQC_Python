@@ -4,15 +4,12 @@ from selenium.webdriver.common.by import By
 from pages.common.BaseWrapper import BaseWrapper
 
 
-class NavigationForAdmin(BaseWrapper):
+class NavigationForAdminPanel(BaseWrapper):
     """
         Locators and methods for navigation menu on admin panel
     """
     ADMIN_MENU = "#sub-nav"
     USER_NAME = "h4.user-name"
-
-    def page_loading(self, wait_time=10):
-        WebDriverWait(self.driver, wait_time).until(EC.presence_of_element_located((By.CSS_SELECTOR, self.USER_NAME)))
 
     def go_to_page(self, page_title, wait_time=10):
         """
