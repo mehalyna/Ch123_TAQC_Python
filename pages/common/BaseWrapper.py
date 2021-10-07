@@ -19,7 +19,7 @@ class BaseWrapper:
         """
             Method for search element by css selector with wait
         """
-        WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.CSS_SELECTOR, locator)),
+        WebDriverWait(self.driver, timeout).until(EC.element_to_be_clickable((By.CSS_SELECTOR, locator)),
                                                   message=f"Can't find element by locator {locator}")
         return self.driver.find_element(By.CSS_SELECTOR, locator)
 

@@ -53,6 +53,9 @@ class ProfilePage(BaseWrapper):
 
     NEW_USERNAME = '.MuiExpansionPanel-root:nth-child(2) p:nth-child(2)'
     NEW_GENDER = '.MuiExpansionPanel-root:nth-child(3) p:nth-child(2)'
+    NEW_DATE_OF_BIRTH = '.MuiExpansionPanel-root:nth-child(4) p:nth-child(2) > time'
+    PASSWORD_DO_NOT_MATCH = 'div:nth-child(3) > p'
+    WRONG_PASSWORD = '  form > div.d-flex.flex-column > div:nth-child(1) > p'
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -77,7 +80,7 @@ class ProfilePage(BaseWrapper):
         self.linked_account_facebook_btn = ButtonElement(self.LINKED_ACCOUNTS_FACEBOOK_BTN_CSS, driver)
         self.linked_account_mail_btn = ButtonElement(self.LINKED_ACCOUNTS_MAIL_BTN_CSS, driver)
 
-    def click_edit_your_profile_btn(self, wait_time = 10):
+    def click_edit_your_profile_btn(self, wait_time=10):
         """
             Method for opening edit profile page
         """
@@ -85,7 +88,7 @@ class ProfilePage(BaseWrapper):
             EC.element_to_be_clickable((By.CSS_SELECTOR, self.EDIT_PROFILE_BTN_CSS)))
         element.click()
 
-    def input_new_username(self, new_name, wait_time = 10):
+    def input_new_username(self, new_name, wait_time=10):
         """
             Method to input new username
             string new name of a user
@@ -94,20 +97,27 @@ class ProfilePage(BaseWrapper):
             EC.element_to_be_clickable((By.CSS_SELECTOR, self.USERNAME_INP_CSS)))
         element.send_keys(new_name)
 
-    def check_new_username(self):
+    def get_new_username(self):
 
         return self.find_element_by_css(self.NEW_USERNAME).text
 
-    def check_new_gender(self):
+    def get_new_gender(self):
 
         return self.find_element_by_css(self.NEW_GENDER).text
 
-    def change_gender_option(self, option, wait_time = 10):
+    def get_new_date_of_birth(self):
+
+        return self.find_element_by_css(self.NEW_DATE_OF_BIRTH).text
+
+    def warning_wrong_password(self):
+        return self.find_element_by_css(self.WRONG_PASSWORD).text
+
+    def change_gender_option(self, option, wait_time=10):
         """
            Method for changing gender
            string param opti: Male, Female, other
         """
-        #element = self.driver.find_element(By.CSS_SELECTOR, self.GENDER_DROPDOWN_CSS)
+        # element = self.driver.find_element(By.CSS_SELECTOR, self.GENDER_DROPDOWN_CSS)
         element = WebDriverWait(self.driver, wait_time).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, self.GENDER_DROPDOWN_CSS)))
 
@@ -116,8 +126,7 @@ class ProfilePage(BaseWrapper):
 
         dropdown.select_by_visible_text(option)
 
-
-    def choose_favorite_categories(self, wait_time = 10, *categories):
+    def choose_favorite_categories(self, wait_time=10, *categories):
         """
            Method for choosing favorite categories
            string categories : Fishing, Football, Gaming, Golf, Meeting, Mount, Sea, Sport, Summer
