@@ -22,12 +22,12 @@ def test_home_page_date(admin_setup):
     with allure.step("Click 'more filters' button"):
         admin_setup.home_page.more_filters_btn.click_btn_by_css()
     with allure.step("Filling datepickers"):
-        admin_setup.home_page.date_from_input.write_date_to_datepicker(5, 10, 2021)
-        admin_setup.home_page.date_to_input.write_date_to_datepicker(9, 10, 2021)
+        admin_setup.home_page.date_from_input.write_date_to_datepicker(15, 10, 2021)
+        admin_setup.home_page.date_to_input.write_date_to_datepicker(19, 10, 2021)
     with allure.step("Click 'search' button"):
         admin_setup.home_page.reset_favourite_search_btn.click_btn_by_name(SEARCH_BTN_TEXT)
-    with allure.step("Verify that results is present"):
-        assert admin_setup.home_page.is_results_present()
+    with allure.step("Verify that result is present"):
+        assert admin_setup.home_page.is_result_present()
 
 @allure.title("Test number of page:")
 @allure.severity(Severity.NORMAL)
@@ -72,8 +72,8 @@ def test_home_page_keyword(admin_setup):
         admin_setup.home_page.keyword_input.send_data("ttt")
     with allure.step("Click 'search' button"):
         admin_setup.home_page.reset_favourite_search_btn.click_btn_by_name(SEARCH_BTN_TEXT)
-    with allure.step("Verify that results is present"):
-        assert admin_setup.home_page.is_results_present()
+    with allure.step("Verify that result is present"):
+        assert admin_setup.home_page.is_result_present()
 
 @allure.title("Test checkbox 'Blocked' filter:")
 @allure.severity(Severity.NORMAL)
@@ -90,5 +90,5 @@ def test_home_page_checkboxes(admin_setup):
         admin_setup.home_page.click_filter_checkbox(BLOCKED_BOX_TEXT)
     with allure.step("Click 'search' button"):
         admin_setup.home_page.reset_favourite_search_btn.click_btn_by_name(SEARCH_BTN_TEXT)
-    with allure.step("Verify that results is present"):
-        assert admin_setup.home_page.is_results_present()
+    with allure.step("Verify that result is present"):
+        assert admin_setup.home_page.is_result_present()

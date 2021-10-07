@@ -22,7 +22,7 @@ class HomePage(BaseWrapper):
     MORE_FILTERS_MENU_FILTER_BY_LOCATION_BTN_CSS = "button.MuiButton-outlined"
     MORE_FILTERS_MENU_LESS_BTN_CSS = "button.MuiButton-textSecondary"
     # Locators for test.
-    RESULTS_CSS = ".h1"
+    RESULT_CSS = ".h1"
     EVENT_TITLE_CSS = ".text-block > .title"
 
     def __init__(self, driver):
@@ -56,11 +56,11 @@ class HomePage(BaseWrapper):
                 element.click()
                 return
 
-    def is_results_present(self):
+    def is_result_present(self):
         """
-            Returns True if the results is displayed.
+            Returns True if the result is displayed.
         """
-        return self.find_element_by_css(self.RESULTS_CSS).is_displayed()
+        return self.find_element_by_css(self.RESULT_CSS).is_displayed()
 
     def get_url(self):
         """
