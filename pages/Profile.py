@@ -1,14 +1,16 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
-from pages.elements.datepickers import DatePicker
-from pages.elements.buttonElement import ButtonElement
-from pages.elements.buttons import ButtonElements
+from pages.elements.DatePicker import DatePicker
+from pages.elements.ButtonElement import ButtonElement
+from pages.elements.ButtonElements import ButtonElements
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
+from pages.common.BaseWrapper import BaseWrapper
 
-class ProfilePage:
+
+class ProfilePage(BaseWrapper):
     """
        Locators and methods for Profile Page.
     """
@@ -49,30 +51,44 @@ class ProfilePage:
     CHANGE_PASSWORD_CLEAR_BTN_CSS = ".MuiExpansionPanel-root:nth-child(8)  button[type= 'button']"
     CHANGE_PASSWORD_SUBMIT_BTN_CSS = ".MuiExpansionPanel-root:nth-child(8)  button[type= 'submit']"
 
-    def __init__(self):
-        self.driver = webdriver.Chrome()
-        self.expansion_panel_by_name_btn = ButtonElements(self.EXPANSION_PANEL_ALL_BTN_CSS)
-        self.change_avatar_submit_btn = ButtonElement(self.CHANGE_AVATAR_SUBMIT_BTN_CSS)
-        self.change_avatar_crop_btn = ButtonElement(self.CHANGE_AVATAR_CROP_BTN_CSS)
-        self.change_avatar_clear_btn = ButtonElement(self.CHANGE_AVATAR_CLEAR_BTN_CSS)
-        self.change_avatar_upload_new_picture_btn = ButtonElement(self.CHANGE_AVATAR_UPLOAD_NEW_PICTURE)
-        self.expansion_panel_date_of_birth_dtp = DatePicker(self.DATE_OF_BIRTH_DATAPICKER_CSS)
-        self.username_clear_btn = ButtonElement(self.USERNAME_CLEAR_BTN_CSS)
-        self.username_submit_btn = ButtonElement(self.USERNAME_SUBMIT_BTN_CSS)
-        self.gender_submit_btn = ButtonElement(self.GENDER_SUBMIT_BTN_CSS)
-        self.favorite_categories_save_btn = ButtonElement(self.FAVORITE_CATEGORIES_SAVE_BTN_CSS)
-        self.password_submit_btn = ButtonElement(self.CHANGE_PASSWORD_SUBMIT_BTN_CSS)
-        self.password_clear_btn = ButtonElement(self.CHANGE_PASSWORD_CLEAR_BTN_CSS)
-        self.date_of_birth_clear_btn = ButtonElement(self.DATE_OF_BIRTH_CLEAR_BTN_CSS)
-        self.date_of_birth_submit_btn = ButtonElement(self.DATE_OF_BIRTH_SUBMIT_BTN_CSS)
-        self.linked_account_google_btn = ButtonElement(self.LINKED_ACCOUNTS_GOOGLE_BTN_CSS)
-        self.linked_account_facebook_btn = ButtonElement(self.LINKED_ACCOUNTS_FACEBOOK_BTN_CSS)
-        self.linked_account_mail_btn = ButtonElement(self.LINKED_ACCOUNTS_MAIL_BTN_CSS)
+    NEW_USERNAME = '.MuiExpansionPanel-root:nth-child(2) p:nth-child(2)'
+    NEW_GENDER = '.MuiExpansionPanel-root:nth-child(3) p:nth-child(2)'
+    NEW_DATE_OF_BIRTH = '.MuiExpansionPanel-root:nth-child(4) p:nth-child(2) > time'
+    PASSWORD_DO_NOT_MATCH = 'div:nth-child(3) > p'
+    WRONG_PASSWORD = '  form > div.d-flex.flex-column > div:nth-child(1) > p'
 
+    def __init__(self, driver):
+        super().__init__(driver)
+        self.edit_profile_btn = ButtonElement(self.EDIT_PROFILE_BTN_CSS, driver)
+        self.expansion_panel_by_name_btn = ButtonElements(self.EXPANSION_PANEL_ALL_BTN_CSS, driver)
+        self.change_avatar_submit_btn = ButtonElement(self.CHANGE_AVATAR_SUBMIT_BTN_CSS, driver)
+        self.change_avatar_crop_btn = ButtonElement(self.CHANGE_AVATAR_CROP_BTN_CSS, driver)
+        self.change_avatar_clear_btn = ButtonElement(self.CHANGE_AVATAR_CLEAR_BTN_CSS, driver)
+        self.change_avatar_upload_new_picture_btn = ButtonElement(self.CHANGE_AVATAR_UPLOAD_NEW_PICTURE, driver)
+        self.expansion_panel_date_of_birth_dtp = DatePicker(self.DATE_OF_BIRTH_DATAPICKER_CSS, driver)
+        self.username_clear_btn = ButtonElement(self.USERNAME_CLEAR_BTN_CSS, driver)
+        self.username_submit_btn = ButtonElement(self.USERNAME_SUBMIT_BTN_CSS, driver)
 
+        self.gender_dropdown_btn = ButtonElement(self.GENDER_DROPDOWN_CSS, driver)
+        self.gender_submit_btn = ButtonElement(self.GENDER_SUBMIT_BTN_CSS, driver)
+        self.favorite_categories_save_btn = ButtonElement(self.FAVORITE_CATEGORIES_SAVE_BTN_CSS, driver)
+        self.password_submit_btn = ButtonElement(self.CHANGE_PASSWORD_SUBMIT_BTN_CSS, driver)
+        self.password_clear_btn = ButtonElement(self.CHANGE_PASSWORD_CLEAR_BTN_CSS, driver)
+        self.date_of_birth_clear_btn = ButtonElement(self.DATE_OF_BIRTH_CLEAR_BTN_CSS, driver)
+        self.date_of_birth_submit_btn = ButtonElement(self.DATE_OF_BIRTH_SUBMIT_BTN_CSS, driver)
+        self.linked_account_google_btn = ButtonElement(self.LINKED_ACCOUNTS_GOOGLE_BTN_CSS, driver)
+        self.linked_account_facebook_btn = ButtonElement(self.LINKED_ACCOUNTS_FACEBOOK_BTN_CSS, driver)
+        self.linked_account_mail_btn = ButtonElement(self.LINKED_ACCOUNTS_MAIL_BTN_CSS, driver)
 
+    def click_edit_your_profile_btn(self, wait_time=10):
+        """
+            Method for opening edit profile page
+        """
+        element = WebDriverWait(self.driver, wait_time).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, self.EDIT_PROFILE_BTN_CSS)))
+        element.click()
 
-    def input_new_username(self, new_name, wait_time = 10):
+    def input_new_username(self, new_name, wait_time=10):
         """
             Method to input new username
             string new name of a user
@@ -81,18 +97,36 @@ class ProfilePage:
             EC.element_to_be_clickable((By.CSS_SELECTOR, self.USERNAME_INP_CSS)))
         element.send_keys(new_name)
 
-    def change_gender_option(self, option):
+    def get_new_username(self):
+
+        return self.find_element_by_css(self.NEW_USERNAME).text
+
+    def get_new_gender(self):
+
+        return self.find_element_by_css(self.NEW_GENDER).text
+
+    def get_new_date_of_birth(self):
+
+        return self.find_element_by_css(self.NEW_DATE_OF_BIRTH).text
+
+    def warning_wrong_password(self):
+        return self.find_element_by_css(self.WRONG_PASSWORD).text
+
+    def change_gender_option(self, option, wait_time=10):
         """
            Method for changing gender
            string param opti: Male, Female, other
         """
-        element = self.driver.find_element(By.CSS_SELECTOR, self.GENDER_DROPDOWN_CSS)
+        # element = self.driver.find_element(By.CSS_SELECTOR, self.GENDER_DROPDOWN_CSS)
+        element = WebDriverWait(self.driver, wait_time).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, self.GENDER_DROPDOWN_CSS)))
+
         element.click()
         dropdown = Select(self.driver.find_element(By.CSS_SELECTOR, self.GENDER_OPT_CSS))
+
         dropdown.select_by_visible_text(option)
 
-
-    def choose_favorite_categories(self, wait_time = 10, *categories):
+    def choose_favorite_categories(self, wait_time=10, *categories):
         """
            Method for choosing favorite categories
            string categories : Fishing, Football, Gaming, Golf, Meeting, Mount, Sea, Sport, Summer
