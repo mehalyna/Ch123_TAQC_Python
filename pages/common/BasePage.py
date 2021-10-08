@@ -2,6 +2,7 @@ from pages.Issues import IssuesPage
 from pages.Landing import LandingPage
 from pages.ModalPage import ModalPage
 from pages.NavigationPage import NavigationPage
+from pages.common.BaseWrapper import BaseWrapper
 from pages.home_page import HomePage
 from pages.common.baseWrapper import BaseWrapper
 
