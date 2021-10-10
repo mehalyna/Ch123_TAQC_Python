@@ -1,7 +1,5 @@
-import allure
-from allure_commons.types import AttachmentType
-import config
 import pytest
+import config
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from pages.common.BasePage import BasePage
