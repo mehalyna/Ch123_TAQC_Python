@@ -6,7 +6,7 @@ from pages.NavigationPage import NavigationPage
 from pages.Edit_categoty import AdminAddCategoryPage
 from pages.common.BaseWrapper import BaseWrapper
 from pages.home_page import HomePage
-from pages.common.baseWrapper import BaseWrapper
+from pages.common.BaseWrapper import BaseWrapper
 
 
 
