@@ -3,11 +3,13 @@ import config
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from pages.common.BasePage import BasePage
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 @pytest.fixture(scope="function")
 def app():
     driver = webdriver.Chrome(ChromeDriverManager().install())
+    driver.maximize_window()
     yield BasePage(driver)
     driver.quit()
 
