@@ -10,9 +10,9 @@ class App:
         self.header = None
         self.base_url = config.BASE_URL
 
-    def get_header_login_admin(self, mail, password):
+    def login(self, mail, password):
         """
-            Method GET for creating a header with 'login' URL and get authorize token.
+            Method POST for creating a header with 'login' URL and get authorize token.
         """
         payload = {
             'email': mail,
@@ -34,16 +34,6 @@ class App:
         url = self.base_url + config.URL_CATEGORY['get_all']
         res = requests.get(url=url, headers=self.header)
         return res
-
-    def get_category_id_by_name(self, res, name):
-        """
-            Method GET for get category id by name category.
-            Return response with results of request.
-        """
-        categories = res.json()
-        mount_category = [category for category in categories if category["name"] == name][0]
-        id = mount_category['id']
-        return id
 
     def create_category(self, payload):
         """
